@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="All 55 GTA VI trophies with grades, cited guides, a platinum roadmap and a browser-saved checklist.">
+<meta name="color-scheme" content="dark">
 <title>Leonida Trophy Atlas — GTA VI Trophy Guide &amp; Tracker</title>
 <link rel="stylesheet" href="style.css">
 </head>
@@ -16,16 +18,16 @@
   </div>
   <div class="progress-box" id="progress-box">
     <div class="big-count"><span id="earned">0</span><span class="of">/55</span></div>
-    <div class="bar"><div id="bar-fill"></div></div>
+    <div class="bar" role="progressbar" aria-labelledby="earned"><div id="bar-fill"></div></div>
     <div class="grade-row" id="grade-row"></div>
     <p class="save-note" id="save-note">Saved in this browser</p>
   </div>
 </header>
-<nav class="tabs" id="tabs">
-  <button class="tab active" data-view="tracker">Checklist</button>
-  <button class="tab" data-view="roadmap">Roadmap to Platinum</button>
-  <button class="tab" data-view="missables">Missables</button>
-  <button class="tab" data-view="data">Save / Load</button>
+<nav class="tabs" id="tabs" aria-label="Sections">
+  <button class="tab active" data-view="tracker" aria-selected="true">Checklist</button>
+  <button class="tab" data-view="roadmap" aria-selected="false">Roadmap to Platinum</button>
+  <button class="tab" data-view="missables" aria-selected="false">Missables</button>
+  <button class="tab" data-view="data" aria-selected="false">Save / Load</button>
 </nav>
 <main id="main"></main>
 <footer class="foot">Written for this entry, in our own words. Official trophy names, descriptions and grades

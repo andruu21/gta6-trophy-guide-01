@@ -14,6 +14,7 @@
 //   mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
 //
 // Serve the app locally with `node serve.ts`, then open http://localhost:8080.
+// The app and data are plain static files: edits to app/ need no rebuild, only a page refresh.
 // screenshots/ holds the four judge-facing renders; the first by name is the cover.
 
 import { cpSync, existsSync, mkdirSync, writeFileSync } from 'node:fs';
