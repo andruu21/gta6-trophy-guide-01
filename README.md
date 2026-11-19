@@ -1,130 +1,125 @@
-# GTA VI Trophy Guide — Leonida Legend (Projected)
+# GTA VI Trophy Guide — Projected 55-Trophy Roadmap
 
-A single-page, framework-free trophy guide for **Grand Theft Auto VI**
-(PlayStation 5) with all **55 trophies**, a completion roadmap, a missables
-section, difficulty ratings, and a spoiler-free toggle mode.
+A fan-made, spoiler-aware **Grand Theft Auto VI** trophy guide: a working
+single-page web app (vanilla JS, no frameworks) plus a TypeScript data validator.
+**Every trophy name and route below is a projection** — Rockstar Games has not
+published an official trophy guide. The list is modelled on the GTA V PS5
+trophy structure and on launch-week community tracking, and is clearly labelled
+as projected everywhere in the app and data.
 
-## ⚠️ Everything is a projection
-
-Rockstar Games has **not published an official GTA VI trophy list**. Every
-trophy name, rarity, and requirement in `app/data/trophies.json` is an original
-projection modelled on the Grand Theft Auto V (PS5) trophy list and Rockstar's
-long-standing trophy design patterns. The data file and the app UI label this
-everywhere (`meta.status: "PROJECTED"`, a gold banner in the header, a
-"projected" tag on every card, and a reminder in each trophy's detail dialog).
-Treat nothing as confirmed until Rockstar publishes the real list.
-
-## Verified facts (sourced)
-
-These are the only "hard" facts in this guide, each checked against primary
-sources on November 20, 2026:
+## Verified facts (with sources)
 
 | Fact | Value | Source |
 |---|---|---|
-| Release date | November 19, 2026 (PS5, Xbox Series X\|S) | [Rockstar Newswire](https://www.rockstargames.com/newswire/article/ak3ak31a49a221/grand-theft-auto-vi-is-now-set-to-launch-november-19-2026) |
-| Setting | State of Leonida, incl. modern-day Vice City | [Rockstar Newswire](https://www.rockstargames.com/newswire/article/ak3ak31a49a221/grand-theft-auto-vi-is-now-set-to-launch-november-19-2026), [rockstargames.com/VI](https://www.rockstargames.com/VI) |
-| Protagonists | Jason Duval & Lucia, a criminal partnership across Leonida | [Rockstar: Only in Leonida](https://www.rockstargames.com/VI/only-in-leonida) |
-| Online mode | GTA VI is single-player at launch; existing GTA Online continues to be supported "after GTA 6 release and beyond"; any new online mode is unannounced | [Take-Two IR](https://www.take2games.com/ir/news/rockstar-games-announces-pre-orders-grand-theft-auto-vi), [IGN](https://ign.com/articles/gta-6-is-a-single-player-experience-rockstar-confirms-what-now-for-gta-online) |
+| Release date | November 19, 2026 (PS5, Xbox Series X\|S) | [Rockstar Newswire, Nov 6 2025](https://www.rockstargames.com/newswire/article/ak3ak31a49a221/grand-theft-auto-vi-is-now-set-to-launch-november-19-2026) · [rockstargames.com/VI](https://www.rockstargames.com/VI) |
+| Setting | State of **Leonida** — Vice City, Leonida Quays, Grassrivers, Port Gellhorn, Ambrosia, Mount Kalaga, the Keys | Rockstar ("sprawling state of Leonida and a return to modern day Vice City") · [GTAVice](https://gtavice.net/setting-and-story) · [GameSpot](https://gamespot.com/articles/10-new-things-we-just-learned-about-gta-6) |
+| Protagonists | **Jason Duval & Lucia Caminos**, a fugitive couple; Lucia starts the story in prison | [Rockstar Store game description](https://store.rockstargames.com/game/buy-gta-vi) · [Variety](https://variety.com/2026/gaming/news/gta-6-release-details-1236846230) |
+| Online mode | **Not announced at launch.** Rockstar describes GTA VI as "a single player experience"; Bloomberg reporting suggests a 2027 multiplayer launch (unconfirmed rumor) | [Rockstar Newswire pre-order post](https://www.rockstargames.com/newswire/article/5171972o3ak5oa/pre-order-grand-theft-auto-vi-on-june-25) · [ViceSplat explainer](https://vicesplat.com/news/will-gta-6-have-online-mods-fivem-rp-servers/) · [PC Gamer](https://www.pcgamer.com/games/grand-theft-auto/gta-6-online-multiplayer/) |
+| Trophy count | 55 trophies incl. Platinum per launch-week tracking (1 Platinum, 2 Gold, 6 Silver, 46 Bronze); all single-player | [GTA BOOM](https://gtaboom.com/every-gta-6-trophy-and-achievement-at-launch-and-how-to-unlock-them-fc5f) · [GTABase](https://gtabase.com/articles/gta-6/gta-6-achievements-trophies-list-ps5-xbox-series) · [gta.guide](https://gta.guide/gta-6/guides/trophies-and-achievements) |
 
-## Run it
+## The guide
 
-The app is plain static files — no build step, no dependencies:
+All **55 trophies**, each with:
 
-```sh
-cd app
-python3 -m http.server 8080
-# open http://localhost:8080
+- a `projected` label (a dashed-gold badge and a banner; nothing claims official status),
+- a **difficulty rating** (Easy / Medium / Hard / Very Hard),
+- a **missable flag plus a "what to watch" note** for every entry,
+- a **description** of how to get it.
+
+Plus, in the app UI:
+
+- a **completion roadmap** in five phases (story blind run → pre-endgame sweep → post-story clean-up → grinds → skill checks & 100%),
+- a **missables section** (cheats disabling trophies, chapter-locked content, heist approach lockouts, stealth resets, the cumulative relationship meter, and the online caveat),
+- a **spoiler-free toggle** that masks story-mission names, chapter details and endings while leaving world-system trophies visible.
+
+## Running the app
+
+Static files only — serve the repo root (or the `app/` dir) with any web server:
+
+```bash
+python3 -m http.server 8000
+# then open http://localhost:8000/app/
 ```
 
-(Any static server serving `app/` at its root works. Opening `index.html`
-via `file://` also works in most browsers; fetch of the JSON is the only
-network call, to the app's own data file.)
+Opening `app/index.html` via `file://` will fail to fetch the JSON in some
+browsers (CORS on local files) — the app detects this and shows a hint.
 
-## What the app does
+### App features
 
-- **55 trophy cards** in a responsive grid, grouped by 8 filterable categories
-  (Platinum, Story, 100% Completion, Collectibles, Heists, Vehicles,
-  Sports & Activities, Misc).
-- **Every trophy shows**: a difficulty rating (1–10 with dot visualization),
-  rarity, a missable tag where relevant, a spoiler tag, and the projected label.
-- **Detail dialog** per trophy: description, "how to get it", and for missable
-  ones a "what to watch" warning.
-- **Spoiler-free toggle mode**: hides the names/descriptions/how-tos of
-  spoiler-flagged trophies until revealed. Preference persists in `localStorage`.
-- **Search** (`/` shortcut, `Esc` clears) plus category filters, with a live
-  "showing N of 55" counter.
-- **Roadmap**: 5 phases from story-first to platinum cleanup, with estimated hours.
-- **Missables section**: the watch-list of things that could lock trophies in
-  a playthrough, plus per-trophy warnings.
-- **Local progress tracking**: mark trophies "earned"; stored in `localStorage`
-  (`gta6-trophy-guide-v1`), survives reloads, never leaves the browser.
+- Spoiler-free mode (persisted in `localStorage`, restored on reload)
+- Dark neon / light theme toggle (also persisted)
+- Category chips, difficulty chips, "missable risk only" filter
+- Free-text search across names, descriptions and notes
+- Sorting (list order, hardest first, A–Z)
+- Per-trophy "Mark obtained" tracking with a progress bar (stored locally, never uploaded; reset button included)
 
-## Files
+## Validating the data (main.ts)
 
-```
-app/
-  index.html          page shell: header, filters, panels, dialog
-  style.css           Vice City dusk palette, responsive layout
-  app.js              vanilla JS: load, render, filters, search, spoiler mode,
-                      dialog, localStorage persistence
-  data/trophies.json  all 55 projected trophies + verified game facts + roadmap
-                      + missables + sources
-main.ts               TypeScript dev helper: validates trophies.json against the
-                      project schema (55 trophies, required fields, rarity values,
-                      difficulty range, missable=>watch note, projected=true, etc.)
-README.md             this file
-```
+`main.ts` is a small TypeScript dev helper that validates
+`app/data/trophies.json` against the guide's own schema: trophy count (55),
+grade breakdown (1/2/6/46), required fields, unique ids, category and
+difficulty references, grade values, and the mandatory projection disclaimer.
 
-## Data schema
-
-Each trophy object requires:
-
-| Field | Type | Meaning |
-|---|---|---|
-| `id` | string | unique slug |
-| `name` | string | projected trophy name |
-| `category` | one of `platinum, story, completion, collectibles, heists, vehicles, activities, misc` | grouping |
-| `rarity` | `platinum` \| `gold` \| `silver` \| `bronze` | PSN rarity class |
-| `difficulty` | number 1–10 | projected effort/skill |
-| `missable` | boolean | could lock in one playthrough |
-| `watch` | string | required when `missable: true` — what to watch |
-| `projected` | `true` | always true; nothing is official |
-| `spoiler` | boolean | masked by spoiler mode |
-| `description` | string | what the trophy asks |
-| `howTo` | string | projected method to earn it |
-
-Top-level sections: `meta` (disclaimer, status, sources), `gameFacts`
-(verified facts above), `categories`/`categoryLabels`, `roadmap` (5 phases),
-`missables` (intro + watch-list items).
-
-## Dev tooling
-
-Validate the data (exit code 1 on failure — CI-friendly):
-
-```sh
+```bash
+# fastest: run directly
 npx tsx main.ts
-# or on Node 22+: node --experimental-strip-types main.ts
+
+# or compile & run
+npx tsc main.ts --module commonjs --target es2020 --esModuleInterop \
+  && node main.js
 ```
 
-Syntax-check the app and data by hand:
+Node's built-in type definitions (`@types/node`) are needed for
+`fs`/`path`/`process` — `npx tsx` pulls them automatically; a bare `tsc` run
+may need `npm i -D @types/node` first. Note there is no `package.json` in this
+repo on purpose (the app is dependency-free); the validator is optional dev
+tooling.
 
-```sh
+Quick checks without TypeScript:
+
+```bash
 node -e "JSON.parse(require('fs').readFileSync('app/data/trophies.json'))"
 node --check app/app.js
 ```
 
-## Updating when the real list lands
+## Repo layout
 
-1. Replace `trophies` in `app/data/trophies.json` with the official names and
-   requirements, set `meta.status` to `"OFFICIAL"` (the validator will then
-   reject `"PROJECTED"`-only data).
-2. Set each trophy's `projected` to `false`, keep `difficulty`, `missable`,
-   and `watch` honest per real gameplay.
-3. Re-run `npx tsx main.ts` and refresh the app — the banner text reads the
-   status, so the UI follows automatically only if you also update the static
-   banner in `index.html`.
+```
+app/
+  index.html          # single-page shell: header, filters, grid, roadmap, missables
+  app.js              # vanilla JS: rendering, spoiler mode, filters, tracking
+  style.css           # Vice City neon dark + light theme, responsive layout
+  data/trophies.json  # 55 projected trophies + meta (sources, disclaimer, breakdown)
+main.ts               # dev-only schema validator for trophies.json
+README.md             # this file
+```
 
-## License
+## Data model (`trophies.json`)
 
-Guide text: MIT (see LICENSE). Unofficial fan project — not affiliated with
-Rockstar Games or Take-Two Interactive. No Rockstar assets used.
+```jsonc
+{
+  "meta": { "disclaimer": "PROJECTED …", "sources": [ … ] },
+  "categories": [ { "id": "story", "label": "Story Missions" }, … ],
+  "difficulties": ["Easy", "Medium", "Hard", "Very Hard"],
+  "trophies": [
+    {
+      "id": "vice-got-a-price",
+      "name": "Vice Got a Price!",
+      "type": "Platinum",            // Bronze | Silver | Gold | Platinum
+      "category": "platinum",        // must exist in categories[]
+      "difficulty": "Very Hard",     // must exist in difficulties[]
+      "missable": false,
+      "missableNote": "what to watch — present on every entry",
+      "description": "how to get it"
+    }
+  ]
+}
+```
+
+## License & attribution
+
+Fan-made projection guide; **not affiliated with or endorsed by Rockstar Games
+or Take-Two Interactive**. Trophy names are projected from launch-week community
+tracking (GTA BOOM, GTABase, gta.guide, November 2026) until an official list
+exists. Grand Theft Auto and all related marks are trademarks of Take-Two
+Interactive. No game assets are included or reproduced here.

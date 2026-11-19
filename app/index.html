@@ -3,82 +3,132 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GTA VI Trophy Guide — Leonida Legend (Projected)</title>
-  <meta name="description" content="A projected 55-trophy guide for Grand Theft Auto VI with difficulty ratings, missables, a completion roadmap and a spoiler-free mode.">
+  <title>GTA VI Trophy Guide — Projected 55-Trophy Roadmap</title>
+  <meta name="description" content="A projected Grand Theft Auto VI trophy guide: all 55 trophies with difficulty, missables, roadmap and a spoiler-free mode. Fan-made, not affiliated with Rockstar Games.">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header class="site-header">
     <div class="header-inner">
-      <div class="title-block">
+      <div>
         <h1>GTA VI <span class="accent">Trophy Guide</span></h1>
-        <p class="subtitle">Grand Theft Auto VI &middot; PlayStation 5 &middot; Leonida &amp; Vice City &middot; Jason &amp; Lucia</p>
-        <p class="projection-banner" id="projectionBanner">
-          PROJECTION NOTICE: Rockstar has not published an official GTA VI trophy list.
-          All 55 trophies below are modelled on the GTA V (PS5) trophy list and are
-          clearly marked as projections. Nothing here is confirmed.
-        </p>
+        <p class="tagline">Vice City &amp; the state of Leonida · Jason &amp; Lucia · PS5 / Xbox Series X|S</p>
       </div>
       <div class="header-controls">
-        <button id="spoilerToggle" class="btn btn-spoiler" type="button" aria-pressed="false">
-          Spoiler mode: <span id="spoilerState">hidden</span>
+        <button id="spoilerToggle" type="button" aria-pressed="false"
+          title="Hide mission names, story details and endings until you've finished the story.">
+          <span id="spoilerIcon">🙈</span> Spoiler-free mode: <strong id="spoilerState">ON</strong>
         </button>
-        <input id="searchBox" class="search" type="search"
-               placeholder="Search trophies…" aria-label="Search trophies">
-        <div class="progress-pill" id="progressPill" title="Locally tracked trophies you marked as earned">
-          <span id="earnedCount">0</span>/<span id="totalCount">55</span> marked earned
-        </div>
+        <button id="themeToggle" type="button" title="Switch between neon dark and clean light theme.">🌗</button>
       </div>
+    </div>
+    <div class="projection-banner" id="projectionBanner">
+      ⚠️ <strong>Projected trophy list.</strong> Rockstar Games has not published an official GTA VI
+      trophy guide. Every name, grade and route below is a projection modelled on the GTA V PS5 list
+      and launch-week community tracking — treat it as a planning tool, not gospel.
+      <a href="#roadmap">Roadmap</a> · <a href="#missables">Missables</a> ·
+      <a href="https://www.rockstargames.com/VI" target="_blank" rel="noopener">Rockstar's official site</a>
     </div>
   </header>
 
-  <nav class="filters" id="filters" aria-label="Trophy categories">
-    <button class="filter-btn active" data-category="all" type="button">All</button>
-    <!-- category buttons injected by app.js -->
-  </nav>
+  <main class="layout">
+    <aside class="filters" aria-label="Trophy filters">
+      <section class="filter-card">
+        <h2>Progress</h2>
+        <div class="progress-block">
+          <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+          <p class="progress-text"><span id="progressCount">0</span> / <span id="progressTotal">55</span> tracked <span class="muted">(local only)</span></p>
+          <button id="resetProgress" type="button" class="ghost">Reset tracking</button>
+        </div>
+      </section>
 
-  <main>
-    <section class="panel" id="statsPanel">
-      <div class="stat-grid" id="statGrid"><!-- injected --></div>
-    </section>
+      <section class="filter-card">
+        <h2>Search</h2>
+        <input type="search" id="searchInput" placeholder="Search names, descriptions…" aria-label="Search trophies">
+      </section>
 
-    <section class="panel" id="roadmapPanel">
-      <h2>Completion Roadmap <span class="tag tag-projected">projected</span></h2>
-      <p class="roadmap-hours" id="roadmapHours"></p>
-      <ol class="roadmap-list" id="roadmapList"></ol>
-    </section>
+      <section class="filter-card">
+        <h2>Category</h2>
+        <div id="categoryFilters" class="chip-row"></div>
+      </section>
 
-    <section class="panel" id="missablesPanel">
-      <h2>Missables &amp; What to Watch <span class="tag tag-projected">projected</span></h2>
-      <p class="missables-intro" id="missablesIntro"></p>
-      <ul class="missables-list" id="missablesList"></ul>
-    </section>
+      <section class="filter-card">
+        <h2>Difficulty</h2>
+        <div id="difficultyFilters" class="chip-row"></div>
+      </section>
 
-    <section class="panel" id="trophiesPanel">
-      <h2>The Trophies <span class="tag tag-projected">all projected</span></h2>
-      <div class="trophy-grid" id="trophyGrid"><!-- injected --></div>
-      <p class="empty-note" id="emptyNote" hidden>No trophies match your filters.</p>
+      <section class="filter-card">
+        <h2>Flags</h2>
+        <div class="chip-row">
+          <label class="chip toggle-chip"><input type="checkbox" id="missableOnly"> Missable risk only</label>
+        </div>
+      </section>
+    </aside>
+
+    <section class="content">
+      <div class="content-toolbar">
+        <h2 id="listHeading">Trophies <span id="resultCount" class="muted"></span></h2>
+        <div class="sort-controls">
+          <label for="sortSelect">Sort:</label>
+          <select id="sortSelect" aria-label="Sort trophies">
+            <option value="order">List order</option>
+            <option value="difficulty">Difficulty (hardest first)</option>
+            <option value="name">Name (A–Z)</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="trophyGrid" class="trophy-grid" role="list"></div>
+      <p id="emptyState" class="empty-state" hidden>No trophies match those filters — try clearing the search.</p>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <p>
-      Unofficial fan-made projection. Not affiliated with Rockstar Games or Take-Two Interactive.
-      Verified facts (release date November 19, 2026; setting Leonida/Vice City; protagonists
-      Jason &amp; Lucia; online mode status) are sourced from
-      <a href="https://www.rockstargames.com/newswire/article/ak3ak31a49a221/grand-theft-auto-vi-is-now-set-to-launch-november-19-2026" target="_blank" rel="noopener">Rockstar Newswire</a>,
-      <a href="https://www.rockstargames.com/VI" target="_blank" rel="noopener">rockstargames.com/VI</a> and
-      <a href="https://www.take2games.com/ir/news/rockstar-games-announces-pre-orders-grand-theft-auto-vi" target="_blank" rel="noopener">Take-Two IR</a>.
-      Trophy names and requirements are original projections — see the notice above.
-    </p>
-  </footer>
+  <section class="roadmap" id="roadmap">
+    <h2>Completion Roadmap <span class="badge badge-projected">projected</span></h2>
+    <div class="roadmap-grid">
+      <article class="roadmap-step">
+        <h3>Phase 1 — Story blind run (≈ 0–70 h)</h3>
+        <p>Play the story once with spoiler mode ON. Keep cheats OFF the entire game (they disable trophies). Do story missions as they come, and grab every trophy that pops naturally: chapter clears, 'Trust', 'Break the Bank', the partnership awards, 'In The Beginning…' on Ocean Beach in hour one, and 'Capital Offense' whenever a showroom tempts you.</p>
+      </article>
+      <article class="roadmap-step">
+        <h3>Phase 2 — Pre-endgame sweep (before the final mission)</h3>
+        <p>Before triggering 'You Gotta Know When to Get Off', clear anything chapter-locked: all stranger strands ('Strangers &amp; Freaks' and the five named finales), the story heists, and every district you can reach ('The Goodtime State'). Start feeding the relationship meter and the laundering loop now — they need accumulated time, not a late grind.</p>
+      </article>
+      <article class="roadmap-step">
+        <h3>Phase 3 — Post-story world clean-up (≈ 70–120 h)</h3>
+        <p>After the credits, the map is fully open. Work state-wide: 'Whip It Good' (100 vehicles), 'On the Spot' (10 registrations), 'Challenging Tank' and 'Catch Me If You Can' now that military bases and VCIA are open, the robbery trophies ('Sneakthief', 'Maximum Withdrawal', 'A Classic Blitz Play', 'Pest Control'), and the money trophies ('Dime on the Dollar', 'Treat Yo Self', 'Little Boxes').</p>
+      </article>
+      <article class="roadmap-step">
+        <h3>Phase 4 — The grinds (≈ 120–180 h)</h3>
+        <p>The time-heavy trio: 250 stunts ('Cunning Stunts'), 100 WAiNK locations ('You WAiNKer!'), 50 Challenges ('One Last Thing'), plus meditation spots, three collectible card sets, and 'Master of None' if any activity type is still untouched. Chain these: one session per district covers stunts, WAiNKs and meditation together.</p>
+      </article>
+      <article class="roadmap-step">
+        <h3>Phase 5 — Skill checks &amp; 100% (final stretch)</h3>
+        <p>Save the skill trophies for the endgame arsenal: gold in all Shooting Range challenges ('The Shootist'), 20 race wins, every Top Fun course, 'Gunslinger' and 'Hot Together'. Then finish the 100% checklist for 'A Long Road' — by now it's mostly bookkeeping. The platinum, 'Vice Got a Price!', unlocks with the checklist's last item.</p>
+      </article>
+    </div>
+  </section>
 
-  <dialog id="trophyDialog" class="trophy-dialog">
-    <div id="dialogBody"><!-- injected --></div>
-  <div class="dialog-actions">
-    <button id="dialogClose" class="btn" type="button">Close</button>
-  </div>
-  </dialog>
+  <section class="missables" id="missables">
+    <h2>Missables &amp; What To Watch <span class="badge badge-projected">projected</span></h2>
+    <p class="muted">Nothing in the projected list is permanently missable post-credits — but these are the traps that cost restarts or 20-hour replays if you ignore them.</p>
+    <ul class="missable-list">
+      <li><strong>Cheats kill trophies.</strong> Cheat codes reportedly disable trophies and saving. Start a cheat-free discipline on day one; you cannot undo a flagged save.</li>
+      <li><strong>Chapter-locked content.</strong> VCIA ('Catch Me If You Can'), military installations ('Challenging Tank'), and several districts only open as the story progresses. Don't expect a fully explorable state in Chapter 1.</li>
+      <li><strong>Final-mission lockout risk.</strong> Trigger the endgame only after clearing stranger strands and story heists. Projected sources say free-roam persists after credits, but checkpoint-locked story windows do not reopen.</li>
+      <li><strong>Heist approach choices.</strong> 'The Cartel Heist' planning board may lock one-time loot variants per approach. Save before planning if you want to see both routes.</li>
+      <li><strong>Stealth attempts reset hard.</strong> 'Sneakthief' fails the moment one guard is alerted. Save before entering the store; treat an alerted NPC as a restart prompt.</li>
+      <li><strong>Relationship is cumulative.</strong> 'Personal Best' cannot be ground in one sitting — date nights, meals and hand-holding need to accrue across the whole run. Feed it from Chapter 2 onward.</li>
+      <li><strong>Bank-vault escapes must complete.</strong> 'Maximum Withdrawal' only counts vaults you escape cleanly — dying after the grab voids the attempt.</li>
+      <li><strong>One online caveat.</strong> The launch list is single-player only; GTA Online is not confirmed to carry trophies if and when it arrives. Finish the list in story mode, not on a future-online promise.</li>
+    </ul>
+  </section>
+
+  <footer class="site-footer">
+    <p>Fan-made projection guide. Not affiliated with or endorsed by Rockstar Games or Take-Two Interactive.
+       Trophy names are projected from launch-week community tracking (GTA BOOM, GTABase, gta.guide, Nov 2026)
+       until an official list exists. GTA, Grand Theft Auto and all related marks are trademarks of Take-Two Interactive.</p>
+  </footer>
 
   <script src="app.js"></script>
 </body>

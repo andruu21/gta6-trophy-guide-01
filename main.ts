@@ -1,157 +1,135 @@
-// main.ts — dev helper for the GTA VI trophy guide.
-//
-// Validates app/data/trophies.json against the schema this project expects:
-//   meta (game/platform/trophyCount/status/sources), gameFacts, categoryLabels,
-//   roadmap (steps), missables (items), and 55 trophies each with
-//   id/name/category/rarity/difficulty/missable/projected/spoiler/description/howTo.
-//
-// Usage:
-//   npx tsx main.ts            # validate and print a report (exit 1 on failure)
-//   node --experimental-strip-types main.ts   # Node 22+ runs TS directly
-//
-// The web app in app/ is plain static files and needs no build step.
+/**
+ * main.ts — dev-time schema validator for app/data/trophies.json.
+ *
+ * Run with tsx / ts-node:   npx tsx main.ts
+ * Or compile first:         tsc main.ts && node main.js
+ *
+ * Validates the projected trophy guide data so typos in ids, grades,
+ * difficulties or category references fail loudly before the web app loads them.
+ */
 
-import { readFileSync } from 'node:fs';
-import { join, dirname } from 'node:path';
-import { fileURLToPath } from 'node:url';
-
-const here = dirname(fileURLToPath(import.meta.url));
-const DATA_PATH = join(here, 'app', 'data', 'trophies.json');
-
-const RARITIES = ['platinum', 'gold', 'silver', 'bronze'];
-const CATEGORIES = [
-  'platinum', 'story', 'completion', 'collectibles',
-  'heists', 'vehicles', 'activities', 'misc'
-];
+import * as fs from 'fs';
+import * as path from 'path';
 
 interface Trophy {
   id: string;
   name: string;
+  type: string;
   category: string;
-  rarity: string;
-  difficulty: number;
+  difficulty: string;
   missable: boolean;
-  projected: boolean;
-  spoiler: boolean;
+  missableNote?: string;
   description: string;
-  howTo: string;
-  watch?: string;
+}
+
+interface Category {
+  id: string;
+  label: string;
 }
 
 interface TrophyData {
-  license_note?: string;
-  meta: {
-    game: string;
-    platform: string;
-    trophyCount: number;
-    status: string;
-    disclaimer: string;
-    lastUpdated?: string;
-    sources: string[];
-  };
-  gameFacts?: Record<string, unknown>;
-  categories: string[];
-  categoryLabels?: Record<string, string>;
-  difficultyScale?: string;
+  meta: Record<string, unknown>;
+  categories: Category[];
+  difficulties: string[];
   trophies: Trophy[];
-  roadmap?: { estimatedHours: string; steps: { phase: string; advice: string }[] };
-  missables?: { intro: string; items: string[] };
 }
 
-function validate(data: TrophyData): string[] {
-  const errors: string[] = [];
-  const t = data.trophies;
+const DATA_PATH = path.join(__dirname, 'app', 'data', 'trophies.json');
+const GRADES = ['Bronze', 'Silver', 'Gold', 'Platinum'];
+const EXPECTED_TROPHY_COUNT = 55;
+const EXPECTED_BREAKDOWN = { Platinum: 1, Gold: 2, Silver: 6, Bronze: 46 };
 
-  if (!data.meta || data.meta.status !== 'PROJECTED') {
-    errors.push('meta.status must be "PROJECTED" — no official list exists yet');
-  }
-  if (data.meta?.platform !== 'PlayStation 5') {
-    errors.push('meta.platform should be "PlayStation 5"');
-  }
-  if (data.meta && !Array.isArray(data.meta.sources)) {
-    errors.push('meta.sources must be an array of URLs');
-  }
+const errors: string[] = [];
+const warn = (msg: string): void => console.warn('  warn:', msg);
+const fail = (msg: string): void => { errors.push(msg); };
 
-  if (!Array.isArray(t)) {
-    return [...errors, 'trophies must be an array'];
-  }
-  if (t.length !== data.meta?.trophyCount) {
-    errors.push(`trophyCount is ${data.meta?.trophyCount} but ${t.length} trophies exist`);
-  }
-  if (t.length !== 55) {
-    errors.push(`expected exactly 55 trophies, found ${t.length}`);
-  }
+function load(): TrophyData {
+  const raw = fs.readFileSync(DATA_PATH, 'utf-8');
+  return JSON.parse(raw) as TrophyData;
+}
 
-  const seen = new Set<string>();
-  const rarityCount: Record<string, number> = {};
-  for (const tro of t) {
-    const label = tro.id ?? '(missing id)';
-    if (seen.has(tro.id)) errors.push(`duplicate id: ${tro.id}`);
-    seen.add(tro.id);
+function validate(data: TrophyData): void {
+  const { meta, categories, difficulties, trophies } = data;
 
-    for (const field of ['id', 'name', 'category', 'rarity', 'description', 'howTo'] as const) {
-      if (typeof tro[field] !== 'string' || !(tro[field] as string).length) {
-        errors.push(`${label}: missing or empty ${field}`);
+  // --- structure ---
+  if (!meta || typeof meta !== 'object') fail('meta is missing');
+  if (!Array.isArray(categories) || categories.length === 0) fail('categories is missing or empty');
+  if (!Array.isArray(difficulties) || difficulties.length === 0) fail('difficulties is missing or empty');
+  if (!Array.isArray(trophies)) { fail('trophies is missing'); return; }
+
+  // --- counts ---
+  if (trophies.length !== EXPECTED_TROPHY_COUNT) {
+    fail(`expected ${EXPECTED_TROPHY_COUNT} trophies, found ${trophies.length}`);
+  }
+  const byType = trophies.reduce<Record<string, number>>((acc, t) => {
+    acc[t.type] = (acc[t.type] || 0) + 1;
+    return acc;
+  }, {});
+  for (const [type, count] of Object.entries(EXPECTED_BREAKDOWN)) {
+    if ((byType[type] || 0) !== count) {
+      fail(`breakdown mismatch: expected ${count} ${type}, found ${byType[type] || 0}`);
+    }
+  }
+  const total = Object.values(byType).reduce((a, b) => a + b, 0);
+  if (total !== trophies.length) fail('some trophies carry an unknown type');
+
+  // --- references ---
+  const categoryIds = new Set(categories.map((c) => c.id));
+  const difficultySet = new Set(difficulties);
+  const seenIds = new Set<string>();
+
+  trophies.forEach((t, i) => {
+    const where = `trophy[${i}] "${t.name ?? t.id ?? '?'}"`;
+    for (const field of ['id', 'name', 'type', 'category', 'difficulty', 'description'] as const) {
+      if (typeof t[field] !== 'string' || !(t[field] as string).trim()) {
+        fail(`${where}: missing or empty "${field}"`);
       }
     }
-    if (!CATEGORIES.includes(tro.category)) {
-      errors.push(`${label}: unknown category "${tro.category}"`);
+    if (typeof t.missable !== 'boolean') fail(`${where}: "missable" must be boolean`);
+    if (seenIds.has(t.id)) fail(`${where}: duplicate id "${t.id}"`);
+    seenIds.add(t.id);
+    if (!categoryIds.has(t.category)) fail(`${where}: unknown category "${t.category}"`);
+    if (!difficultySet.has(t.difficulty)) fail(`${where}: unknown difficulty "${t.difficulty}"`);
+    if (!GRADES.includes(t.type)) fail(`${where}: unknown grade "${t.type}"`);
+    if (!t.missable && !t.missableNote) {
+      warn(`${where}: no missableNote — every entry should explain what to watch`);
     }
-    if (!RARITIES.includes(tro.rarity)) {
-      errors.push(`${label}: unknown rarity "${tro.rarity}"`);
+    if (t.missableNote && t.missableNote.length < 20) {
+      warn(`${where}: missableNote looks too short`);
     }
-    rarityCount[tro.rarity] = (rarityCount[tro.rarity] ?? 0) + 1;
+  });
 
-    if (typeof tro.difficulty !== 'number' || tro.difficulty < 1 || tro.difficulty > 10) {
-      errors.push(`${label}: difficulty must be a number 1-10`);
-    }
-    if (typeof tro.missable !== 'boolean') errors.push(`${label}: missable must be boolean`);
-    if (tro.missable && !tro.watch) {
-      errors.push(`${label}: missable=true requires a "watch" note`);
-    }
-    if (tro.projected !== true) errors.push(`${label}: projected must be true`);
-    if (typeof tro.spoiler !== 'boolean') errors.push(`${label}: spoiler must be boolean`);
+  // --- meta sanity ---
+  const sources = (meta as { sources?: unknown }).sources;
+  if (!Array.isArray(sources) || sources.length === 0) fail('meta.sources is missing or empty');
+  const disclaimer = (meta as { disclaimer?: unknown }).disclaimer;
+  if (typeof disclaimer !== 'string' || !/PROJECTED/i.test(disclaimer)) {
+    fail('meta.disclaimer must clearly label the list as a projection');
   }
-
-  const plats = rarityCount['platinum'] ?? 0;
-  if (plats !== 1) errors.push(`exactly 1 platinum expected, found ${plats}`);
-
-  const declared = data.categories ?? [];
-  for (const tro of t) {
-    if (!declared.includes(tro.category)) {
-      errors.push(`${tro.id}: category "${tro.category}" not declared in "categories"`);
-    }
-  }
-
-  return errors;
 }
 
 function main(): void {
-  let data: TrophyData;
+  console.log('Validating', DATA_PATH);
+  let data: TrophyData | null = null;
   try {
-    data = JSON.parse(readFileSync(DATA_PATH, 'utf8'));
-  } catch (e) {
-    console.error('FAILED to read/parse trophies.json:', (e as Error).message);
+    data = load();
+  } catch (err) {
+    console.error('FAIL: could not parse trophies.json:', (err as Error).message);
+    process.exit(1);
+  }
+  if (!data) {
+    console.error('FAIL: data unexpectedly null after load.');
     process.exit(1);
   }
 
-  const errors = validate(data);
-  const trophies = data.trophies ?? [];
+  validate(data);
 
-  console.log(`GTA VI trophy guide — data validation`);
-  console.log(`  trophies: ${trophies.length}`);
-  console.log(`  status:   ${data.meta?.status ?? 'MISSING'} (all entries marked projected)`);
-  console.log(`  missable: ${trophies.filter((x) => x.missable).length}`);
-  console.log(`  spoiler:  ${trophies.filter((x) => x.spoiler).length}`);
-  console.log(`  roadmap:  ${data.roadmap?.steps?.length ?? 0} phases`);
-  console.log(`  missable notes: ${data.missables?.items?.length ?? 0}`);
-
-  if (errors.length) {
-    console.error(`\n${errors.length} validation error(s):`);
-    for (const err of errors) console.error('  - ' + err);
+  if (errors.length > 0) {
+    console.error(`\nFAIL: ${errors.length} schema error(s):`);
+    errors.forEach((e) => console.error('  -', e));
     process.exit(1);
   }
-  console.log('\nOK — trophies.json is valid.');
+  console.log(`\nOK: ${data.trophies.length} trophies validated — schema, grades, categories and references all consistent.`);
 }
 
 main();

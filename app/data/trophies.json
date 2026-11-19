@@ -1,758 +1,627 @@
 {
-  "license_note": "Guide text written for this entry; see LICENSE (MIT).",
   "meta": {
     "game": "Grand Theft Auto VI",
-    "platform": "PlayStation 5",
-    "trophyCount": 55,
-    "status": "PROJECTED",
-    "disclaimer": "Every trophy on this list is a PROJECTION. Names and requirements are modelled on the Grand Theft Auto V (PS5) trophy list and Rockstar's long-running trophy design patterns. Treat every entry as an educated guess, not a confirmed requirement; check Rockstar's official list or a tracker (Exophase, PSNProfiles) when it becomes available.",
-    "lastUpdated": "2026-11-20",
-    "sources": [
-      "https://www.rockstargames.com/newswire/article/ak3ak31a49a221/grand-theft-auto-vi-is-now-set-to-launch-november-19-2026",
-      "https://www.rockstargames.com/VI",
-      "https://www.rockstargames.com/VI/only-in-leonida",
-      "https://www.take2games.com/ir/news/rockstar-games-announces-pre-orders-grand-theft-auto-vi",
-      "https://ign.com/articles/gta-6-is-a-single-player-experience-rockstar-confirms-what-now-for-gta-online",
-      "https://ign.com/articles/gta-online-will-be-supported-beyond-gta-6-release-pc-becoming-more-and-more-important"
-    ]
-  },
-  "gameFacts": {
-    "releaseDate": "November 19, 2026",
     "platforms": [
       "PlayStation 5",
       "Xbox Series X|S"
     ],
-    "setting": "State of Leonida, including modern-day Vice City",
-    "protagonists": [
-      "Jason Duval",
-      "Lucia"
-    ],
-    "onlineMode": "GTA VI is a single-player experience at launch; Take-Two confirmed existing GTA Online will be supported beyond GTA VI's release, and the shape of any future GTA VI online mode is unannounced."
+    "releaseDate": "2026-11-19",
+    "setting": "State of Leonida (Vice City, Leonida Quays, Grassrivers, Port Gellhorn, Ambrosia, Mount Kalaga National Park, the Leonida Keys)",
+    "protagonists": "Jason Duval & Lucia Caminos",
+    "disclaimer": "PROJECTED LIST. Rockstar Games has not published an official trophy guide as of this writing. All 55 names below are modelled on the GTA V PS5 trophy structure and on launch-week community tracking (GTA BOOM, GTABase, gta.guide), and are clearly labelled as projections until Rockstar's own documentation exists. Grades, difficulty ratings, missability flags and routes are the author's projections and may change with patches or a future GTA Online trophy add-on.",
+    "breakdown": {
+      "platinum": 1,
+      "gold": 2,
+      "silver": 6,
+      "bronze": 46
+    },
+    "estimatedPlatinumTime": "150-200 hours",
+    "sources": [
+      "https://www.rockstargames.com/VI",
+      "https://www.rockstargames.com/newswire/article/ak3ak31a49a221/grand-theft-auto-vi-is-now-set-to-launch-november-19-2026",
+      "https://gtaboom.com/every-gta-6-trophy-and-achievement-at-launch-and-how-to-unlock-them-fc5f",
+      "https://gtabase.com/articles/gta-6/gta-6-achievements-trophies-list-ps5-xbox-series",
+      "https://gta.guide/gta-6/guides/trophies-and-achievements"
+    ]
   },
   "categories": [
-    "platinum",
-    "story",
-    "completion",
-    "collectibles",
-    "heists",
-    "vehicles",
-    "activities",
-    "misc"
-  ],
-  "categoryLabels": {
-    "platinum": "Platinum",
-    "story": "Story Missions",
-    "completion": "100% Completion",
-    "collectibles": "Collectibles",
-    "heists": "Heists & Scores",
-    "vehicles": "Vehicles",
-    "activities": "Sports & Activities",
-    "misc": "Miscellaneous"
-  },
-  "difficultyScale": "1 = trivial, 10 = extreme grind or skill check",
-  "trophies": [
     {
-      "id": "platinum-leonida-legend",
-      "name": "Leonida Legend",
-      "category": "platinum",
-      "rarity": "platinum",
-      "difficulty": 8,
-      "missable": false,
-      "projected": true,
-      "spoiler": false,
-      "description": "Earn every other trophy in Grand Theft Auto VI.",
-      "howTo": "Complete the story, reach 100% completion, and mop up all miscellaneous, vehicle and activity trophies. Follow the roadmap: do missable-sensitive trophies as they become available, keep a save backup before late-game story choices, then clean up with free-roam collectible hunting."
+      "id": "platinum",
+      "label": "Platinum"
     },
     {
-      "id": "story-first-score",
-      "name": "The First Score",
-      "category": "story",
-      "rarity": "bronze",
-      "difficulty": 1,
-      "missable": false,
-      "projected": true,
-      "spoiler": false,
-      "description": "Complete the opening mission of Jason and Lucia's story.",
-      "howTo": "Unmissable. Completing the prologue-style opening mission awards this automatically. Modelled on GTA V's 'Welcome to Los Santos' pattern: every Rockstar story campaign starts with an easy introduction trophy."
+      "id": "story",
+      "label": "Story Missions"
     },
     {
-      "id": "story-partners-in-crime",
-      "name": "Partners in Crime",
-      "category": "story",
-      "rarity": "bronze",
-      "difficulty": 2,
-      "missable": false,
-      "projected": true,
-      "spoiler": false,
-      "description": "Complete the early missions where Jason and Lucia begin working together.",
-      "howTo": "Expected early-game, unmissable. Rockstar traditionally awards story trophies in chapter-sized batches, so finishing the first act of the campaign should land this."
+      "id": "completion",
+      "label": "100% Completion"
     },
     {
-      "id": "story-midway",
-      "name": "Halfway to Nowhere",
-      "category": "story",
-      "rarity": "bronze",
-      "difficulty": 3,
-      "missable": false,
-      "projected": true,
-      "spoiler": false,
-      "description": "Complete roughly half of the story missions.",
-      "howTo": "Progress naturally through the campaign. Watch for optional objectives during this stretch: several likely missable mission trophies (see the Missables section) hide in the mid-game chapters."
+      "id": "collectibles",
+      "label": "Collectibles"
     },
     {
-      "id": "story-finale",
-      "name": "Out of Paradise",
-      "category": "story",
-      "rarity": "bronze",
-      "difficulty": 4,
-      "missable": false,
-      "projected": true,
-      "spoiler": false,
-      "description": "Complete the final mission of the story.",
-      "howTo": "Reach the campaign's conclusion. If GTA VI follows GTA V's pattern of ending choices, back up your save before the final mission so you can experience every ending without replaying the whole game."
+      "id": "heists",
+      "label": "Heists & Robberies"
     },
     {
-      "id": "story-all-missions",
-      "name": "Every Job on the Board",
-      "category": "story",
-      "rarity": "gold",
-      "difficulty": 5,
-      "missable": false,
-      "projected": true,
-      "spoiler": true,
-      "description": "Complete every story mission, including optional objectives.",
-      "howTo": "Finish all main and side story missions. GTA V's equivalent required gold medals; if GTA VI copies that, expect to replay missions via the pause-menu replay option to earn all mission-specific challenge objectives."
+      "id": "vehicles",
+      "label": "Vehicles"
     },
     {
-      "id": "story-both-protagonists",
-      "name": "Two Sides of the Same Coin",
-      "category": "story",
-      "rarity": "silver",
-      "difficulty": 4,
-      "missable": false,
-      "projected": true,
-      "spoiler": false,
-      "description": "Play substantial story content as both Jason and Lucia.",
-      "howTo": "GTA VI features switching between Jason and Lucia. Play missions from both characters' perspectives as the story rotates control between them; this should come naturally with story completion."
+      "id": "activities",
+      "label": "Sports & Activities"
     },
     {
-      "id": "story-supporting-cast",
-      "name": "Only in Leonida",
-      "category": "story",
-      "rarity": "silver",
-      "difficulty": 4,
-      "missable": true,
-      "watch": "If missions tied to supporting characters (Cal, Boobie, Dre'Quan, Brian, Raul) can be skipped or failed, this may lock for that playthrough. Back up saves before major story beats.",
-      "projected": true,
-      "spoiler": true,
-      "description": "Complete mission chains for all of the major supporting characters.",
-      "howTo": "Leonida's cast runs deep. Finish the optional mission chains each supporting character offers rather than rushing the main path. Check your mission list between chapters for anything still open."
+      "id": "strangers",
+      "label": "Strangers & Side Quests"
     },
     {
-      "id": "completion-100",
-      "name": "Sunshine State: 100%",
-      "category": "completion",
-      "rarity": "gold",
-      "difficulty": 9,
-      "missable": false,
-      "projected": true,
-      "spoiler": false,
-      "description": "Attain 100% completion across all stat-tracking activities in the game.",
-      "howTo": "Modelled on GTA V's 100% requirements: story missions, hobbies, side encounters, random events, and miscellaneous objectives all count. Track progress on the pause-menu stats screen, which lists exactly what remains. The single longest trophy after the platinum."
+      "id": "partnership",
+      "label": "Partnership & Choices"
     },
     {
-      "id": "completion-all-hobbies",
-      "name": "Pastime Paradise",
-      "category": "completion",
-      "rarity": "silver",
-      "difficulty": 6,
-      "missable": false,
-      "projected": true,
-      "spoiler": false,
-      "description": "Complete every hobby and pastime in Leonida.",
-      "howTo": "GTA V's 100% list included specific hobbies. GTA VI's teasers suggest activities like airboat rides, fishing, and drag strips. Do them all as you unlock them; the stats screen will list what counts."
-    },
-    {
-      "id": "completion-strangers",
-      "name": "Friendly Faces",
-      "category": "completion",
-      "rarity": "silver",
-      "difficulty": 5,
-      "missable": true,
-      "watch": "Some optional encounter chains may be tied to specific story chapters; if an encounter stops appearing, check whether you missed it earlier. Back up saves before major story beats.",
-      "projected": true,
-      "spoiler": true,
-      "description": "Complete all optional character encounter chains.",
-      "howTo": "Look for the classic question-mark style icons on the map and finish every chain. Between chapters, check the map for encounter icons you haven't touched."
-    },
-    {
-      "id": "collectibles-hidden-packages",
-      "name": "Package Deal",
-      "category": "collectibles",
-      "rarity": "silver",
-      "difficulty": 7,
-      "missable": false,
-      "projected": true,
-      "spoiler": false,
-      "description": "Collect every hidden package scattered across the state of Leonida.",
-      "howTo": "Rockstar always hides dozens of collectible pickups across the map. Use a community interactive map after launch, or triangulate once you've found a few. Expect some requiring a helicopter, plane, or dive."
-    },
-    {
-      "id": "collectibles-underwater",
-      "name": "Reef Raider",
-      "category": "collectibles",
-      "rarity": "bronze",
-      "difficulty": 6,
-      "missable": false,
-      "projected": true,
-      "spoiler": false,
-      "description": "Collect all underwater collectibles off the coast of Leonida.",
-      "howTo": "GTA V had underwater briefcases; GTA VI's Florida coast makes water collectibles near-certain. Get a boat or submersible and sweep the water around Vice City, the Keys-style islands, and offshore wrecks."
-    },
-    {
-      "id": "collectibles-poi",
-      "name": "Tourist Trap",
-      "category": "collectibles",
-      "rarity": "bronze",
-      "difficulty": 5,
-      "missable": false,
-      "projected": true,
-      "spoiler": false,
-      "description": "Visit every point of interest marked on the map.",
-      "howTo": "GTA V rewarded discovering all sites of interest in 100%. Drive, fly or boat to every marked landmark, ticking them off region by region from the pause-menu map's list."
-    },
-    {
-      "id": "collectibles-wildlife",
-      "name": "Field Photographer",
-      "category": "collectibles",
-      "rarity": "bronze",
-      "difficulty": 6,
-      "missable": false,
-      "projected": true,
-      "spoiler": false,
-      "description": "Photograph or document every animal species for the wildlife challenge.",
-      "howTo": "GTA VI's trailers showcase dense wildlife: alligators, flamingos, deer and more. Expect a photography or sighting challenge. Carry the phone camera everywhere; some species may be time- or weather-dependent."
-    },
-    {
-      "id": "collectibles-tags",
-      "name": "Tag Team",
-      "category": "collectibles",
-      "rarity": "bronze",
-      "difficulty": 5,
-      "missable": false,
-      "projected": true,
-      "spoiler": false,
-      "description": "Find and spray every graffiti tag location.",
-      "howTo": "GTA Online introduced graffiti tags; GTA VI likely brings them to story mode. Look in alleys, under bridges, and behind buildings. Work neighbourhood by neighbourhood to avoid backtracking."
-    },
-    {
-      "id": "collectibles-landmarks",
-      "name": "Postcard from Vice City",
-      "category": "collectibles",
-      "rarity": "bronze",
-      "difficulty": 5,
-      "missable": false,
-      "projected": true,
-      "spoiler": false,
-      "description": "Take a photo at every named landmark in Vice City and greater Leonida.",
-      "howTo": "If a landmark photo challenge exists, work through the list with the phone camera. Pair it with the POI trophy: when you visit a landmark, photograph it too."
-    },
-    {
-      "id": "heists-setup",
-      "name": "The Setup",
-      "category": "heists",
-      "rarity": "bronze",
-      "difficulty": 3,
-      "missable": false,
-      "projected": true,
-      "spoiler": true,
-      "description": "Complete all preparation missions for a major score.",
-      "howTo": "GTA VI's story centres on criminal scores, so expect GTA V-style setup missions before each big job. Complete every prep objective before triggering the heist itself, and pick the best-rated crew if crew choices matter."
-    },
-    {
-      "id": "heists-complete-all",
-      "name": "Grand Larceny",
-      "category": "heists",
-      "rarity": "gold",
-      "difficulty": 6,
-      "missable": true,
-      "watch": "If heist approaches (loud vs stealth) are chosen per playthrough, a trophy for all approaches would need replays or a second save. Back up your save before each heist setup.",
-      "projected": true,
-      "spoiler": true,
-      "description": "Complete every major score in the story.",
-      "howTo": "Expect 4-8 big scores. Complete each finale. If approach options exist, a separate trophy may require trying multiple approaches — plan for that with save backups."
-    },
-    {
-      "id": "heists-big-one",
-      "name": "The Big One",
-      "category": "heists",
-      "rarity": "silver",
-      "difficulty": 5,
-      "missable": false,
-      "projected": true,
-      "spoiler": true,
-      "description": "Pull off the story's largest score.",
-      "howTo": "The climactic heist is traditionally the hardest mission in the game. Stock up on armour, snacks and ammo beforehand, choose your best crew, and learn the escape route before starting the finale."
-    },
-    {
-      "id": "heists-crew-loyalty",
-      "name": "Loyalty Program",
-      "category": "heists",
-      "rarity": "silver",
-      "difficulty": 5,
-      "missable": true,
-      "watch": "Crew choices are permanent per playthrough in GTA V's model. If this requires the same crew all game, back up your save before each crew-selection screen.",
-      "projected": true,
-      "spoiler": true,
-      "description": "Use the same crew members throughout all heists that allow crew selection.",
-      "howTo": "If GTA VI lets you pick crew like GTA V did, pick the highest-rated crew every time and stick with them. Note their names at the first heist and never swap."
-    },
-    {
-      "id": "heists-clean",
-      "name": "Clean Getaway",
-      "category": "heists",
-      "rarity": "silver",
-      "difficulty": 7,
-      "missable": true,
-      "watch": "Missable if stealth approaches are only available on specific heists; use mission replay if you went loud.",
-      "projected": true,
-      "spoiler": true,
-      "description": "Complete a heist without triggering an alarm or losing the stealth bonus.",
-      "howTo": "Choose the stealth approach on whichever heist permits it, mark guards and cameras, avoid detection, and never fire unsuppressed weapons. Back up your save before the heist so you can retry cleanly."
-    },
-    {
-      "id": "vehicles-all-vehicles",
-      "name": "Garage King",
-      "category": "vehicles",
-      "rarity": "gold",
-      "difficulty": 8,
-      "missable": false,
-      "projected": true,
-      "spoiler": false,
-      "description": "Own or drive every vehicle in the game.",
-      "howTo": "GTA V's hardest vehicle trophy required owning all 250+ vehicles; GTA VI will likely be similar. Buy every car, boat, helicopter and plane from in-game stores, and steal mission-unique vehicles when they appear. Rare spawns are district-specific."
-    },
-    {
-      "id": "vehicles-air",
-      "name": "Frequent Flyer",
-      "category": "vehicles",
-      "rarity": "bronze",
-      "difficulty": 4,
-      "missable": false,
-      "projected": true,
-      "spoiler": false,
-      "description": "Fly every type of aircraft.",
-      "howTo": "Fly a helicopter, a small plane, a jet if available, and any other aircraft. Vice City's airport and local airstrips should stock them. Complete flight school first if it exists."
-    },
-    {
-      "id": "vehicles-boat",
-      "name": "Captain of the Coast",
-      "category": "vehicles",
-      "rarity": "bronze",
-      "difficulty": 4,
-      "missable": false,
-      "projected": true,
-      "spoiler": false,
-      "description": "Pilot every type of boat or watercraft.",
-      "howTo": "Leonida's waterways guarantee a deep boat roster: speedboat, fishing boat, airboat (the trailers show them), maybe a submersible. Docks around Vice City and the Keys spawn them."
-    },
-    {
-      "id": "vehicles-stunts",
-      "name": "Stuntman",
-      "category": "vehicles",
-      "rarity": "silver",
-      "difficulty": 6,
-      "missable": false,
-      "projected": true,
-      "spoiler": false,
-      "description": "Complete all stunt jump locations.",
-      "howTo": "GTA V had 50 stunt jumps; GTA VI will have its own set marked by classic yellow-ramp geometry. Land cleanly in the target zone and retry any botched jump from the pause menu."
-    },
-    {
-      "id": "vehicles-mods",
-      "name": "Pimp My Ride",
-      "category": "vehicles",
-      "rarity": "bronze",
-      "difficulty": 3,
-      "missable": false,
-      "projected": true,
-      "spoiler": false,
-      "description": "Fully modify a vehicle at a customization shop.",
-      "howTo": "Drive any car to a customization shop and buy every upgrade category: engine, turbo, suspension, armour, paint, wheels, cosmetics. A cheap starter car keeps costs low."
-    },
-    {
-      "id": "vehicles-speed",
-      "name": "Need for Speed",
-      "category": "vehicles",
-      "rarity": "bronze",
-      "difficulty": 4,
-      "missable": false,
-      "projected": true,
-      "spoiler": false,
-      "description": "Reach top speed in a high-performance vehicle.",
-      "howTo": "Buy or steal the fastest car available, find a long straight highway in Leonida's flat interior, and hold the throttle until the speedometer tops out."
-    },
-    {
-      "id": "activities-sports",
-      "name": "All-Round Athlete",
-      "category": "activities",
-      "rarity": "silver",
-      "difficulty": 6,
-      "missable": false,
-      "projected": true,
-      "spoiler": false,
-      "description": "Win a match or round of every sport available.",
-      "howTo": "GTA V had tennis, golf, darts and arm wrestling. Win at least one session of each sport GTA VI includes. Most are rhythm-based; learn each one's timing mechanic."
-    },
-    {
-      "id": "activities-racing",
-      "name": "Street Racer",
-      "category": "activities",
-      "rarity": "silver",
-      "difficulty": 5,
-      "missable": false,
-      "projected": true,
-      "spoiler": false,
-      "description": "Win every street race event.",
-      "howTo": "Street races unlock via map icons once the story progresses far enough. Bring a fast upgraded car and win every tier if races come in tiers."
-    },
-    {
-      "id": "activities-fishing",
-      "name": "Gone Fishin'",
-      "category": "activities",
-      "rarity": "bronze",
-      "difficulty": 5,
-      "missable": false,
-      "projected": true,
-      "spoiler": false,
-      "description": "Catch every fish species or complete the fishing challenge.",
-      "howTo": "Fishing appears heavily in GTA VI's coastal setting. Catch each species; rare ones may need specific bait, time of day or location. Log everything in the challenge screen."
-    },
-    {
-      "id": "activities-hunting",
-      "name": "Swamp Thing",
-      "category": "activities",
-      "rarity": "bronze",
-      "difficulty": 5,
-      "missable": false,
-      "projected": true,
-      "spoiler": false,
-      "description": "Complete the hunting challenge in Leonida's wilderness.",
-      "howTo": "Hunt in the rural interior north of Vice City. Aim for clean kills with the right weapon per animal, and complete every required hunt on the challenge list."
-    },
-    {
-      "id": "activities-flight-school",
-      "name": "Top Gun of Leonida",
-      "category": "activities",
-      "rarity": "silver",
-      "difficulty": 6,
-      "missable": false,
-      "projected": true,
-      "spoiler": false,
-      "description": "Earn all gold medals in flight school.",
-      "howTo": "GTA V's flight school gave a gold trophy for medaling every lesson; expect the same. Practice each lesson, restarting immediately on a low score. Precision landings are the usual difficulty spike."
-    },
-    {
-      "id": "activities-shooting-range",
-      "name": "Sharpshooter",
-      "category": "activities",
-      "rarity": "bronze",
-      "difficulty": 5,
-      "missable": false,
-      "projected": true,
-      "spoiler": false,
-      "description": "Earn gold on every shooting range challenge.",
-      "howTo": "Complete all gun range challenges: accuracy, speed and reload drills. Use the weapon best suited to each drill and replay any that didn't score gold."
-    },
-    {
-      "id": "activities-triathlon",
-      "name": "Iron Person",
-      "category": "activities",
-      "rarity": "silver",
-      "difficulty": 6,
-      "missable": false,
-      "projected": true,
-      "spoiler": false,
-      "description": "Win a triathlon event.",
-      "howTo": "GTA V's triathlons were stamina slogs. Build stamina stats through running and swimming first, pace the swim and bike legs, then sprint the run."
-    },
-    {
-      "id": "activities-nightlife",
-      "name": "Neon Nights",
-      "category": "activities",
-      "rarity": "bronze",
-      "difficulty": 4,
-      "missable": false,
-      "projected": true,
-      "spoiler": false,
-      "description": "Experience Vice City's nightlife across its venue types.",
-      "howTo": "Vice City's clubbing culture is a core theme. Visit each nightlife venue type the game tracks and engage with their minigames — dancing, drinking — to trigger completion."
-    },
-    {
-      "id": "activities-stock-market",
-      "name": "Wolf of Leonida",
-      "category": "activities",
-      "rarity": "silver",
-      "difficulty": 6,
-      "missable": true,
-      "watch": "If story missions manipulate stock prices like GTA V's assassination missions, selling too early or doing missions in the wrong order forfeits maximum profit. The trophy itself should only need a profit threshold.",
-      "projected": true,
-      "spoiler": true,
-      "description": "Make a large profit playing the in-game stock market.",
-      "howTo": "If GTA VI includes a stock market like GTA V's, buy low, sell high. The classic exploit: invest all cash in a target's competitor before the relevant mission, then sell after the price peaks."
-    },
-    {
-      "id": "misc-wanted-level",
-      "name": "Most Wanted",
-      "category": "misc",
-      "rarity": "bronze",
-      "difficulty": 3,
-      "missable": false,
-      "projected": true,
-      "spoiler": false,
-      "description": "Survive a maximum wanted level for several minutes.",
-      "howTo": "Earn the maximum wanted level in a built-up area, then survive. Steal a fast vehicle, watch for helicopters, and hold out. Ramming police cruisers are the main danger."
-    },
-    {
-      "id": "misc-evade",
-      "name": "Under the Radar",
-      "category": "misc",
-      "rarity": "bronze",
-      "difficulty": 4,
-      "missable": false,
-      "projected": true,
-      "spoiler": false,
-      "description": "Evade a high wanted level by escaping the search zone.",
-      "howTo": "Once wanted, leave the flashing search radius. Respray shops, underground car parks, or simply driving out of the zone all work. Stay hidden until the cops give up."
-    },
-    {
-      "id": "misc-holdups",
-      "name": "Stick 'Em Up",
-      "category": "misc",
-      "rarity": "bronze",
-      "difficulty": 2,
-      "missable": false,
-      "projected": true,
-      "spoiler": false,
-      "description": "Hold up a set number of stores or pedestrians.",
-      "howTo": "Aim a weapon at clerks or pedestrians to trigger a holdup and repeat until the count threshold is met. Convenience stores respawn targets after a cooldown."
-    },
-    {
-      "id": "misc-foot-escape",
-      "name": "Boots on the Ground",
-      "category": "misc",
-      "rarity": "bronze",
-      "difficulty": 4,
-      "missable": false,
-      "projected": true,
-      "spoiler": false,
-      "description": "Escape police on foot after a vehicle pursuit.",
-      "howTo": "Get wanted while driving, ditch the car, and hide on foot. Crouch behind buildings, break line of sight, and stay outside the search zone until your wanted level clears."
-    },
-    {
-      "id": "misc-stats-max",
-      "name": "Peak Condition",
-      "category": "misc",
-      "rarity": "silver",
-      "difficulty": 6,
-      "missable": false,
-      "projected": true,
-      "spoiler": false,
-      "description": "Max out all character skills and stats.",
-      "howTo": "GTA V required maxing each character's stats: stamina, strength, lung capacity, flying, driving, shooting, stealth. Grind each: run for stamina, shoot at ranges, fly at flight school, drive aggressively for driving."
-    },
-    {
-      "id": "misc-property",
-      "name": "Real Estate Mogul",
-      "category": "misc",
-      "rarity": "silver",
-      "difficulty": 6,
-      "missable": false,
-      "projected": true,
-      "spoiler": false,
-      "description": "Own every purchasable property in the game.",
-      "howTo": "Rockstar scatters for-sale properties across the map: safehouses, businesses, garages. Buy them all once the story unlocks the funds; some properties unlock only after specific story chapters."
-    },
-    {
-      "id": "misc-arsenal",
-      "name": "Arsenal",
-      "category": "misc",
-      "rarity": "silver",
-      "difficulty": 5,
-      "missable": false,
-      "projected": true,
-      "spoiler": false,
-      "description": "Own every weapon in the game.",
-      "howTo": "Buy all firearms from the gun store as they unlock, and pick up any rare weapons found only during missions or hidden locations. Check your weapon wheel against the store catalog."
-    },
-    {
-      "id": "misc-rampage",
-      "name": "Unleashed",
-      "category": "misc",
-      "rarity": "silver",
-      "difficulty": 5,
-      "missable": false,
-      "projected": true,
-      "spoiler": false,
-      "description": "Complete all rampage-style challenge events.",
-      "howTo": "GTA V's rampage challenges were timed combat trials; GTA VI will likely distribute similar ones. Find each rampage icon on the map, hit the score targets, and replay any that didn't clear."
-    },
-    {
-      "id": "misc-theft",
-      "name": "Grand Theft Auto",
-      "category": "misc",
-      "rarity": "bronze",
-      "difficulty": 2,
-      "missable": false,
-      "projected": true,
-      "spoiler": false,
-      "description": "Steal a variety of vehicles.",
-      "howTo": "The trophy that names the series. Carjack cars, trucks, motorcycles, boats and aircraft until the counter fills. Do it naturally across a playthrough and it pops without effort."
-    },
-    {
-      "id": "misc-switch",
-      "name": "Switch Hitter",
-      "category": "misc",
-      "rarity": "bronze",
-      "difficulty": 2,
-      "missable": false,
-      "projected": true,
-      "spoiler": false,
-      "description": "Switch between Jason and Lucia a set number of times.",
-      "howTo": "Use the character-switch wheel repeatedly until the count pops. Both characters must be unlocked through story progression first."
-    },
-    {
-      "id": "misc-phone",
-      "name": "Dialled In",
-      "category": "misc",
-      "rarity": "bronze",
-      "difficulty": 2,
-      "missable": false,
-      "projected": true,
-      "spoiler": false,
-      "description": "Use every function of the in-game phone.",
-      "howTo": "Open the phone and use each app: contacts, browser, camera, messages, mini-apps. Make a call, take a photo, browse the web. The phone's app list is the checklist."
-    },
-    {
-      "id": "misc-photo-mode",
-      "name": "Director's Cut",
-      "category": "misc",
-      "rarity": "bronze",
-      "difficulty": 2,
-      "missable": false,
-      "projected": true,
-      "spoiler": false,
-      "description": "Use photo mode or cinematic camera.",
-      "howTo": "Open the photo or replay mode from the pause menu and capture or view something to trigger it. Snap a Vice City skyline at dusk while you're at it."
-    },
-    {
-      "id": "misc-photo-challenge",
-      "name": "Say Cheese",
-      "category": "misc",
-      "rarity": "bronze",
-      "difficulty": 3,
-      "missable": false,
-      "projected": true,
-      "spoiler": false,
-      "description": "Take photographs of specific subjects or locations.",
-      "howTo": "GTA V asked players to photograph specific landmarks and characters. If GTA VI repeats this, check the photo challenge list and work through it with the phone camera."
-    },
-    {
-      "id": "misc-yoga",
-      "name": "Downward Spiral",
-      "category": "misc",
-      "rarity": "bronze",
-      "difficulty": 3,
-      "missable": false,
-      "projected": true,
-      "spoiler": false,
-      "description": "Complete a yoga or meditation minigame.",
-      "howTo": "GTA V required yoga for 100%. Look for a similar wellness activity in Vice City's wellness-culture parody and complete its balance or breathing challenges."
-    },
-    {
-      "id": "misc-golf",
-      "name": "Birdie Watcher",
-      "category": "misc",
-      "rarity": "bronze",
-      "difficulty": 4,
-      "missable": false,
-      "projected": true,
-      "spoiler": false,
-      "description": "Play and complete a round of golf.",
-      "howTo": "GTA V's golf minigame was notoriously fiddly. Learn the swing meter timing, use less power for short clubs, and expect to retry holes. A full round may take 30-45 minutes."
-    },
-    {
-      "id": "misc-darts",
-      "name": "Bullseye",
-      "category": "misc",
-      "rarity": "bronze",
-      "difficulty": 3,
-      "missable": false,
-      "projected": true,
-      "spoiler": false,
-      "description": "Win a game of darts at a bar.",
-      "howTo": "Find a dartboard in any bar. The minigame is rhythm-based: match your pull-back timing to the target's bounce. Best-of-three legs is the usual format — win it."
-    },
-    {
-      "id": "misc-fist-fight",
-      "name": "Bare Knuckle",
-      "category": "misc",
-      "rarity": "bronze",
-      "difficulty": 3,
-      "missable": false,
-      "projected": true,
-      "spoiler": false,
-      "description": "Win a street brawl or organised fist fight.",
-      "howTo": "Block with the defensive button, counter when the enemy swings, then finish with a grapple or heavy punch. A maxed strength stat makes it easier."
-    },
-    {
-      "id": "misc-easter-egg",
-      "name": "Myth Hunter",
-      "category": "misc",
-      "rarity": "silver",
-      "difficulty": 7,
-      "missable": false,
-      "projected": true,
-      "spoiler": true,
-      "description": "Discover a hidden easter egg or secret location Rockstar tucked away in Leonida.",
-      "howTo": "GTA V rewarded finding UFO and Bigfoot-style easter eggs. Explore clearly deliberate oddities: hidden caves, abandoned buildings, strange radio frequencies, remote islands. Community guides will document them after launch."
+      "id": "misc",
+      "label": "Miscellaneous"
     }
   ],
-  "roadmap": {
-    "estimatedHours": "120-180 hours (projected, based on GTA V's platinum taking 80-120 hours plus GTA VI's larger map)",
-    "steps": [
-      {
-        "phase": "Phase 1: Story First (approx. 30-40 hours)",
-        "advice": "Play the campaign naturally. Do NOT rush: before each major story beat, back up your save (PS5: copy the save to USB or cloud). Keep an eye on optional mission chains and pick them up when they appear. Unlock both protagonists and start using the switch wheel."
-      },
-      {
-        "phase": "Phase 2: Heist Strategy (during story)",
-        "advice": "Before your first score, decide your approach strategy (stealth vs loud, crew loyalty vs maximum payout) and check the heist trophies above. Save backups before each crew-selection and approach-selection screen."
-      },
-      {
-        "phase": "Phase 3: Free-Roam Mop-Up (approx. 40-60 hours)",
-        "advice": "After the story, systematically hunt collectibles: hidden packages, underwater items, graffiti tags, wildlife photos, points of interest. Do this region by region. Buy every property, vehicle and weapon. Grind stats to maximum."
-      },
-      {
-        "phase": "Phase 4: Activities and Sports (approx. 20-30 hours)",
-        "advice": "Work through every sport, race, hunting challenge, fishing challenge, flight school and shooting range. Replay any event that didn't earn gold. This phase overlaps well with Phase 3: do the activity nearest to wherever you're collecting."
-      },
-      {
-        "phase": "Phase 5: 100% Completion and Platinum (approx. 10-20 hours)",
-        "advice": "Check the pause-menu stats screen for remaining 100% items, then clean up anything left. The platinum unlocks with 100% plus every other trophy above."
-      }
-    ]
-  },
-  "missables": {
-    "intro": "Because no official trophy list is modelled here, missability is projected from GTA V patterns. General rule: Rockstar makes almost everything replayable or free-roam accessible, but a handful of trophies have historically been missable in a single playthrough. Save backups are your insurance.",
-    "items": [
-      "Story-mission-specific objectives: some missions only offer one chance at a special objective (a unique vehicle, a stealth bonus, a specific choice). Back up saves before every story mission if you're trophy-focused.",
-      "Heist crew loyalty: if a trophy requires the same crew all game, choose your crew at the first heist and never swap.",
-      "Heist approaches: if a trophy requires all approach styles, use save backups or the mission replay option.",
-      "Supporting-character mission chains: finish optional chains when they're offered rather than assuming they'll still be there after the next chapter.",
-      "Stock market manipulation: if missions move stock prices like GTA V's assassinations, invest before the mission and sell after the peak.",
-      "Story ending choices: back up before the final mission so you can see every ending without a full replay.",
-      "Time-limited or chapter-locked encounters: if an encounter icon vanishes, it may reopen later — GTA V reopened most — but don't count on it."
-    ]
-  }
+  "difficulties": [
+    "Easy",
+    "Medium",
+    "Hard",
+    "Very Hard"
+  ],
+  "trophies": [
+    {
+      "id": "vice-got-a-price",
+      "name": "Vice Got a Price!",
+      "type": "Platinum",
+      "category": "platinum",
+      "difficulty": "Very Hard",
+      "missable": false,
+      "missableNote": "No individual trophy is unrepeatable after the credits, and the whole list is single-player. Cheats reportedly disable trophies and saving, so keep them off for the entire run.",
+      "description": "Unlock every other trophy and be crowned a Leonida Legend. The run spans story, 100% completion, collectibles, heists, activities and partnership play. Budget 150-200 hours and follow the roadmap. PS5 Platinum; the Xbox equivalent tops out the 1,000 Gamerscore list."
+    },
+    {
+      "id": "just-like-paradise",
+      "name": "Just Like Paradise",
+      "type": "Bronze",
+      "category": "story",
+      "difficulty": "Easy",
+      "missable": false,
+      "missableNote": "Opening mission; cannot be skipped or failed permanently.",
+      "description": "Complete the opening mission 'Gone Fishing'. Jason runs jobs on the marina in the Leonida Keys while Lucia serves her sentence. A gentle tutorial covering boating, fishing and the Keys' unhurried pace."
+    },
+    {
+      "id": "paradise-lost",
+      "name": "Paradise Lost",
+      "type": "Silver",
+      "category": "story",
+      "difficulty": "Easy",
+      "missable": false,
+      "missableNote": "Story-progression trophy; unmissable.",
+      "description": "Complete Chapter 1. Lucia walks out of prison, the couple settles into the stilt house, and their first 'easy score' goes wrong. Bank optional cash from early missions — it pays for garages and heist prep later."
+    },
+    {
+      "id": "ass-drug-money",
+      "name": "T**s Ass Drug Money",
+      "type": "Silver",
+      "category": "story",
+      "difficulty": "Easy",
+      "missable": false,
+      "missableNote": "Story-progression trophy; unmissable.",
+      "description": "Complete Chapter 2. The botched job puts Jason and Lucia in debt to serious people. The drug-running loop you learn here is reused for laundering income later ('Dime on the Dollar')."
+    },
+    {
+      "id": "vice-city-baby",
+      "name": "Vice City, Baby!",
+      "type": "Bronze",
+      "category": "story",
+      "difficulty": "Easy",
+      "missable": false,
+      "missableNote": "Story-progression trophy; unmissable.",
+      "description": "Complete Chapter 3 — the flight into Vice City itself. Expect the game's first real difficulty spike: invest in body armor, a good long gun and a fast car before the city chapters begin."
+    },
+    {
+      "id": "top-of-the-world-ma",
+      "name": "Top Of The World, Ma",
+      "type": "Silver",
+      "category": "story",
+      "difficulty": "Medium",
+      "missable": false,
+      "missableNote": "Story-progression trophy; unmissable.",
+      "description": "Complete Chapter 4, where the conspiracy stretching across Leonida tightens around the couple. Watch which gangs run which operations from here on — that map feeds the 'Pest Control' trophy."
+    },
+    {
+      "id": "you-gotta-know-when-to-get-off",
+      "name": "You Gotta Know When to Get Off",
+      "type": "Gold",
+      "category": "story",
+      "difficulty": "Medium",
+      "missable": false,
+      "missableNote": "Final mission. Free-roam does not end after the credits — Leonida stays fully open for clean-up.",
+      "description": "Complete the final mission. Before triggering the endgame, clear anything chapter-locked: partnership-choice trophies, all heists, and collectibles behind story progress. After the credits, the world remains open for the 100% grind."
+    },
+    {
+      "id": "trust",
+      "name": "Trust",
+      "type": "Bronze",
+      "category": "story",
+      "difficulty": "Easy",
+      "missable": false,
+      "missableNote": "Story mission; unmissable.",
+      "description": "Complete 'Breakfast Run'. A tense delivery mission that doubles as the tutorial for the relationship system — making coffee, holding hands. The small stuff that later feeds partnership trophies like 'Personal Best'."
+    },
+    {
+      "id": "break-the-bank",
+      "name": "Break the Bank",
+      "type": "Silver",
+      "category": "heists",
+      "difficulty": "Medium",
+      "missable": false,
+      "missableNote": "Approach choices at the Cartel Heist may lock out one-time loot variants; save before the planning board.",
+      "description": "Complete 'The Cartel Heist', the story's centrepiece score. Both the loud and quiet approaches award the trophy, but the quiet approach demands the same stealth discipline as 'Sneakthief' — practice on smaller scores first."
+    },
+    {
+      "id": "family-matters",
+      "name": "Family Matters",
+      "type": "Bronze",
+      "category": "story",
+      "difficulty": "Easy",
+      "missable": false,
+      "missableNote": "Story mission; unmissable.",
+      "description": "Complete 'Child's Play'. Lucia's Liberty City family history comes back into frame. Mostly narrative with light combat — a breather mission to spend laundered cash between heists."
+    },
+    {
+      "id": "dwnfall",
+      "name": "DWNFALL",
+      "type": "Bronze",
+      "category": "story",
+      "difficulty": "Medium",
+      "missable": false,
+      "missableNote": "Story mission; unmissable.",
+      "description": "Complete 'Headliners', a set piece inside one of Vice City's nightclubs. A live crowd, social-media gangsters and a messy exit. A stronger relationship meter improves partner support AI in the chaos."
+    },
+    {
+      "id": "hi-jacked",
+      "name": "Hi-Jacked",
+      "type": "Bronze",
+      "category": "vehicles",
+      "difficulty": "Medium",
+      "missable": false,
+      "missableNote": "Story mission; unmissable.",
+      "description": "Complete 'VCIA Takedown', the airport sequence. This is also where 'Catch Me If You Can' becomes possible — the runway is the one place you can make an unscheduled departure from Vice City International."
+    },
+    {
+      "id": "snow-storm",
+      "name": "Snow Storm",
+      "type": "Bronze",
+      "category": "story",
+      "difficulty": "Medium",
+      "missable": false,
+      "missableNote": "Story mission; unmissable.",
+      "description": "Complete 'Operation Savage Glory', as law-enforcement pressure comes to a head. Stock ammo and armor beforehand — the checkpoint structure punishes an unprepared loadout more than shaky aim."
+    },
+    {
+      "id": "a-long-road",
+      "name": "A Long Road",
+      "type": "Gold",
+      "category": "completion",
+      "difficulty": "Very Hard",
+      "missable": false,
+      "missableNote": "Reachable after the credits, but several 100% checklist items are easier (or only possible) before finishing the story — see the roadmap.",
+      "description": "Attain 100% completion. Projected requirements: all story missions, all stranger strands, all collectible sets, every activity type at least once, gold Shooting Range challenges, 20 race wins, full exploration of Leonida, all garages and 10 registered vehicles. The single biggest chunk of the platinum."
+    },
+    {
+      "id": "cunning-stunts",
+      "name": "Cunning Stunts",
+      "type": "Bronze",
+      "category": "activities",
+      "difficulty": "Hard",
+      "missable": false,
+      "missableNote": "Stunts never expire, but ramps in story-locked districts are unreachable until those chapters open.",
+      "description": "Complete 250 stunts. Vice City's overpasses, beach ramps and pool gaps make this grindable — chain flips and near-misses in traffic-heavy districts and watch the in-game stunt counter climb."
+    },
+    {
+      "id": "master-of-none",
+      "name": "Master of None",
+      "type": "Bronze",
+      "category": "activities",
+      "difficulty": "Medium",
+      "missable": false,
+      "missableNote": "Some activity types (hunting, kayaking, court sports) sit in districts that unlock with story progress.",
+      "description": "Try each type of activity once: projected list includes fishing, bowling, shooting range, drone races, street races, basketball, hunting, kayaking, gym workouts, meditating, clubbing and arcade games. One session of each is enough."
+    },
+    {
+      "id": "the-shootist",
+      "name": "The Shootist",
+      "type": "Bronze",
+      "category": "activities",
+      "difficulty": "Hard",
+      "missable": false,
+      "missableNote": "Challenge availability scales with story-unlocked weapons; wait for the endgame arsenal before grinding golds.",
+      "description": "Earn a gold medal in all Shooting Range challenges. Practice recoil control on the free-fire stages and use Combat Focus to guarantee the time-bonus thresholds on the harder ones."
+    },
+    {
+      "id": "top-fun",
+      "name": "Top Fun",
+      "type": "Bronze",
+      "category": "activities",
+      "difficulty": "Medium",
+      "missable": false,
+      "missableNote": "Courses in late-unlock districts need story progress; only first place counts per venue.",
+      "description": "Win a Top Fun Drone Race at every location. Each course has a shortcut-heavy optimum line — replay until the win registers at that venue."
+    },
+    {
+      "id": "earn-cash-not-kudos",
+      "name": "Earn Cash, Not Kudos",
+      "type": "Bronze",
+      "category": "activities",
+      "difficulty": "Medium",
+      "missable": false,
+      "missableNote": "Races are repeatable; nothing missable.",
+      "description": "Win 20 different races. Street races and drone races both count toward the projection. Upgrade one fast car and one motorcycle early — most circuits reward braking discipline over raw top speed."
+    },
+    {
+      "id": "baited-my-tackle",
+      "name": "Baited My Tackle",
+      "type": "Bronze",
+      "category": "activities",
+      "difficulty": "Easy",
+      "missable": false,
+      "missableNote": "Fishing spots in the Keys unlock early and stay open.",
+      "description": "Beat Cal in a fishing challenge. Match your lure to the conditions and reel with the fish's direction — fighting the drag snaps lines. A relaxing palate cleanser between heists."
+    },
+    {
+      "id": "stick-fiddler",
+      "name": "Stick Fiddler",
+      "type": "Bronze",
+      "category": "activities",
+      "difficulty": "Easy",
+      "missable": false,
+      "missableNote": "Nothing missable; arcades are permanent world fixtures.",
+      "description": "Complete an arcade game. Vice City's arcades hold several cabinets — any full clear counts, and the retro beat-'em-ups are the most forgiving."
+    },
+    {
+      "id": "road-to-rehabilitation",
+      "name": "Road to Rehabilitation",
+      "type": "Bronze",
+      "category": "strangers",
+      "difficulty": "Easy",
+      "missable": false,
+      "missableNote": "Stranger strands persist post-credits, but some gate on mid-story windows — pick them up as they appear.",
+      "description": "Complete the final mission for Andy. One of the eight stranger strands needed for 'Strangers & Freaks' — a character arc about second chances, projected to involve boats and bad decisions."
+    },
+    {
+      "id": "this-was-no-boat-accident",
+      "name": "This Was No Boat Accident",
+      "type": "Bronze",
+      "category": "strangers",
+      "difficulty": "Easy",
+      "missable": false,
+      "missableNote": "Grab it during the chapters when the strand is active.",
+      "description": "Complete the final mission for Kenton. A Grassrivers conspiracy strand — cryptic tapes, swamp lights, and a payoff the trophy name winks at."
+    },
+    {
+      "id": "the-lone-rider",
+      "name": "The Lone Rider",
+      "type": "Bronze",
+      "category": "strangers",
+      "difficulty": "Easy",
+      "missable": false,
+      "missableNote": "Grab it during the chapters when the strand is active.",
+      "description": "Complete the final mission for Billy. A biker strand in Port Gellhorn / Ambrosia territory with chases aplenty. Have a heavy bike registered before starting the last stage."
+    },
+    {
+      "id": "strangers-and-freaks",
+      "name": "Strangers & Freaks",
+      "type": "Bronze",
+      "category": "strangers",
+      "difficulty": "Medium",
+      "missable": false,
+      "missableNote": "Clean districts in order rather than leaving all '?' markers for an endgame map pile-up.",
+      "description": "Complete 8 stranger mission strands across Leonida. Projected strands include Andy, Kenton, Billy, Randy and Tyrone plus three more. Some markers only appear at specific times of day — revisit at night if a '?' is missing."
+    },
+    {
+      "id": "supply-and-demand",
+      "name": "Supply & Demand",
+      "type": "Bronze",
+      "category": "strangers",
+      "difficulty": "Easy",
+      "missable": false,
+      "missableNote": "Grab it during the chapters when the strand is active.",
+      "description": "Complete the final mission for Randy. A smuggling strand that reuses the Chapter 2 drug-run mechanics — the piloting leg wants an undamaged vehicle, so don't skip prep."
+    },
+    {
+      "id": "spin-on-this",
+      "name": "Spin On This!",
+      "type": "Bronze",
+      "category": "strangers",
+      "difficulty": "Easy",
+      "missable": false,
+      "missableNote": "Grab it during the chapters when the strand is active.",
+      "description": "Complete the final mission for Tyrone. A Vice City social-media-clout storyline about a wannabe influencer — part comedy, part chase, and one of the easier strand finales."
+    },
+    {
+      "id": "positive-mental-attitude",
+      "name": "Positive Mental Attitude",
+      "type": "Bronze",
+      "category": "collectibles",
+      "difficulty": "Hard",
+      "missable": false,
+      "missableNote": "Meditation spots never expire; the cost is purely time.",
+      "description": "Meditate at every spot across Leonida, from Keys overlooks to Mount Kalaga vistas. The projected count is in the dozens — pair this pass with the 'The Goodtime State' exploration sweep."
+    },
+    {
+      "id": "fair-game",
+      "name": "Fair Game",
+      "type": "Bronze",
+      "category": "strangers",
+      "difficulty": "Medium",
+      "missable": false,
+      "missableNote": "Hunting windows may be time-of-day gated; the animal itself persists.",
+      "description": "Hunt a unique animal for Bret. A Grassrivers / Mount Kalaga strand — mind the wind, move slowly, and tag the unique target quietly."
+    },
+    {
+      "id": "dont-touch-my-deck",
+      "name": "Don't Touch My Deck",
+      "type": "Bronze",
+      "category": "collectibles",
+      "difficulty": "Hard",
+      "missable": false,
+      "missableNote": "Collectibles persist post-credits; nothing missable, just long.",
+      "description": "Complete 3 Collectible Card sets. Trading cards are scattered across shops, streets and interiors. Sweep one district at a time with a checklist to avoid the endgame needle-in-haystack hunt."
+    },
+    {
+      "id": "you-wainker",
+      "name": "You WAiNKer!",
+      "type": "Bronze",
+      "category": "collectibles",
+      "difficulty": "Hard",
+      "missable": false,
+      "missableNote": "Locations persist; purely a time grind.",
+      "description": "WAiNK It at 100 locations. Community consensus reads WAiNK as a tagging/sticker app mechanic — projected as the game's 100-location world-interaction collectible. 100 spots across Leonida takes real hours; sweep methodically."
+    },
+    {
+      "id": "one-last-thing",
+      "name": "One Last Thing",
+      "type": "Bronze",
+      "category": "misc",
+      "difficulty": "Hard",
+      "missable": false,
+      "missableNote": "Challenges are repeatable; nothing missable.",
+      "description": "Complete 50 Challenges. The challenge board (stunt chains, headshot streaks, wheelie distances, hunting marks) pays out progressively — knock out three or four per session during your other grinds and this clears itself."
+    },
+    {
+      "id": "hot-together",
+      "name": "Hot Together",
+      "type": "Bronze",
+      "category": "partnership",
+      "difficulty": "Medium",
+      "missable": false,
+      "missableNote": "Repeatable; easiest to arrange deliberately post-story.",
+      "description": "Lose a 4-star Wanted Level with your partner and escape. Farm stars deliberately in Vice City, split up, and use partner support to break line of sight — a fast boat out of the port beats any car."
+    },
+    {
+      "id": "retail-therapy",
+      "name": "Retail Therapy",
+      "type": "Bronze",
+      "category": "partnership",
+      "difficulty": "Medium",
+      "missable": false,
+      "missableNote": "Repeatable; plan the route along a low-density commercial strip.",
+      "description": "Rob 3 shops back-to-back with your partner without losing your Wanted Level. Pick three adjacent stores, keep the heat alive between robberies, and exit via a prepared getaway vehicle."
+    },
+    {
+      "id": "whip-it-good",
+      "name": "Whip It Good",
+      "type": "Bronze",
+      "category": "vehicles",
+      "difficulty": "Hard",
+      "missable": false,
+      "missableNote": "Rare spawns (boats, aircraft, showroom exotics) are location- and chapter-gated — sweep late.",
+      "description": "Discover 100 vehicles. Discovery registers on first use, not first sight: drive, fly or pilot each one. Street traffic covers the common cars; fill the rest from the port, airport, marinas and showrooms."
+    },
+    {
+      "id": "gunslinger",
+      "name": "Gunslinger",
+      "type": "Bronze",
+      "category": "misc",
+      "difficulty": "Medium",
+      "missable": false,
+      "missableNote": "Repeatable; respawn enemies at a known ambush spot.",
+      "description": "Take down 5 enemies in a single use of Combat Focus. Enter the bullet-time window with a full meter and chain a close-range cluster with a shotgun or SMG. Retry from a checkpoint-friendly firefight."
+    },
+    {
+      "id": "catch-me-if-you-can",
+      "name": "Catch Me If You Can",
+      "type": "Bronze",
+      "category": "vehicles",
+      "difficulty": "Medium",
+      "missable": false,
+      "missableNote": "Requires VCIA access, which opens with story progress.",
+      "description": "Make an unscheduled departure at VCIA. Get onto the runway and take off in anything with wings, clearance be damned. Trigger a 3-star response for fun, then climb out of range."
+    },
+    {
+      "id": "challenging-tank",
+      "name": "Challenging Tank",
+      "type": "Bronze",
+      "category": "vehicles",
+      "difficulty": "Medium",
+      "missable": false,
+      "missableNote": "Military-base access gates this; expect heavy wanted heat afterward.",
+      "description": "Kinda hot in these Rhinos. Steal a Rhino tank from the projected Leonida military installation and survive the ensuing heat. Plan a helicopter exit — a tank on a bridge draws every cop in the state."
+    },
+    {
+      "id": "sneakthief",
+      "name": "Sneakthief",
+      "type": "Bronze",
+      "category": "heists",
+      "difficulty": "Hard",
+      "missable": false,
+      "missableNote": "Repeatable, but store layouts may rotate with story chapters; save before entering.",
+      "description": "Rob a jewelry store without being detected. Full stealth: case the store, handle cameras and staff quietly, and never trip the alarm. One alerted guard resets the attempt."
+    },
+    {
+      "id": "maximum-withdrawal",
+      "name": "Maximum Withdrawal",
+      "type": "Silver",
+      "category": "heists",
+      "difficulty": "Hard",
+      "missable": false,
+      "missableNote": "Vaults reset over time; plan the escape route before hitting the first one.",
+      "description": "Rob 5 Bank Vaults and escape. Bank vaults are repeatable high-value targets separate from the story heists. The getaway must complete for each robbery to count — five clean breaches, five clean exits."
+    },
+    {
+      "id": "a-classic-blitz-play",
+      "name": "A Classic Blitz Play",
+      "type": "Bronze",
+      "category": "heists",
+      "difficulty": "Medium",
+      "missable": false,
+      "missableNote": "Armored truck spawns are random; camp known routes.",
+      "description": "Rob an Armored Truck and escape. The GTA V classic: intercept a securities truck on a quiet road, force the doors, grab the cash, lose the heat. Partner support shines here — one drives while the other breaches."
+    },
+    {
+      "id": "the-goodtime-state",
+      "name": "The Goodtime State",
+      "type": "Silver",
+      "category": "completion",
+      "difficulty": "Hard",
+      "missable": false,
+      "missableNote": "Most districts open with story; the last sliver unlocks at the endgame.",
+      "description": "Explore all of Leonida. Visit every named district — Vice City, Leonida Quays, Grassrivers, Port Gellhorn, Ambrosia, Mount Kalaga National Park and the Keys. Discovery triggers on entry; pair the sweep with the meditation and WAiNK grinds."
+    },
+    {
+      "id": "pest-control",
+      "name": "Pest Control",
+      "type": "Bronze",
+      "category": "heists",
+      "difficulty": "Hard",
+      "missable": false,
+      "missableNote": "Gang operations reveal through story progress; do this after the credits once all factions are known.",
+      "description": "Rob an Illegal Operation belonging to each gang. Projected factions across Leonida each run at least one robable operation — labs, chop shops, stash houses. The in-game notebook tracks which operations you've hit and under whose banner."
+    },
+    {
+      "id": "in-the-beginning",
+      "name": "In The Beginning…",
+      "type": "Bronze",
+      "category": "misc",
+      "difficulty": "Easy",
+      "missable": false,
+      "missableNote": "Nothing missable — a vibe check, not a challenge.",
+      "description": "Enjoy a cocktail with a view on Ocean Beach. A pure flavor trophy: order a drink at an Ocean Beach bar with the ocean in sight. The perfect first-hour send-off after the years of waiting."
+    },
+    {
+      "id": "capital-offense",
+      "name": "Capital Offense",
+      "type": "Bronze",
+      "category": "vehicles",
+      "difficulty": "Easy",
+      "missable": false,
+      "missableNote": "Repeatable; showroom glass respawns.",
+      "description": "Smash your way out of a vehicle showroom in classic style. Drive — or launch — a vehicle straight through a Vice City showroom's glass front. The homage is to every GTA showroom stunt ever clipped."
+    },
+    {
+      "id": "lets-go-bowling",
+      "name": "Let's Go Bowling",
+      "type": "Bronze",
+      "category": "activities",
+      "difficulty": "Easy",
+      "missable": false,
+      "missableNote": "Nothing missable; the alley is always open.",
+      "description": "Follow through at the Kolt & Associates bowling alley. Complete a full game of bowling — and enjoy the community's favourite nod to a certain cousin from another game."
+    },
+    {
+      "id": "ten-pin",
+      "name": "Ten Pin",
+      "type": "Bronze",
+      "category": "activities",
+      "difficulty": "Medium",
+      "missable": false,
+      "missableNote": "Repeatable; practice the pin physics a few frames first.",
+      "description": "Bowl 'em over with a melee drive-by. The hard variant of bowling: clear all ten pins via a thrown melee-object physics gag (or, per community reading, a melee takedown on the approach). Experiment — both readings award the same trophy."
+    },
+    {
+      "id": "personal-best",
+      "name": "Personal Best",
+      "type": "Bronze",
+      "category": "partnership",
+      "difficulty": "Medium",
+      "missable": false,
+      "missableNote": "The relationship meter is a slow burn; feed it across the whole run rather than grinding late.",
+      "description": "A partnership with mass appeal. Max out the Jason-Lucia relationship system: date nights, dancing, shared meals, holding hands, couch TV. The meter rises across dozens of hours of small moments, not one session."
+    },
+    {
+      "id": "actions-speak-louder",
+      "name": "Actions Speak Louder",
+      "type": "Bronze",
+      "category": "partnership",
+      "difficulty": "Medium",
+      "missable": false,
+      "missableNote": "Story choices branch mid-chapter; keep a pre-choice save if you want to see both outcomes.",
+      "description": "Choices made, for better or worse. Commit to a major story choice at a projected chapter fork. The trophy awards on committing — it does not require the 'good' outcome."
+    },
+    {
+      "id": "bad-luck-i-guess",
+      "name": "Bad Luck, I Guess",
+      "type": "Bronze",
+      "category": "partnership",
+      "difficulty": "Medium",
+      "missable": false,
+      "missableNote": "Trigger conditions may be probabilistic; keep playing and it will land.",
+      "description": "Second time's the charm. A cryptic projection: fail a mission or chance event, then retry it successfully — community reading is losing a gamble twice before winning, or recovering a failed heist prep. Most players earn it naturally."
+    },
+    {
+      "id": "the-truth-is-out-there",
+      "name": "The Truth Is Out There",
+      "type": "Bronze",
+      "category": "misc",
+      "difficulty": "Hard",
+      "missable": false,
+      "missableNote": "Cryptic trigger, likely tied to a specific late-game or Easter-egg world event; save often.",
+      "description": "What the hell just happened? The deliberately cryptic one. Projected to unlock after witnessing a specific unexplained world event — the X-Files nod suggests UFO or Grassrivers-lights lore. Hunt it after 100% when the map is fully known."
+    },
+    {
+      "id": "dime-on-the-dollar",
+      "name": "Dime on the Dollar",
+      "type": "Bronze",
+      "category": "misc",
+      "difficulty": "Medium",
+      "missable": false,
+      "missableNote": "Laundering contacts unlock with story; income scales late-game.",
+      "description": "Earn $250,000 laundering Marked Bills through your contacts. Marked Bills accumulate from robberies and illegal operations; feed them through the laundering loop repeatedly. Post-story heist income makes the total trivial."
+    },
+    {
+      "id": "treat-yo-self",
+      "name": "Treat Yo Self",
+      "type": "Bronze",
+      "category": "misc",
+      "difficulty": "Medium",
+      "missable": false,
+      "missableNote": "The total is cumulative across all shop types; visit every category at least once.",
+      "description": "Spend $100,000 across all shops. The qualifier matters: buy something at every shop type — clothing, weapons, salons, mod shops, tattoo parlors — up to a $100k cumulative total. One Vice City shopping spree finishes it."
+    },
+    {
+      "id": "little-boxes",
+      "name": "Little Boxes",
+      "type": "Bronze",
+      "category": "misc",
+      "difficulty": "Medium",
+      "missable": false,
+      "missableNote": "Some garages gate on story money milestones; buy them as districts open.",
+      "description": "Purchase all garage properties. Garages across Leonida cost escalating sums, with Vice City's the priciest. Buy one per district as cash allows; post-story income covers the full set quickly."
+    },
+    {
+      "id": "on-the-spot",
+      "name": "On the Spot",
+      "type": "Bronze",
+      "category": "vehicles",
+      "difficulty": "Easy",
+      "missable": false,
+      "missableNote": "The app unlocks early; nothing missable.",
+      "description": "Register 10 vehicles to the Scooter Bros app. The in-game registration app tracks your fleet — any ten vehicles you've driven count, and this overlaps naturally with the 'Whip It Good' discovery hunt."
+    }
+  ]
 }
