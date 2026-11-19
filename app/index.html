@@ -1,38 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="All 55 GTA VI trophies with grades, cited guides, a platinum roadmap and a browser-saved checklist.">
-<meta name="color-scheme" content="dark">
-<title>Leonida Trophy Atlas — GTA VI Trophy Guide &amp; Tracker</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GTA VI Trophy Guide — Leonida Legend (Projected)</title>
+  <meta name="description" content="A projected 55-trophy guide for Grand Theft Auto VI with difficulty ratings, missables, a completion roadmap and a spoiler-free mode.">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header class="topbar">
-  <div class="brand">
-    <div class="kicker">GRAND THEFT AUTO VI · PLAYSTATION 5 · OFFLINE GUIDE &amp; TRACKER</div>
-    <h1>Leonida Trophy Atlas</h1>
-    <p class="tagline">All 55 official trophies with their grades, a cited guide for each one, a
-    three-stage roadmap to the platinum, and a checklist that saves in your browser.</p>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="title-block">
+        <h1>GTA VI <span class="accent">Trophy Guide</span></h1>
+        <p class="subtitle">Grand Theft Auto VI &middot; PlayStation 5 &middot; Leonida &amp; Vice City &middot; Jason &amp; Lucia</p>
+        <p class="projection-banner" id="projectionBanner">
+          PROJECTION NOTICE: Rockstar has not published an official GTA VI trophy list.
+          All 55 trophies below are modelled on the GTA V (PS5) trophy list and are
+          clearly marked as projections. Nothing here is confirmed.
+        </p>
+      </div>
+      <div class="header-controls">
+        <button id="spoilerToggle" class="btn btn-spoiler" type="button" aria-pressed="false">
+          Spoiler mode: <span id="spoilerState">hidden</span>
+        </button>
+        <input id="searchBox" class="search" type="search"
+               placeholder="Search trophies…" aria-label="Search trophies">
+        <div class="progress-pill" id="progressPill" title="Locally tracked trophies you marked as earned">
+          <span id="earnedCount">0</span>/<span id="totalCount">55</span> marked earned
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <nav class="filters" id="filters" aria-label="Trophy categories">
+    <button class="filter-btn active" data-category="all" type="button">All</button>
+    <!-- category buttons injected by app.js -->
+  </nav>
+
+  <main>
+    <section class="panel" id="statsPanel">
+      <div class="stat-grid" id="statGrid"><!-- injected --></div>
+    </section>
+
+    <section class="panel" id="roadmapPanel">
+      <h2>Completion Roadmap <span class="tag tag-projected">projected</span></h2>
+      <p class="roadmap-hours" id="roadmapHours"></p>
+      <ol class="roadmap-list" id="roadmapList"></ol>
+    </section>
+
+    <section class="panel" id="missablesPanel">
+      <h2>Missables &amp; What to Watch <span class="tag tag-projected">projected</span></h2>
+      <p class="missables-intro" id="missablesIntro"></p>
+      <ul class="missables-list" id="missablesList"></ul>
+    </section>
+
+    <section class="panel" id="trophiesPanel">
+      <h2>The Trophies <span class="tag tag-projected">all projected</span></h2>
+      <div class="trophy-grid" id="trophyGrid"><!-- injected --></div>
+      <p class="empty-note" id="emptyNote" hidden>No trophies match your filters.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>
+      Unofficial fan-made projection. Not affiliated with Rockstar Games or Take-Two Interactive.
+      Verified facts (release date November 19, 2026; setting Leonida/Vice City; protagonists
+      Jason &amp; Lucia; online mode status) are sourced from
+      <a href="https://www.rockstargames.com/newswire/article/ak3ak31a49a221/grand-theft-auto-vi-is-now-set-to-launch-november-19-2026" target="_blank" rel="noopener">Rockstar Newswire</a>,
+      <a href="https://www.rockstargames.com/VI" target="_blank" rel="noopener">rockstargames.com/VI</a> and
+      <a href="https://www.take2games.com/ir/news/rockstar-games-announces-pre-orders-grand-theft-auto-vi" target="_blank" rel="noopener">Take-Two IR</a>.
+      Trophy names and requirements are original projections — see the notice above.
+    </p>
+  </footer>
+
+  <dialog id="trophyDialog" class="trophy-dialog">
+    <div id="dialogBody"><!-- injected --></div>
+  <div class="dialog-actions">
+    <button id="dialogClose" class="btn" type="button">Close</button>
   </div>
-  <div class="progress-box" id="progress-box">
-    <div class="big-count"><span id="earned">0</span><span class="of">/55</span></div>
-    <div class="bar" role="progressbar" aria-labelledby="earned"><div id="bar-fill"></div></div>
-    <div class="grade-row" id="grade-row"></div>
-    <p class="save-note" id="save-note">Saved in this browser</p>
-  </div>
-</header>
-<nav class="tabs" id="tabs" aria-label="Sections">
-  <button class="tab active" data-view="tracker" aria-selected="true">Checklist</button>
-  <button class="tab" data-view="roadmap" aria-selected="false">Roadmap to Platinum</button>
-  <button class="tab" data-view="missables" aria-selected="false">Missables</button>
-  <button class="tab" data-view="data" aria-selected="false">Save / Load</button>
-</nav>
-<main id="main"></main>
-<footer class="foot">Written for this entry, in our own words. Official trophy names, descriptions and grades
- as PlayStation publishes them (via Exophase and PSNProfiles); each guide cites its sources. No Rockstar
- assets are used. Version 2 · data v2.</footer>
-<script src="app.js"></script>
+  </dialog>
+
+  <script src="app.js"></script>
 </body>
 </html>

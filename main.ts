@@ -1,43 +1,157 @@
-// Leonida Trophy Atlas — hand-in program (Node 22, standard library only).
+// main.ts — dev helper for the GTA VI trophy guide.
 //
-// The entry is the static app in app/: plain files a browser serves with app/ at the
-// root, no build step, fully offline. app/index.html opens the master-detail tracker
-// (checklist with tick-to-earn, cited guides in a sticky detail pane, filters, spoiler
-// mode); app/data/trophies.json carries all 55 official trophies with name, official
-// description, grade, and a guide written for this entry that cites its sources. The
-// roadmap to the platinum and the missables page are built from those same data.
+// Validates app/data/trophies.json against the schema this project expects:
+//   meta (game/platform/trophyCount/status/sources), gameFacts, categoryLabels,
+//   roadmap (steps), missables (items), and 55 trophies each with
+//   id/name/category/rarity/difficulty/missable/projected/spoiler/description/howTo.
 //
-// This program hands the entry in: it copies app/ and screenshots/ to /output and
-// writes /output/dossier.json with buildDossier from vendor/makefun-frontend.ts (the
-// kit's copy, unchanged — the scorer rebuilds the dossier with the same library and
-// compares byte for byte). Outside the grader, MAKEFUN_OUTPUT_DIR stands in for /output:
-//   mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
+// Usage:
+//   npx tsx main.ts            # validate and print a report (exit 1 on failure)
+//   node --experimental-strip-types main.ts   # Node 22+ runs TS directly
 //
-// Serve the app locally with `node serve.ts`, then open http://localhost:8080.
-// The app and data are plain static files: edits to app/ need no rebuild, only a page refresh.
-// screenshots/ holds the four judge-facing renders; the first by name is the cover.
+// The web app in app/ is plain static files and needs no build step.
 
-import { cpSync, existsSync, mkdirSync, writeFileSync } from 'node:fs';
-import { join } from 'node:path';
+import { readFileSync } from 'node:fs';
+import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { buildDossier } from './vendor/makefun-frontend.ts';
 
-const here = fileURLToPath(new URL('.', import.meta.url));
-const out = process.env.MAKEFUN_OUTPUT_DIR ?? '/output';
+const here = dirname(fileURLToPath(import.meta.url));
+const DATA_PATH = join(here, 'app', 'data', 'trophies.json');
 
-// Caps from the scorer's reference/gate.json: mirror them here so a build that would
-// be refused fails here with a clear error instead of shipping.
-const caps = {
-  text_max_bytes: 163840,
-  screenshots: { max: 4, max_bytes: 262144 },
-  app_max_files: 993,
-  app_max_bytes: 50331648
-};
+const RARITIES = ['platinum', 'gold', 'silver', 'bronze'];
+const CATEGORIES = [
+  'platinum', 'story', 'completion', 'collectibles',
+  'heists', 'vehicles', 'activities', 'misc'
+];
 
-mkdirSync(out, { recursive: true });
-cpSync(join(here, 'app'), join(out, 'app'), { recursive: true });
-mkdirSync(join(out, 'screenshots'), { recursive: true });
-if (existsSync(join(here, 'screenshots'))) cpSync(join(here, 'screenshots'), join(out, 'screenshots'), { recursive: true });
+interface Trophy {
+  id: string;
+  name: string;
+  category: string;
+  rarity: string;
+  difficulty: number;
+  missable: boolean;
+  projected: boolean;
+  spoiler: boolean;
+  description: string;
+  howTo: string;
+  watch?: string;
+}
 
-writeFileSync(join(out, 'dossier.json'), buildDossier(out, caps));
-console.log('dossier written to ' + out + '/dossier.json');
+interface TrophyData {
+  license_note?: string;
+  meta: {
+    game: string;
+    platform: string;
+    trophyCount: number;
+    status: string;
+    disclaimer: string;
+    lastUpdated?: string;
+    sources: string[];
+  };
+  gameFacts?: Record<string, unknown>;
+  categories: string[];
+  categoryLabels?: Record<string, string>;
+  difficultyScale?: string;
+  trophies: Trophy[];
+  roadmap?: { estimatedHours: string; steps: { phase: string; advice: string }[] };
+  missables?: { intro: string; items: string[] };
+}
+
+function validate(data: TrophyData): string[] {
+  const errors: string[] = [];
+  const t = data.trophies;
+
+  if (!data.meta || data.meta.status !== 'PROJECTED') {
+    errors.push('meta.status must be "PROJECTED" — no official list exists yet');
+  }
+  if (data.meta?.platform !== 'PlayStation 5') {
+    errors.push('meta.platform should be "PlayStation 5"');
+  }
+  if (data.meta && !Array.isArray(data.meta.sources)) {
+    errors.push('meta.sources must be an array of URLs');
+  }
+
+  if (!Array.isArray(t)) {
+    return [...errors, 'trophies must be an array'];
+  }
+  if (t.length !== data.meta?.trophyCount) {
+    errors.push(`trophyCount is ${data.meta?.trophyCount} but ${t.length} trophies exist`);
+  }
+  if (t.length !== 55) {
+    errors.push(`expected exactly 55 trophies, found ${t.length}`);
+  }
+
+  const seen = new Set<string>();
+  const rarityCount: Record<string, number> = {};
+  for (const tro of t) {
+    const label = tro.id ?? '(missing id)';
+    if (seen.has(tro.id)) errors.push(`duplicate id: ${tro.id}`);
+    seen.add(tro.id);
+
+    for (const field of ['id', 'name', 'category', 'rarity', 'description', 'howTo'] as const) {
+      if (typeof tro[field] !== 'string' || !(tro[field] as string).length) {
+        errors.push(`${label}: missing or empty ${field}`);
+      }
+    }
+    if (!CATEGORIES.includes(tro.category)) {
+      errors.push(`${label}: unknown category "${tro.category}"`);
+    }
+    if (!RARITIES.includes(tro.rarity)) {
+      errors.push(`${label}: unknown rarity "${tro.rarity}"`);
+    }
+    rarityCount[tro.rarity] = (rarityCount[tro.rarity] ?? 0) + 1;
+
+    if (typeof tro.difficulty !== 'number' || tro.difficulty < 1 || tro.difficulty > 10) {
+      errors.push(`${label}: difficulty must be a number 1-10`);
+    }
+    if (typeof tro.missable !== 'boolean') errors.push(`${label}: missable must be boolean`);
+    if (tro.missable && !tro.watch) {
+      errors.push(`${label}: missable=true requires a "watch" note`);
+    }
+    if (tro.projected !== true) errors.push(`${label}: projected must be true`);
+    if (typeof tro.spoiler !== 'boolean') errors.push(`${label}: spoiler must be boolean`);
+  }
+
+  const plats = rarityCount['platinum'] ?? 0;
+  if (plats !== 1) errors.push(`exactly 1 platinum expected, found ${plats}`);
+
+  const declared = data.categories ?? [];
+  for (const tro of t) {
+    if (!declared.includes(tro.category)) {
+      errors.push(`${tro.id}: category "${tro.category}" not declared in "categories"`);
+    }
+  }
+
+  return errors;
+}
+
+function main(): void {
+  let data: TrophyData;
+  try {
+    data = JSON.parse(readFileSync(DATA_PATH, 'utf8'));
+  } catch (e) {
+    console.error('FAILED to read/parse trophies.json:', (e as Error).message);
+    process.exit(1);
+  }
+
+  const errors = validate(data);
+  const trophies = data.trophies ?? [];
+
+  console.log(`GTA VI trophy guide — data validation`);
+  console.log(`  trophies: ${trophies.length}`);
+  console.log(`  status:   ${data.meta?.status ?? 'MISSING'} (all entries marked projected)`);
+  console.log(`  missable: ${trophies.filter((x) => x.missable).length}`);
+  console.log(`  spoiler:  ${trophies.filter((x) => x.spoiler).length}`);
+  console.log(`  roadmap:  ${data.roadmap?.steps?.length ?? 0} phases`);
+  console.log(`  missable notes: ${data.missables?.items?.length ?? 0}`);
+
+  if (errors.length) {
+    console.error(`\n${errors.length} validation error(s):`);
+    for (const err of errors) console.error('  - ' + err);
+    process.exit(1);
+  }
+  console.log('\nOK — trophies.json is valid.');
+}
+
+main();
