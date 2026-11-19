@@ -1,4 +1,4 @@
-/* Leonida Trophy Atlas — dusk palette: deep teal night, neon coral, warm sand. */
+/* Leonida Trophy Atlas — dusk palette, v2: master-detail tracker, Vice-inspired dusk. */
 :root {
   --bg: #0d1521;
   --panel: #131f30;
@@ -32,6 +32,7 @@ h1 { margin: 6px 0 8px; font-size: 40px; font-weight: 700; letter-spacing: .5px;
 .grade-row { display: flex; gap: 8px; justify-content: flex-end; flex-wrap: wrap; }
 .chip { font: 600 11px/1 monospace; padding: 4px 8px; border-radius: 10px; background: var(--panel2); color: var(--dim); }
 .chip.platinum { color: #dff3ff; } .chip.gold { color: var(--gold); } .chip.silver { color: #cfd9e6; } .chip.bronze { color: #d8a06d; }
+.save-note { margin: 6px 0 0; font: 10px/1 'Courier New', monospace; color: var(--dim); opacity: .7; }
 
 .tabs { display: flex; gap: 4px; padding: 0 32px; background: var(--panel); border-bottom: 1px solid var(--line); }
 .tab {
@@ -41,7 +42,7 @@ h1 { margin: 6px 0 8px; font-size: 40px; font-weight: 700; letter-spacing: .5px;
 .tab.active { color: var(--neon); border-bottom-color: var(--neon); }
 .tab:hover { color: var(--ink); }
 
-main { padding: 20px 32px 60px; max-width: 1280px; }
+main { padding: 20px 32px 60px; max-width: 1440px; }
 .toolbar { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 16px; }
 .toolbar input[type=search] {
   flex: 1 1 260px; background: var(--panel2); border: 1px solid var(--line); color: var(--ink);
@@ -54,11 +55,14 @@ main { padding: 20px 32px 60px; max-width: 1280px; }
 .spoiler { color: var(--dim); font-size: 13px; display: flex; gap: 6px; align-items: center; cursor: pointer; }
 #shown { color: var(--dim); font-size: 12px; margin-left: auto; }
 
-.list { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+/* Master-detail: trophy rows on the left, the selected guide beside them. */
+.split { display: grid; grid-template-columns: minmax(430px, 7fr) minmax(320px, 5fr); gap: 14px; align-items: start; }
+.rows { display: flex; flex-direction: column; gap: 8px; }
 .card {
   background: var(--panel); border: 1px solid var(--line); border-radius: 8px;
-  padding: 14px 16px; border-left: 3px solid var(--line);
+  padding: 12px 14px; border-left: 3px solid var(--line); cursor: pointer;
 }
+.card.selected { outline: 2px solid var(--neon); outline-offset: -1px; }
 .card.earned { border-left-color: var(--teal); background: #12231f; }
 .card.missable { border-left-color: #e05656; }
 .card-head { display: flex; gap: 12px; align-items: flex-start; }
@@ -68,8 +72,8 @@ main { padding: 20px 32px 60px; max-width: 1280px; }
 }
 .card.earned .tick { border-color: var(--teal); background: var(--teal); color: #06251f; }
 .card-title { flex: 1; min-width: 0; }
-.card-title h3 { margin: 0 0 2px; font-size: 17px; }
-.desc { margin: 0; color: var(--dim); font-style: italic; font-size: 13.5px; }
+.card-title h3 { margin: 0 0 2px; font-size: 16px; }
+.desc { margin: 0; color: var(--dim); font-style: italic; font-size: 13px; }
 .tags { display: flex; flex-direction: column; gap: 4px; align-items: flex-end; }
 .tag { font: 600 10px/1 monospace; padding: 3px 7px; border-radius: 9px; letter-spacing: .5px; }
 .t-g { background: var(--panel2); color: var(--dim); }
@@ -80,12 +84,22 @@ main { padding: 20px 32px 60px; max-width: 1280px; }
 .t-k { background: #1c2c44; color: #8fb3e0; }
 .t-h { background: #2a1f38; color: #b39ae0; }
 .t-m { background: #3a1f22; color: #ff9d9d; }
-.card-body { margin-top: 10px; }
-.guide { margin: 0 0 8px; font-size: 14px; }
-.sources { margin: 0 0 4px; font-size: 12px; color: var(--dim); }
-.sources a { color: var(--teal); text-decoration: none; border-bottom: 1px dotted var(--teal); }
-.sources a:hover { color: var(--neon); }
-.stage { margin: 0; font: 11px/1.4 'Courier New', monospace; color: var(--gold); }
+
+/* The detail pane: one trophy's full cited guide. */
+.detail {
+  position: sticky; top: 12px; background: var(--panel); border: 1px solid var(--line);
+  border-radius: 10px; padding: 18px 20px; max-height: calc(100vh - 24px); overflow: auto;
+}
+.detail .detail-grade { font: 700 11px/1 'Courier New', monospace; letter-spacing: 1.5px; color: var(--gold); }
+.detail h2 { margin: 6px 0 4px; font-size: 24px; color: var(--neon); }
+.detail .detail-desc { margin: 0 0 12px; color: var(--dim); font-style: italic; }
+.detail .detail-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+.detail .guide { margin: 0 0 14px; font-size: 14.5px; white-space: pre-line; }
+.detail .sources { margin: 0 0 10px; font-size: 12.5px; color: var(--dim); border-top: 1px solid var(--line); padding-top: 10px; }
+.detail .sources a { color: var(--teal); text-decoration: none; border-bottom: 1px dotted var(--teal); display: inline-block; margin-right: 10px; }
+.detail .sources a:hover { color: var(--neon); }
+.detail .stage { margin: 0; font: 11px/1.5 'Courier New', monospace; color: var(--gold); }
+.detail-actions { margin-top: 14px; display: flex; gap: 10px; align-items: center; }
 
 .roadmap h2 { margin: 6px 0 14px; font-size: 26px; color: var(--neon); }
 .roadmap h3 { margin: 18px 0 6px; font-size: 17px; color: var(--teal); }
@@ -97,4 +111,5 @@ button, .filebtn {
   padding: 9px 16px; border-radius: 6px; font: 600 13px Georgia, serif; cursor: pointer;
 }
 button:hover { border-color: var(--neon); color: var(--neon); }
-.foot { padding: 18px 32px; color: var(--dim); font-size: 11.5px; border-top: 1px solid var(--line); max-width: 1280px; }
+.foot { padding: 18px 32px; color: var(--dim); font-size: 11.5px; border-top: 1px solid var(--line); max-width: 1440px; }
+@media (max-width: 1000px) { .split { grid-template-columns: 1fr; } .detail { position: static; } }
