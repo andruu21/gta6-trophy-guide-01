@@ -10,6 +10,8 @@
 
 import * as fs from 'fs';
 import * as path from 'path';
+import { dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 interface Trophy {
   id: string;
@@ -57,7 +59,8 @@ interface TrophyData {
   trophies: Trophy[];
 }
 
-const DATA_PATH = path.join(__dirname, 'app', 'data', 'trophies.json');
+const here = dirname(fileURLToPath(import.meta.url));
+const DATA_PATH = path.join(here, 'app', 'data', 'trophies.json');
 const RANKS = ['bronze', 'silver', 'gold', 'platinum'];
 const EXPECTED_TROPHY_COUNT = 55;
 const MAX_DIFFICULTY = 10;
