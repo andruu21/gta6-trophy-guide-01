@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GTA VI Trophy Guide — Projected 55-Trophy Roadmap</title>
-  <meta name="description" content="A projected Grand Theft Auto VI trophy guide: all 55 trophies with difficulty ratings, missable warnings, a completion roadmap and a spoiler-free mode. Fan-made, not affiliated with Rockstar Games.">
+  <meta name="description" content="A projected Grand Theft Auto VI trophy guide: 55 trophies with difficulty ratings, missable warnings, a completion roadmap and a spoiler-free mode. Fan-made, not affiliated with Rockstar Games.">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -17,14 +17,19 @@
       <div class="header-controls">
         <button id="spoiler-toggle" type="button" aria-pressed="false"
           title="Hide trophy routes and missable notes until you've finished the story.">
-          🙈 <span id="spoiler-label">Spoilers hidden</span>
+          🙈 Spoilers hidden — show routes
         </button>
       </div>
     </div>
     <div class="projection-banner" id="guide-status">
-      ⚠️ Projected trophy list — Rockstar has not published an official GTA VI trophy guide. Loading disclaimer…
+      ⚠️ Projected trophy list — Rockstar has not published an official GTA VI trophy list. Loading disclaimer…
     </div>
   </header>
+
+  <div id="spoiler-banner" class="spoiler-banner" hidden>
+    🙈 Spoiler mode is ON — routes and missable notes are hidden. Use “Reveal this trophy” per card,
+    or toggle spoilers in the header once you've finished the story.
+  </div>
 
   <main class="layout">
     <aside class="filters" aria-label="Trophy filters">
@@ -45,6 +50,7 @@
         <h2>Search</h2>
         <input type="search" id="search-input" placeholder="Search names, routes, notes…" aria-label="Search trophies">
         <label class="toggle-row"><input type="checkbox" id="missable-only"> Missable only</label>
+        <label class="toggle-row"><input type="checkbox" id="hide-done"> Hide completed</label>
       </section>
 
       <section class="filter-card">
@@ -53,22 +59,23 @@
       </section>
 
       <section class="filter-card">
+        <h2>Rank</h2>
+        <div id="rank-filters" class="filter-row"></div>
+      </section>
+
+      <section class="filter-card">
         <h2>Sort</h2>
         <select id="sort-select" aria-label="Sort trophies">
-          <option value="order">Guide order</option>
+          <option value="guide">Guide order</option>
           <option value="name">Name (A–Z)</option>
+          <option value="rank">By rank</option>
           <option value="difficulty-asc">Easiest first</option>
           <option value="difficulty-desc">Hardest first</option>
         </select>
-        <button id="reveal-all" type="button" class="btn ghost">Reveal all routes</button>
       </section>
     </aside>
 
     <section class="content">
-      <div id="spoiler-banner" class="spoiler-banner" hidden>
-        🙈 Spoiler mode is ON — trophy routes and missable notes are hidden. Use "Reveal" per trophy, or
-        "Reveal all routes" in the sidebar once you've finished the story.
-      </div>
       <div id="trophy-list" class="trophy-list"></div>
     </section>
   </main>
@@ -85,9 +92,8 @@
 
   <footer class="site-footer">
     <p>Fan-made projection guide. Not affiliated with or endorsed by Rockstar Games or Take-Two Interactive.
-       Trophy names are projections modelled on the GTA V PS5 list (Exophase / TrueTrophies / TechRadar)
-       until an official GTA VI list exists. GTA, Grand Theft Auto and all related marks are trademarks
-       of Take-Two Interactive.</p>
+       Trophy names are projections modelled on the GTA V PS5 list until an official GTA VI list exists.
+       GTA, Grand Theft Auto and all related marks are trademarks of Take-Two Interactive.</p>
   </footer>
 
   <script src="app.js"></script>

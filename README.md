@@ -5,14 +5,14 @@
 # GTA VI Trophy Guide — Projected 55-Trophy Companion
 
 A zero-dependency single-page trophy guide for Grand Theft Auto VI. It ships a
-full 55-trophy projection (platinum, story, 100% completion, collectibles,
-heists, vehicles, activities, misc), a 3-phase completion roadmap, a dedicated
-missables section, and a spoiler-free mode that hides routes by default so a
-first playthrough stays unspoiled.
+55-trophy projection (1 platinum, 3 gold, 8 silver, 43 bronze — modelled on the
+GTA V PS5 list structure), a 3-phase completion roadmap, a dedicated missables
+section, and a spoiler-free mode that hides routes by default so a first
+playthrough stays unspoiled.
 
 Everything is vanilla HTML + CSS + JavaScript. No frameworks, no build step.
 
-## Quick start
+## Run it
 
 ```bash
 # serve the app (fetch() needs http://, not file://)
@@ -25,33 +25,37 @@ npx tsx main.ts
 
 ## App features
 
-- **Category filters** (8 categories) plus **live search** over names,
-  descriptions, routes and notes.
-- **Sort** by guide order, name, or difficulty (either direction).
+- **Category filters** (8 categories) and **rank filters** (platinum/gold/silver/bronze).
+- **Live search** over names, requirements, routes and notes; **sort** by guide
+  order, name, rank, or difficulty in either direction.
 - **Spoiler mode** — ON by default for new visitors; routes and missable notes
-  are hidden per trophy until you press "Reveal", or globally via
-  "Reveal all routes". The choice persists in `localStorage`.
+  are hidden per trophy until you press "Reveal this trophy", or globally via
+  the header toggle. The choice persists in `localStorage`.
 - **Progress tracking** — tick trophies off; the count and percentage bar
-  persist locally. One-click reset included.
-- **Difficulty bars** (1-4 scale) and MISSABLE flags on every card.
+  persist locally. One-click reset (with confirmation) included.
+- **Difficulty bars** (1–10 scale) and MISSABLE flags on every card;
+  filters and sort choices also persist between visits.
 
 ## Verified GTA VI facts (cited)
 
 | Fact | Value | Source |
 | --- | --- | --- |
-| Release | 19 November 2026 | [PlayStation.Blog, 18 Nov 2026](https://blog.playstation.com/2026/11/18/grand-theft-auto-vi-launches-tomorrow-november-19); [AP News](https://apnews.com/article/grand-theft-auto-6-video-game-release-6e255c930da6de820e539721f4682253) |
-| Platforms | PS5, Xbox Series X\|S | [Wikipedia](https://en.wikipedia.org/wiki/Grand_Theft_Auto_VI) |
-| Setting | State of Leonida: Vice City, Leonida Keys, Grassrivers, Port Gellhorn, Ambrosia, Mount Kalaga | [Rockstar — Only in Leonida](https://www.rockstargames.com/VI/only-in-leonida) |
-| Protagonists | Jason Duval & Lucia Caminos | Rockstar character pages (link above); [Britannica](https://www.britannica.com/question/What-is-Grand-Theft-Auto-VI) |
-| Online mode | None at launch — single-player only; a multiplayer mode is unconfirmed (reported ~2027, Bloomberg via VICE) | [VICE](https://vice.com/en/article/gta-6-online-release-window-bloomberg); [Push Square PSA](https://www.pushsquare.com/news/2026/11/psa-gta-6-does-not-have-online-multiplayer-at-launch) |
+| Release | 19 November 2026 | [Rockstar Newswire](https://www.rockstargames.com/newswire/article/ak3ak31a49a221/grand-theft-auto-vi-is-now-set-to-launch-november-19-2026); [Take-Two IR launch press release](https://ir.take2games.com/node/32696/pdf) |
+| Platforms at launch | PS5, Xbox Series X\|S (single-player only at launch) | [Rockstar — GTA VI page](https://www.rockstargames.com/VI/); [Xbox listing](https://xbox.com/en-US/games/grand-theft-auto-vi) |
+| Setting | Fictional state of Leonida, with Vice City at its heart | [Rockstar — Only in Leonida](https://www.rockstargames.com/VI/only-in-leonida) |
+| Protagonists | Jason Duval & Lucia Caminos (both playable; Lucia is the first playable woman in a mainline 3D GTA) | Rockstar character pages (above); [Britannica](https://www.britannica.com/question/What-is-Grand-Theft-Auto-VI) |
+| Regions shown | Vice City, Leonida Keys, Grassrivers, Port Gellhorn, Ambrosia, Mount Kalaga National Park | Rockstar's Only in Leonida region tour (link above) |
+
+Projected list shape: **55 trophies** — 1 platinum, 3 gold, 8 silver, 43 bronze;
+7 flagged missable; difficulty on a 1–10 scale; estimated platinum time 110–170h.
 
 ## Projection disclaimer
 
-**Every trophy below the verified facts above is a projection.** Rockstar has
-not published an official GTA VI trophy list. Names and requirements are
-modelled on the GTA V PS5 list structure ([TrueTrophies](https://www.truetrophies.com/n20891/grand-theft-auto-v-playstation-trophies),
-[Exophase](https://www.exophase.com/game/grand-theft-auto-v-psn/trophies/),
-[TechRadar](https://www.techradar.com/news/gta-5-on-ps5-and-xbox-series-x-trophy-guide-all-51-achievements-revealed)),
+**Every trophy below the verified facts above is a projection.** As of
+20 November 2026, Rockstar has not published an official GTA VI trophy list.
+Names and requirements are modelled on the GTA V PS5 list structure
+([TrueTrophies](https://www.truetrophies.com/n20891/grand-theft-auto-v-playstation-trophies),
+[Exophase](https://www.exophase.com/game/grand-theft-auto-v-psn/trophies/)),
 labelled `PROJECTION` in the UI, and stored with a `status` disclaimer in the
 data file. Replace the list once Rockstar's official one exists. Fan-made; not
 affiliated with Rockstar Games or Take-Two Interactive.
@@ -67,11 +71,11 @@ affiliated with Rockstar Games or Take-Two Interactive.
   "missables":  [ { "title": "…", "text": "…" }, … ],
   "trophies": [
     {
-      "id": "story-finale",          // unique slug
-      "name": "To Live or Die in Leonida",
+      "id": "gold-all-missions",     // unique slug
+      "name": "Blood and Sand",
       "rank": "platinum|gold|silver|bronze",
       "category": "story",           // must exist in categories[]
-      "difficulty": 2,               // 1-4
+      "difficulty": 3,               // 1-10
       "missable": true,
       "missableNote": "what to watch (required when missable=true)",
       "description": "trophy requirement",
@@ -81,17 +85,18 @@ affiliated with Rockstar Games or Take-Two Interactive.
 }
 ```
 
-`main.ts` validates all of this: exact count of 55, unique ids, valid
-category/rank references, difficulty range, missable⇒missableNote, roadmap and
-missables completeness, `meta.trophyCount` consistency, and a PROJECTION
-`status` string. Exit code 1 with per-item errors on any violation.
+`main.ts` validates all of this: exact count of 55, unique ids, exactly one
+platinum, valid category/rank references, difficulty range, missable⇒missableNote,
+roadmap and missables completeness, `meta.trophyCount` consistency, ISO
+`releaseDate`, and a PROJECTION `status` string. Exit code 1 with per-item
+errors on any violation.
 
 ## When Rockstar's official list drops
 
 1. Replace the 55 entries in `app/data/trophies.json` with the real names,
    ranks and unlock conditions (keep the same field shape).
 2. Update `meta.trophyCount`, `meta.status` (drop the PROJECTED label) and
-   `meta.sources` with a link to the official PSN/PlayStation trophy page.
+   `meta.sources` with a link to the official PSN trophy page.
 3. Re-run `npx tsx main.ts` — it will flag any count or schema drift.
 4. Sweep the roadmap and missables sections against the real unlock logic.
 
@@ -104,3 +109,7 @@ app/app.js              vanilla-JS renderer + state
 app/data/trophies.json  the 55-trophy dataset
 main.ts                 schema validator (npx tsx main.ts)
 ```
+
+## License
+
+MIT — see [LICENSE](LICENSE).

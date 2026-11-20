@@ -1,11 +1,11 @@
 /**
  * main.ts — dev-time schema validator for app/data/trophies.json.
  *
- * Run with tsx / ts-node:   npx tsx main.ts
- * Or compile first:         tsc main.ts && node main.js
+ * Run with:  npx tsx main.ts
+ * Or:        tsc main.ts && node main.js
  *
  * Validates the projected trophy guide data so typos in ids, ranks,
- * difficulties or category references fail loudly before the web app loads them.
+ * difficulties or category references fail loudly before the web app loads it.
  */
 
 import * as fs from 'fs';
@@ -40,7 +40,17 @@ interface MissableEntry {
 }
 
 interface TrophyData {
-  meta: Record<string, unknown>;
+  meta: {
+    title: string;
+    game: string;
+    platforms: string[];
+    releaseDate: string;
+    trophyCount: number;
+    estimatedHours: string;
+    status: string;
+    modelledOn: string;
+    sources: string[];
+  };
   categories: Category[];
   roadmap: RoadmapPhase[];
   missables: MissableEntry[];
@@ -50,10 +60,9 @@ interface TrophyData {
 const DATA_PATH = path.join(__dirname, 'app', 'data', 'trophies.json');
 const RANKS = ['bronze', 'silver', 'gold', 'platinum'];
 const EXPECTED_TROPHY_COUNT = 55;
-const MAX_DIFFICULTY = 4;
+const MAX_DIFFICULTY = 10;
 
 const errors: string[] = [];
-const warn = (msg: string): void => console.warn('  warn:', msg);
 const fail = (msg: string): void => { errors.push(msg); };
 
 function load(): TrophyData {
@@ -79,11 +88,11 @@ function validate(data: TrophyData): void {
   // --- references ---
   const categoryIds = new Set(categories.map((c) => c.id));
   const seenIds = new Set<string>();
+  const rankCounts: Record<string, number> = { bronze: 0, silver: 0, gold: 0, platinum: 0 };
   let missableCount = 0;
-  let platinumCount = 0;
 
   trophies.forEach((t, i) => {
-    const where = `trophy[${i}] "${t.name ?? t.id ?? '?'}"`;
+    const where = `trophy[${i}] "${t?.name ?? t?.id ?? '?'}"`;
     for (const field of ['id', 'name', 'rank', 'category', 'description', 'howTo'] as const) {
       if (typeof t[field] !== 'string' || !(t[field] as string).trim()) {
         fail(`${where}: missing or empty "${field}"`);
@@ -97,14 +106,17 @@ function validate(data: TrophyData): void {
     seenIds.add(t.id);
     if (!categoryIds.has(t.category)) fail(`${where}: unknown category "${t.category}"`);
     if (!RANKS.includes(t.rank)) fail(`${where}: unknown rank "${t.rank}"`);
-    if (t.rank === 'platinum') platinumCount++;
+    else rankCounts[t.rank]++;
     if (t.missable) {
       missableCount++;
-      if (!t.missableNote) fail(`${where}: missable=true but no missableNote explaining what to watch`);
+      if (!t.missableNote || !t.missableNote.trim()) {
+        fail(`${where}: missable=true but no missableNote explaining what to watch`);
+      }
     }
   });
 
-  if (platinumCount !== 1) fail(`expected exactly 1 platinum trophy, found ${platinumCount}`);
+  if (rankCounts.platinum !== 1) fail(`expected exactly 1 platinum trophy, found ${rankCounts.platinum}`);
+  if (rankCounts.gold < 1) fail('expected at least 1 gold trophy');
 
   // --- roadmap / missables sanity ---
   roadmap.forEach((r, i) => {
@@ -118,45 +130,42 @@ function validate(data: TrophyData): void {
   });
 
   // --- meta sanity ---
-  const sources = (meta as { sources?: unknown[] }).sources;
-  if (!Array.isArray(sources) || sources.length === 0) fail('meta.sources is missing or empty');
-  const status = (meta as { status?: unknown }).status;
-  if (typeof status !== 'string' || !/PROJECTED/i.test(status)) {
+  if (!Array.isArray(meta?.sources) || meta.sources.length === 0) fail('meta.sources is missing or empty');
+  if (typeof meta?.status !== 'string' || !/PROJECTED/i.test(meta.status)) {
     fail('meta.status must clearly label the list as a projection');
   }
-  const declaredCount = (meta as { trophyCount?: unknown }).trophyCount;
-  if (declaredCount !== trophies.length) {
-    fail(`meta.trophyCount (${declaredCount}) does not match actual trophy count (${trophies.length})`);
+  if (meta?.trophyCount !== trophies.length) {
+    fail(`meta.trophyCount (${meta?.trophyCount}) does not match actual trophy count (${trophies.length})`);
+  }
+  if (!Array.isArray(meta?.platforms) || meta.platforms.length === 0) fail('meta.platforms is missing or empty');
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(meta?.releaseDate ?? '')) {
+    fail('meta.releaseDate must be an ISO date (YYYY-MM-DD)');
   }
 
-  console.log(`  stats: ${trophies.length} trophies, ${categoryIds.size} categories, ` +
+  const rankSummary = RANKS.map((r) => `${r}=${rankCounts[r]}`).join(', ');
+  console.log(`  stats: ${trophies.length} trophies (${rankSummary}), ${categoryIds.size} categories, ` +
     `${missableCount} missable-flagged, ${roadmap.length} roadmap phases, ` +
-    `${Array.isArray(sources) ? sources.length : 0} cited sources`);
+    `${(meta?.sources ?? []).length} cited sources`);
 }
 
 function main(): void {
   console.log('Validating', DATA_PATH);
-  let data: TrophyData | null = null;
+  let data!: TrophyData;
   try {
     data = load();
   } catch (err) {
     console.error('FAIL: could not parse trophies.json:', (err as Error).message);
     process.exit(1);
   }
-  if (!data) {
-    console.error('FAIL: data unexpectedly null after load.');
-    process.exit(1);
-  }
 
   validate(data);
 
-  const validated = data as TrophyData;
   if (errors.length > 0) {
     console.error(`\nFAIL: ${errors.length} schema error(s):`);
     errors.forEach((e) => console.error('  -', e));
     process.exit(1);
   }
-  console.log(`\nOK: ${validated.trophies.length} trophies validated — schema, ranks, categories and references all consistent.`);
+  console.log(`\nOK: ${data.trophies.length} trophies validated — schema, ranks, categories and references all consistent.`);
 }
 
 main();

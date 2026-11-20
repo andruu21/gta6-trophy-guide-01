@@ -1,4 +1,4 @@
-/* GTA VI Trophy Guide — projected fan guide
+/* GTA VI Trophy Guide — projected fan guide (fresh rewrite)
    Neon Vice City dark theme, vanilla CSS. No frameworks. */
 
 :root {
@@ -86,6 +86,18 @@ a { color: var(--accent-2); }
   color: var(--accent-3);
 }
 
+/* ---------- Spoiler banner ---------- */
+
+.spoiler-banner {
+  max-width: 1160px;
+  margin: 14px auto 0;
+  padding: 12px 16px;
+  background: rgba(255, 95, 162, 0.12);
+  border: 1px dashed var(--accent);
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+}
+
 /* ---------- Layout ---------- */
 
 .layout {
@@ -170,7 +182,6 @@ a { color: var(--accent-2); }
   border: 1px solid var(--border);
   border-radius: 8px;
   padding: 7px 10px;
-  margin-bottom: 10px;
 }
 
 .progress-block { display: grid; gap: 8px; }
@@ -204,17 +215,10 @@ a { color: var(--accent-2); }
 
 /* ---------- Trophy cards ---------- */
 
-.spoiler-banner {
-  background: rgba(255, 95, 162, 0.12);
-  border: 1px dashed var(--accent);
-  border-radius: var(--radius);
-  padding: 12px 16px;
-  margin-bottom: 14px;
-  font-size: 0.9rem;
-}
-
 .trophy-list { display: grid; gap: 12px; }
 .trophy-list h2 { margin: 4px 0 2px; font-size: 1.2rem; }
+
+.empty-note { color: var(--text-muted); font-style: italic; }
 
 .trophy-card {
   background: var(--bg-card);
@@ -224,19 +228,16 @@ a { color: var(--accent-2); }
   padding: 14px 16px;
   box-shadow: var(--shadow);
   position: relative;
-  transition: transform 0.15s;
+  transition: transform 0.15s, opacity 0.2s;
 }
 .trophy-card:hover { transform: translateY(-2px); }
 .trophy-card.done { opacity: 0.65; border-left-color: var(--ok); }
+.trophy-card.revealed { border-style: solid; }
 
-.trophy-card.cat-platinum     { border-left-color: var(--platinum); }
-.trophy-card.cat-story        { border-left-color: var(--accent); }
-.trophy-card.cat-completion   { border-left-color: var(--accent-3); }
-.trophy-card.cat-collectibles { border-left-color: #b98cff; }
-.trophy-card.cat-heists       { border-left-color: var(--danger); }
-.trophy-card.cat-vehicles     { border-left-color: var(--accent-2); }
-.trophy-card.cat-activities   { border-left-color: var(--ok); }
-.trophy-card.cat-misc         { border-left-color: var(--text-muted); }
+.trophy-card.rank-border-platinum { border-left-color: var(--platinum); }
+.trophy-card.rank-border-gold     { border-left-color: var(--gold); }
+.trophy-card.rank-border-silver   { border-left-color: var(--silver); }
+.trophy-card.rank-border-bronze   { border-left-color: var(--bronze); }
 
 .trophy-head { display: flex; flex-wrap: wrap; gap: 8px; align-items: baseline; }
 .trophy-name { margin: 0; font-size: 1.02rem; font-weight: 700; }
@@ -265,8 +266,6 @@ a { color: var(--accent-2); }
 }
 
 .projected-tag {
-  display: inline-block;
-  margin-top: 8px;
   background: rgba(255, 200, 87, 0.12);
   color: var(--accent-3);
   border: 1px dashed var(--accent-3);
@@ -279,10 +278,10 @@ a { color: var(--accent-2); }
 
 .trophy-desc { margin: 8px 0 0; font-size: 0.9rem; }
 
-/* Difficulty bar */
-.difficulty { display: flex; align-items: center; gap: 4px; margin-top: 10px; }
+/* Difficulty bar (1-10) */
+.difficulty { display: flex; align-items: center; gap: 3px; margin-top: 10px; }
 .difficulty-seg {
-  width: 26px;
+  width: 14px;
   height: 7px;
   border-radius: 4px;
   background: var(--bg-raised);
