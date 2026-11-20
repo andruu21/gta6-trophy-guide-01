@@ -1,36 +1,43 @@
-# Leonida Platinum — GTA VI Trophy Guide & Tracker
+# Leonida Ledger — GTA VI Trophy Guide & Tracker
 
-An offline, fan-made guide and tracker for all 55 PlayStation 5 trophies of Grand
-Theft Auto VI, built for the make.fun competition `gta6-trophy-guide-01`.
+An offline, fan-made companion for all 55 PlayStation 5 trophies of Grand Theft
+Auto VI, built for the make.fun competition `gta6-trophy-guide-01`. Everything
+runs from static files with zero network requests and no Rockstar assets.
+Trophy names and descriptions are reproduced exactly as published; all guides,
+the roadmap and every missable note are written in our own words, each citing
+at least two community sources.
 
-- **Checklist & tracker** — every trophy with its official name, description and
-  grade, tick-to-earn progress saved in localStorage, plus export/import of
-  progress as a JSON file.
-- **Guides with cited sources** — each trophy's guide cites 2+ sources
-  (PowerPyx, PSNProfiles, PlayStationTrophies.org, GameFAQs, Exophase,
-  GTA Forums, GTA Wiki) for its key claims, in our own words.
-- **Filters** — by kind (story, missable, collectibles, activities, misc),
-  grade, hide-earned, and a "missables only" chip.
-- **Spoiler mode** — hides names and descriptions of story trophies until they
-  are marked earned.
-- **Roadmap** — an 8-stage plan to the platinum with time estimates, rendered
-  in the app.
-- **Missable warnings** — every missable trophy is prominently flagged.
+What it does:
+
+- Checklist of every trophy with its official name, description and grade;
+  ticking items tracks progress in localStorage, with export/import to a JSON
+  file and a reset option.
+- Each trophy carries a compact original guide whose key claims cite at least
+  two community sources (PSNProfiles, PowerPyx, PlayStationTrophies.org,
+  GameFAQs, Exophase, GTA Forums, GTA Wiki), shown when a trophy is opened.
+- Filters for kind (story, missable, collectibles, activities, misc), grade and
+  hide-earned, plus a one-click "missables only" chip.
+- Spoiler mode blurs story-trophy names and descriptions until they are marked
+  earned.
+- An 8-stage roadmap to the platinum with per-stage time estimates, rendered in
+  the sidebar and stored in the data file.
+- Missable trophies carry a persistent warning badge and a callout in the guide
+  panel.
 
 ## Run
 
-Any static server with `app/` at its root, e.g.:
+Serve `app/` with any static server, e.g.:
 
     node serve.ts          # http://localhost:8080
 
 ## Regenerate screenshots
 
-    node tools/gen-screenshots.mjs    # needs Playwright + Chromium (Python)
+    node tools/gen-screenshots.mjs    # needs Playwright + Chromium (Python venv)
 
 ## Hand-in
 
-    mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
+    MAKEFUN_OUTPUT_DIR=/tmp/tg-output node main.ts
 
-Copies `app/` and `screenshots/` to the output dir and writes `dossier.json`
-with the vendored kit library (run twice; both runs must match byte for byte).
-No network requests; no Rockstar assets; the whole app is offline static files.
+Copies `app/` and `screenshots/` to the output directory and writes
+`dossier.json` with the vendored kit library. The app makes no network requests
+and uses no Rockstar assets.

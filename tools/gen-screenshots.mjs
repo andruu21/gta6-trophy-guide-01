@@ -1,11 +1,11 @@
-// Programmatic screenshots of the app via Playwright (Python chromium, driven over CDP-free API).
-// 4 PNGs, long side <= 1280, short side >= 480, <= 256 KiB, cover first.
+// Programmatic screenshots of the app via Playwright (Python venv chromium).
+// 4 real renders of the app: cover (checklist + guide with sources + progress),
+// roadmap, missables flagged, spoiler mode + story filter. Each PNG is
+// 1280x720, comfortably under the 256 KiB cap.
 import { spawn } from 'node:child_process';
 import { mkdirSync, existsSync } from 'node:fs';
-import { join } from 'node:path';
-import { dirname } from 'node:path';
+import { join, dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { resolve } from 'node:path';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const repo = resolve(here, '..');

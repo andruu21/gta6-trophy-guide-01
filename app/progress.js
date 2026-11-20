@@ -1,30 +1,28 @@
-// Progress persistence: localStorage save/load plus export/import to a file.
-const KEY = 'gta6-leonida-platinum-v1';
+// Earned-state persistence: localStorage (single JSON list under one key) plus
+// JSON file export/import so progress can move between browsers or machines.
+const KEY = 'gta6-leonida-ledger-v1';
 
-export function loadProgress() {
+export function loadEarned() {
   try {
-    const raw = localStorage.getItem(KEY);
-    const arr = raw ? JSON.parse(raw) : [];
+    const arr = JSON.parse(localStorage.getItem(KEY) ?? '[]');
     return new Set(Array.isArray(arr) ? arr.filter(x => typeof x === 'string') : []);
-  } catch {
-    return new Set();
-  }
+  } catch { return new Set(); }
 }
 
-export function saveProgress(names) {
-  try { localStorage.setItem(KEY, JSON.stringify(names)); } catch { /* private mode */ }
+export function persistEarned(names) {
+  try { localStorage.setItem(KEY, JSON.stringify(names)); } catch { /* storage blocked */ }
 }
 
-export function exportProgress(names) {
-  const payload = { app: 'gta6-leonida-platinum', version: 1, earned: names };
+export function exportEarned(names) {
+  const blob = new Blob([JSON.stringify({ app: 'gta6-leonida-ledger', version: 1, earned: names }, null, 2)], { type: 'application/json' });
   const a = document.createElement('a');
-  a.href = URL.createObjectURL(new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' }));
+  a.href = URL.createObjectURL(blob);
   a.download = 'gta6-trophy-progress.json';
   a.click();
   URL.revokeObjectURL(a.href);
 }
 
-export function importProgress(text, trophies) {
+export function importEarned(text, trophies) {
   const parsed = JSON.parse(text);
   const arr = Array.isArray(parsed) ? parsed : parsed.earned;
   if (!Array.isArray(arr)) throw new Error('no earned array in file');
@@ -32,6 +30,6 @@ export function importProgress(text, trophies) {
   return new Set(arr.filter(x => typeof x === 'string' && known.has(x)));
 }
 
-export function resetProgress() {
+export function wipeEarned() {
   try { localStorage.removeItem(KEY); } catch { /* ignore */ }
 }
