@@ -4,7 +4,7 @@
  * Run with tsx / ts-node:   npx tsx main.ts
  * Or compile first:         tsc main.ts && node main.js
  *
- * Validates the projected trophy guide data so typos in ids, grades,
+ * Validates the projected trophy guide data so typos in ids, ranks,
  * difficulties or category references fail loudly before the web app loads them.
  */
 
@@ -14,12 +14,13 @@ import * as path from 'path';
 interface Trophy {
   id: string;
   name: string;
-  type: string;
+  rank: string;
   category: string;
-  difficulty: string;
+  difficulty: number;
   missable: boolean;
   missableNote?: string;
   description: string;
+  howTo: string;
 }
 
 interface Category {
@@ -27,17 +28,29 @@ interface Category {
   label: string;
 }
 
+interface RoadmapPhase {
+  phase: number;
+  title: string;
+  text: string;
+}
+
+interface MissableEntry {
+  title: string;
+  text: string;
+}
+
 interface TrophyData {
   meta: Record<string, unknown>;
   categories: Category[];
-  difficulties: string[];
+  roadmap: RoadmapPhase[];
+  missables: MissableEntry[];
   trophies: Trophy[];
 }
 
 const DATA_PATH = path.join(__dirname, 'app', 'data', 'trophies.json');
-const GRADES = ['Bronze', 'Silver', 'Gold', 'Platinum'];
+const RANKS = ['bronze', 'silver', 'gold', 'platinum'];
 const EXPECTED_TROPHY_COUNT = 55;
-const EXPECTED_BREAKDOWN = { Platinum: 1, Gold: 2, Silver: 6, Bronze: 46 };
+const MAX_DIFFICULTY = 4;
 
 const errors: string[] = [];
 const warn = (msg: string): void => console.warn('  warn:', msg);
@@ -49,63 +62,76 @@ function load(): TrophyData {
 }
 
 function validate(data: TrophyData): void {
-  const { meta, categories, difficulties, trophies } = data;
+  const { meta, categories, roadmap, missables, trophies } = data;
 
-  // --- structure ---
+  // --- top-level structure ---
   if (!meta || typeof meta !== 'object') fail('meta is missing');
   if (!Array.isArray(categories) || categories.length === 0) fail('categories is missing or empty');
-  if (!Array.isArray(difficulties) || difficulties.length === 0) fail('difficulties is missing or empty');
+  if (!Array.isArray(roadmap) || roadmap.length === 0) fail('roadmap is missing or empty');
+  if (!Array.isArray(missables) || missables.length === 0) fail('missables is missing or empty');
   if (!Array.isArray(trophies)) { fail('trophies is missing'); return; }
 
   // --- counts ---
   if (trophies.length !== EXPECTED_TROPHY_COUNT) {
     fail(`expected ${EXPECTED_TROPHY_COUNT} trophies, found ${trophies.length}`);
   }
-  const byType = trophies.reduce<Record<string, number>>((acc, t) => {
-    acc[t.type] = (acc[t.type] || 0) + 1;
-    return acc;
-  }, {});
-  for (const [type, count] of Object.entries(EXPECTED_BREAKDOWN)) {
-    if ((byType[type] || 0) !== count) {
-      fail(`breakdown mismatch: expected ${count} ${type}, found ${byType[type] || 0}`);
-    }
-  }
-  const total = Object.values(byType).reduce((a, b) => a + b, 0);
-  if (total !== trophies.length) fail('some trophies carry an unknown type');
 
   // --- references ---
   const categoryIds = new Set(categories.map((c) => c.id));
-  const difficultySet = new Set(difficulties);
   const seenIds = new Set<string>();
+  let missableCount = 0;
+  let platinumCount = 0;
 
   trophies.forEach((t, i) => {
     const where = `trophy[${i}] "${t.name ?? t.id ?? '?'}"`;
-    for (const field of ['id', 'name', 'type', 'category', 'difficulty', 'description'] as const) {
+    for (const field of ['id', 'name', 'rank', 'category', 'description', 'howTo'] as const) {
       if (typeof t[field] !== 'string' || !(t[field] as string).trim()) {
         fail(`${where}: missing or empty "${field}"`);
       }
     }
     if (typeof t.missable !== 'boolean') fail(`${where}: "missable" must be boolean`);
+    if (typeof t.difficulty !== 'number' || t.difficulty < 1 || t.difficulty > MAX_DIFFICULTY) {
+      fail(`${where}: "difficulty" must be a number 1-${MAX_DIFFICULTY}`);
+    }
     if (seenIds.has(t.id)) fail(`${where}: duplicate id "${t.id}"`);
     seenIds.add(t.id);
     if (!categoryIds.has(t.category)) fail(`${where}: unknown category "${t.category}"`);
-    if (!difficultySet.has(t.difficulty)) fail(`${where}: unknown difficulty "${t.difficulty}"`);
-    if (!GRADES.includes(t.type)) fail(`${where}: unknown grade "${t.type}"`);
-    if (!t.missable && !t.missableNote) {
-      warn(`${where}: no missableNote — every entry should explain what to watch`);
-    }
-    if (t.missableNote && t.missableNote.length < 20) {
-      warn(`${where}: missableNote looks too short`);
+    if (!RANKS.includes(t.rank)) fail(`${where}: unknown rank "${t.rank}"`);
+    if (t.rank === 'platinum') platinumCount++;
+    if (t.missable) {
+      missableCount++;
+      if (!t.missableNote) fail(`${where}: missable=true but no missableNote explaining what to watch`);
     }
   });
 
+  if (platinumCount !== 1) fail(`expected exactly 1 platinum trophy, found ${platinumCount}`);
+
+  // --- roadmap / missables sanity ---
+  roadmap.forEach((r, i) => {
+    if (typeof r.phase !== 'number') fail(`roadmap[${i}]: "phase" must be a number`);
+    if (typeof r.title !== 'string' || !r.title.trim()) fail(`roadmap[${i}]: missing title`);
+    if (typeof r.text !== 'string' || !r.text.trim()) fail(`roadmap[${i}]: missing text`);
+  });
+  missables.forEach((m, i) => {
+    if (typeof m.title !== 'string' || !m.title.trim()) fail(`missables[${i}]: missing title`);
+    if (typeof m.text !== 'string' || !m.text.trim()) fail(`missables[${i}]: missing text`);
+  });
+
   // --- meta sanity ---
-  const sources = (meta as { sources?: unknown }).sources;
+  const sources = (meta as { sources?: unknown[] }).sources;
   if (!Array.isArray(sources) || sources.length === 0) fail('meta.sources is missing or empty');
-  const disclaimer = (meta as { disclaimer?: unknown }).disclaimer;
-  if (typeof disclaimer !== 'string' || !/PROJECTED/i.test(disclaimer)) {
-    fail('meta.disclaimer must clearly label the list as a projection');
+  const status = (meta as { status?: unknown }).status;
+  if (typeof status !== 'string' || !/PROJECTED/i.test(status)) {
+    fail('meta.status must clearly label the list as a projection');
   }
+  const declaredCount = (meta as { trophyCount?: unknown }).trophyCount;
+  if (declaredCount !== trophies.length) {
+    fail(`meta.trophyCount (${declaredCount}) does not match actual trophy count (${trophies.length})`);
+  }
+
+  console.log(`  stats: ${trophies.length} trophies, ${categoryIds.size} categories, ` +
+    `${missableCount} missable-flagged, ${roadmap.length} roadmap phases, ` +
+    `${Array.isArray(sources) ? sources.length : 0} cited sources`);
 }
 
 function main(): void {
@@ -124,12 +150,13 @@ function main(): void {
 
   validate(data);
 
+  const validated = data as TrophyData;
   if (errors.length > 0) {
     console.error(`\nFAIL: ${errors.length} schema error(s):`);
     errors.forEach((e) => console.error('  -', e));
     process.exit(1);
   }
-  console.log(`\nOK: ${data.trophies.length} trophies validated — schema, grades, categories and references all consistent.`);
+  console.log(`\nOK: ${validated.trophies.length} trophies validated — schema, ranks, categories and references all consistent.`);
 }
 
 main();

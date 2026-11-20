@@ -1,390 +1,311 @@
 /* GTA VI Trophy Guide — vanilla JS single-page app.
-   Renders the projected 55-trophy list, spoiler-free mode, filters, search,
-   sorting and local progress tracking. No frameworks, no build step. */
+   Renders the projected 55-trophy list, spoiler-free mode, filters and local
+   progress tracking. No frameworks, no build step. */
 
 'use strict';
 
-(function () {
-  const STORAGE_KEYS = {
-    progress: 'gta6-guide.progress.v1',
-    spoilers: 'gta6-guide.spoilers.v1',
-    theme: 'gta6-guide.theme.v1'
-  };
+const STORAGE_KEY = 'gta6-guide-progress-v1';
+const SPOILER_KEY = 'gta6-guide-spoiler-mode-v1';
 
-  const state = {
-    trophies: [],
-    categories: [],
-    difficulties: [],
-    meta: null,
-    selectedCategories: new Set(),
-    selectedDifficulties: new Set(),
-    missableOnly: false,
-    query: '',
-    sort: 'order',
-    openTrophy: null,
-    spoilersOn: true,
-    tracked: new Set()
-  };
+let state = {
+  data: null,
+  activeCategory: 'all',
+  showMissableOnly: false,
+  query: '',
+  sort: 'order',
+  spoilerMode: null, // null = undecided, true = hide routes, false = show routes
+  progress: {}       // trophyId -> true
+};
 
-  const $ = (sel) => document.querySelector(sel);
+/* ---------- persistence ---------- */
 
-  /* ---------- persistence ---------- */
+function loadProgress() {
+  try {
+    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+  } catch (e) {
+    return {};
+  }
+}
 
-  function loadJSON(key, fallback) {
-    try {
-      const raw = localStorage.getItem(key);
-      return raw ? JSON.parse(raw) : fallback;
-    } catch (err) {
-      console.warn('Could not read stored state:', err);
-      return fallback;
+function saveProgress() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state.progress));
+  } catch (e) { /* private mode etc. — progress just won't persist */ }
+}
+
+function loadSpoilerMode() {
+  try {
+    const v = localStorage.getItem(SPOILER_KEY);
+    if (v === 'true') return true;
+    if (v === 'false') return false;
+  } catch (e) { /* ignore */ }
+  // No stored preference: default to HIDING routes. New visitors are far more
+  // likely to be mid-playthrough than finished, so opt-in risking spoilers.
+  return true;
+}
+
+function saveSpoilerMode() {
+  try {
+    localStorage.setItem(SPOILER_KEY, String(state.spoilerMode));
+  } catch (e) { /* ignore */ }
+}
+
+/* ---------- rendering helpers ---------- */
+
+function el(tag, className, text) {
+  const node = document.createElement(tag);
+  if (className) node.className = className;
+  if (text !== undefined) node.textContent = text;
+  return node;
+}
+
+function rankClass(rank) {
+  return 'rank-' + rank; // rank-platinum / rank-gold / rank-silver / rank-bronze
+}
+
+function difficultyLabel(level) {
+  return ['—', 'Easy', 'Moderate', 'Hard', 'Very Hard'][level] || '—';
+}
+
+function difficultyBar(level) {
+  const wrap = el('div', 'difficulty');
+  wrap.setAttribute('aria-label', 'Difficulty ' + level + ' of 4');
+  for (let i = 1; i <= 4; i++) {
+    wrap.appendChild(el('span', 'difficulty-seg' + (i <= level ? ' filled' : '')));
+  }
+  wrap.appendChild(el('span', 'difficulty-label', difficultyLabel(level)));
+  return wrap;
+}
+
+/* ---------- trophy card ---------- */
+
+function trophyCard(trophy) {
+  const card = el('article', 'trophy-card' + (state.progress[trophy.id] ? ' done' : ''));
+  card.dataset.id = trophy.id;
+
+  const head = el('div', 'trophy-head');
+  head.appendChild(el('span', 'rank-badge ' + rankClass(trophy.rank), trophy.rank.toUpperCase()));
+  head.appendChild(el('h3', 'trophy-name', trophy.name));
+  if (trophy.missable) {
+    const m = el('span', 'missable-flag', 'MISSABLE');
+    m.title = 'Missable — read the note before proceeding';
+    head.appendChild(m);
+  }
+  card.appendChild(head);
+
+  const projected = el('span', 'projected-tag', 'PROJECTION');
+  projected.title = 'Projected trophy — not yet confirmed by Rockstar';
+  card.appendChild(projected);
+
+  card.appendChild(el('p', 'trophy-desc', trophy.description));
+  card.appendChild(difficultyBar(trophy.difficulty));
+
+  if (state.spoilerMode === false) {
+    if (trophy.missable && trophy.missableNote) {
+      card.appendChild(el('p', 'missable-note', '⚠ ' + trophy.missableNote));
     }
-  }
-
-  function saveJSON(key, value) {
-    try {
-      localStorage.setItem(key, JSON.stringify(value));
-    } catch (err) {
-      console.warn('Could not persist state:', err);
-    }
-  }
-
-  function loadProgress() {
-    const saved = loadJSON(STORAGE_KEYS.progress, []);
-    state.tracked = new Set(Array.isArray(saved) ? saved : []);
-  }
-
-  function saveProgress() {
-    saveJSON(STORAGE_KEYS.progress, Array.from(state.tracked));
-  }
-
-  /* ---------- data ---------- */
-
-  async function loadTrophies() {
-    const res = await fetch('data/trophies.json');
-    if (!res.ok) throw new Error('Failed to load trophies.json: HTTP ' + res.status);
-    const data = await res.json();
-    if (!Array.isArray(data.trophies)) throw new Error('trophies.json has no trophies array');
-    state.trophies = data.trophies;
-    state.categories = data.categories || [];
-    state.difficulties = data.difficulties || [];
-    state.meta = data.meta || null;
-  }
-
-  /* ---------- spoiler mode ---------- */
-
-  function applySpoilerMode() {
-    const btn = $('#spoilerToggle');
-    const stateLabel = $('#spoilerState');
-    btn.setAttribute('aria-pressed', String(state.spoilersOn));
-    stateLabel.textContent = state.spoilersOn ? 'ON' : 'OFF';
-    $('#spoilerIcon').textContent = state.spoilersOn ? '🙈' : '👁️';
-    render();
-  }
-
-  function toggleSpoilers() {
-    state.spoilersOn = !state.spoilersOn;
-    saveJSON(STORAGE_KEYS.spoilers, state.spoilersOn);
-    applySpoilerMode();
-  }
-
-  /* A trophy's story details are masked while spoiler mode is ON.
-     Rule of thumb: anything that names missions, chapters, endings or
-     story-specific mechanics stays hidden; world systems stay visible. */
-  function trophiesHiddenBySpoilers(t) {
-    if (!state.spoilersOn) return false;
-    // Story and choice outcomes are inherently narrative: always masked.
-    if (t.category === 'story' || t.category === 'partnership') return true;
-    // Narrative heists (the story scores) are masked; repeatable open-world
-    // robberies (jewelry stores, vaults, armored trucks) stay visible.
-    if (t.category === 'heists' && /The Cartel Heist|story/i.test(t.description)) return true;
-    // Anything referencing the final mission or chapter structure stays masked.
-    return /final mission|Chapter \d|endgame/i.test(t.description);
-  }
-
-  /* ---------- filtering ---------- */
-
-  function currentTrophies() {
-    let list = state.trophies.slice();
-
-    if (state.selectedCategories.size) {
-      list = list.filter((t) => state.selectedCategories.has(t.category));
-    }
-    if (state.selectedDifficulties.size) {
-      list = list.filter((t) => state.selectedDifficulties.has(t.difficulty));
-    }
-    if (state.missableOnly) {
-      list = list.filter((t) => t.missable || /miss|save before|lockout|reset/i.test(t.missableNote || ''));
-    }
-    if (state.query) {
-      const q = state.query.toLowerCase();
-      list = list.filter((t) =>
-        [t.name, t.description, t.missableNote, t.category, t.type]
-          .join(' ')
-          .toLowerCase()
-          .includes(q)
-      );
-    }
-
-    if (state.sort === 'name') {
-      list.sort((a, b) => a.name.localeCompare(b.name));
-    } else if (state.sort === 'difficulty') {
-      const order = state.difficulties.slice().reverse();
-      list.sort((a, b) => order.indexOf(a.difficulty) - order.indexOf(b.difficulty));
-    }
-    return list;
-  }
-
-  /* ---------- rendering ---------- */
-
-  function renderChips() {
-    const catWrap = $('#categoryFilters');
-    catWrap.innerHTML = '';
-    state.categories.forEach((cat) => {
-      const chip = document.createElement('button');
-      chip.type = 'button';
-      chip.className = 'chip';
-      chip.textContent = cat.label;
-      chip.dataset.category = cat.id;
-      chip.addEventListener('click', () => {
-        if (state.selectedCategories.has(cat.id)) {
-          state.selectedCategories.delete(cat.id);
-          chip.classList.remove('active');
-        } else {
-          state.selectedCategories.add(cat.id);
-          chip.classList.add('active');
-        }
-        render();
-      });
-      catWrap.appendChild(chip);
+    card.appendChild(el('p', 'trophy-howto', trophy.howTo));
+  } else {
+    card.appendChild(el('p', 'spoiler-hint', 'Spoiler mode is on — tap "Reveal" to see the route and any missable notes.'));
+    const reveal = el('button', 'btn reveal-btn', 'Reveal');
+    reveal.type = 'button';
+    reveal.addEventListener('click', () => {
+      state.spoilerMode = false;
+      saveSpoilerMode();
+      syncSpoilerControls();
+      renderTrophies();
     });
-
-    const diffWrap = $('#difficultyFilters');
-    diffWrap.innerHTML = '';
-    state.difficulties.forEach((diff) => {
-      const chip = document.createElement('button');
-      chip.type = 'button';
-      chip.className = 'chip';
-      chip.textContent = diff;
-      chip.dataset.difficulty = diff;
-      chip.addEventListener('click', () => {
-        if (state.selectedDifficulties.has(diff)) {
-          state.selectedDifficulties.delete(diff);
-          chip.classList.remove('active');
-        } else {
-          state.selectedDifficulties.add(diff);
-          chip.classList.add('active');
-        }
-        render();
-      });
-      diffWrap.appendChild(chip);
-    });
+    card.appendChild(reveal);
   }
 
-  function spoilerify(t, el) {
-    if (!trophiesHiddenBySpoilers(t)) return;
-    const masked = document.createElement('div');
-    masked.className = 'spoiler-placeholder';
-    masked.textContent = '🔒 Spoiler-free mode is ON — story details hidden. Toggle it off in the header once you\'ve finished the campaign.';
-    el.innerHTML = '';
-    el.appendChild(masked);
-    el.classList.add('spoiler-mask');
-  }
-
-  function trophyCard(t) {
-    const card = document.createElement('article');
-    card.className = 'trophy-card cat-' + t.category;
-    card.setAttribute('role', 'listitem');
-    card.tabIndex = 0;
-    card.dataset.id = t.id;
-
-    const head = document.createElement('div');
-    head.className = 'trophy-head';
-    const name = document.createElement('h3');
-    name.className = 'trophy-name';
-    name.textContent = t.name;
-    const badge = document.createElement('span');
-    badge.className = 'badge badge-' + t.type;
-    badge.textContent = t.type;
-    head.append(name, badge);
-
-    const meta = document.createElement('div');
-    meta.className = 'trophy-meta';
-    const diff = document.createElement('span');
-    diff.className = 'meta-pill diff-' + t.difficulty.replace(/\s+/g, '');
-    diff.textContent = 'Difficulty: ' + t.difficulty;
-    meta.appendChild(diff);
-
-    const catPill = document.createElement('span');
-    catPill.className = 'meta-pill';
-    const catDef = state.categories.find((c) => c.id === t.category);
-    catPill.textContent = catDef ? catDef.label : t.category;
-    meta.appendChild(catPill);
-
-    if (t.missable) {
-      const flag = document.createElement('span');
-      flag.className = 'meta-pill flag-missable';
-      flag.textContent = 'Missable risk';
-      meta.appendChild(flag);
-    }
-
-    const desc = document.createElement('p');
-    desc.className = 'trophy-desc';
-    desc.textContent = t.description;
-    spoilerify(t, desc);
-
-    const projected = document.createElement('div');
-    projected.className = 'muted';
-    projected.style.marginTop = '6px';
-    projected.textContent = 'Projected — not yet verified against Rockstar\u2019s official list.';
-
-    card.append(head, meta, desc, projected);
-
-    if (t.missableNote) {
-      const note = document.createElement('p');
-      note.className = 'trophy-note';
-      note.textContent = '⚠ ' + t.missableNote;
-      spoilerify(t, note);
-      card.appendChild(note);
-    }
-
-    const trackRow = document.createElement('div');
-    trackRow.className = 'track-row';
-    const trackBtn = document.createElement('button');
-    trackBtn.type = 'button';
-    trackBtn.className = 'track-btn' + (state.tracked.has(t.id) ? ' done' : '');
-    trackBtn.textContent = state.tracked.has(t.id) ? '✓ Tracked' : 'Mark obtained';
-    trackBtn.addEventListener('click', (ev) => {
-      ev.stopPropagation();
-      toggleTracked(t.id);
-    });
-    trackRow.appendChild(trackBtn);
-    card.appendChild(trackRow);
-
-    card.addEventListener('click', () => toggleOpen(t.id));
-    card.addEventListener('keydown', (ev) => {
-      if (ev.key === 'Enter' || ev.key === ' ') {
-        ev.preventDefault();
-        toggleOpen(t.id);
-      }
-    });
-
-    return card;
-  }
-
-  function detailBody(t) {
-    const pane = document.createElement('div');
-    pane.className = 'detail-pane';
-    const title = document.createElement('h4');
-    title.textContent = 'What to watch';
-    const body = document.createElement('p');
-    body.textContent = t.missableNote || 'No special watch-outs recorded for this projection.';
-    pane.append(title, body);
-    return pane;
-  }
-
-  function toggleOpen(id) {
-    state.openTrophy = state.openTrophy === id ? null : id;
-    render();
-  }
-
-  function toggleTracked(id) {
-    if (state.tracked.has(id)) {
-      state.tracked.delete(id);
-    } else {
-      state.tracked.add(id);
-    }
+  const done = el('label', 'progress-toggle');
+  const cb = document.createElement('input');
+  cb.type = 'checkbox';
+  cb.checked = !!state.progress[trophy.id];
+  cb.addEventListener('change', () => {
+    if (cb.checked) state.progress[trophy.id] = true;
+    else delete state.progress[trophy.id];
     saveProgress();
-    render();
+    updateProgressBar();
+    renderTrophies();
+  });
+  done.appendChild(cb);
+  done.appendChild(el('span', null, 'Done'));
+  card.appendChild(done);
+
+  return card;
+}
+
+/* ---------- section rendering ---------- */
+
+function renderTrophies() {
+  const list = document.getElementById('trophy-list');
+  list.innerHTML = '';
+
+  const data = state.data;
+  const filtered = applySearchAndSort(data.trophies.filter((t) => {
+    if (state.activeCategory !== 'all' && t.category !== state.activeCategory) return false;
+    if (state.showMissableOnly && !t.missable) return false;
+    return true;
+  }));
+
+  const catLabel = state.activeCategory === 'all'
+    ? 'All trophies'
+    : (data.categories.find((c) => c.id === state.activeCategory) || {}).label || state.activeCategory;
+
+  list.appendChild(el('h2', null, catLabel + ' (' + filtered.length + ')'));
+  filtered.forEach((t) => list.appendChild(trophyCard(t)));
+}
+
+function renderRoadmap() {
+  const host = document.getElementById('roadmap');
+  state.data.roadmap.forEach((phase) => {
+    const item = el('div', 'roadmap-phase');
+    item.appendChild(el('h3', null, 'Phase ' + phase.phase + ': ' + phase.title));
+    item.appendChild(el('p', null, phase.text));
+    host.appendChild(item);
+  });
+}
+
+function renderMissables() {
+  const host = document.getElementById('missables');
+  state.data.missables.forEach((m) => {
+    const item = el('div', 'missable-item');
+    item.appendChild(el('h3', null, '⚠ ' + m.title));
+    item.appendChild(el('p', null, m.text));
+    host.appendChild(item);
+  });
+}
+
+function renderCategoryFilters() {
+  const host = document.getElementById('category-filters');
+  const all = el('button', 'filter-btn active', 'All');
+  all.type = 'button';
+  all.dataset.category = 'all';
+  host.appendChild(all);
+
+  state.data.categories.forEach((c) => {
+    const btn = el('button', 'filter-btn', c.label);
+    btn.type = 'button';
+    btn.dataset.category = c.id;
+    host.appendChild(btn);
+  });
+
+  host.addEventListener('click', (ev) => {
+    const btn = ev.target.closest('.filter-btn');
+    if (!btn) return;
+    state.activeCategory = btn.dataset.category;
+    host.querySelectorAll('.filter-btn').forEach((b) => b.classList.toggle('active', b === btn));
+    renderTrophies();
+  });
+}
+
+function updateProgressBar() {
+  const total = state.data.trophies.length;
+  const done = Object.keys(state.progress).length;
+  const pct = total ? Math.round((done / total) * 100) : 0;
+  document.getElementById('progress-count').textContent = done + ' / ' + total;
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-pct').textContent = pct + '%';
+}
+
+function syncSpoilerControls() {
+  const banner = document.getElementById('spoiler-banner');
+  const toggle = document.getElementById('spoiler-toggle');
+  if (state.spoilerMode === true) {
+    banner.hidden = false;
+    toggle.textContent = 'Spoilers hidden — show routes';
+  } else {
+    banner.hidden = true;
+    toggle.textContent = 'Spoilers shown — hide routes';
+  }
+}
+
+/* ---------- search & sort (revision 2) ---------- */
+
+function applySearchAndSort(list) {
+  let out = list.slice();
+
+  if (state.query) {
+    const q = state.query.toLowerCase();
+    out = out.filter((t) =>
+      [t.name, t.description, t.howTo, t.missableNote, t.rank]
+        .join(' ')
+        .toLowerCase()
+        .includes(q)
+    );
   }
 
-  function renderProgress() {
-    const total = state.trophies.length;
-    const count = state.tracked.size;
-    $('#progressCount').textContent = String(count);
-    $('#progressTotal').textContent = String(total);
-    $('#progressFill').style.width = total ? (100 * count / total).toFixed(1) + '%' : '0%';
+  if (state.sort === 'name') {
+    out.sort((a, b) => a.name.localeCompare(b.name));
+  } else if (state.sort === 'difficulty-desc') {
+    out.sort((a, b) => b.difficulty - a.difficulty);
+  } else if (state.sort === 'difficulty-asc') {
+    out.sort((a, b) => a.difficulty - b.difficulty);
   }
+  // default: data order (the guide's own recommended reading order)
+  return out;
+}
 
-  function render() {
-    const grid = $('#trophyGrid');
-    grid.innerHTML = '';
-    const list = currentTrophies();
-    $('#resultCount').textContent = '(' + list.length + ' shown)';
-    $('#emptyState').hidden = list.length > 0;
+/* ---------- boot ---------- */
 
-    list.forEach((t) => {
-      const card = trophyCard(t);
-      if (state.openTrophy === t.id) {
-        card.classList.add('open');
-        card.appendChild(detailBody(t));
-      }
-      grid.appendChild(card);
-    });
+async function boot() {
+  const res = await fetch('data/trophies.json');
+  if (!res.ok) throw new Error('Failed to load trophies.json: ' + res.status);
+  state.data = await res.json();
+  state.progress = loadProgress();
+  state.spoilerMode = loadSpoilerMode();
 
-    renderProgress();
-  }
+  document.getElementById('guide-title').textContent = state.data.meta.title;
+  document.getElementById('guide-status').textContent = state.data.meta.status;
+  document.getElementById('release-line').textContent =
+    state.data.meta.game + ' · ' + state.data.meta.platforms.join(' / ') +
+    ' · released ' + state.data.meta.releaseDate + ' · estimated platinum: ' + state.data.meta.estimatedHours;
 
-  /* ---------- theme ---------- */
+  renderRoadmap();
+  renderMissables();
+  renderCategoryFilters();
+  updateProgressBar();
+  syncSpoilerControls();
+  renderTrophies();
 
-  function applyTheme() {
-    const saved = loadJSON(STORAGE_KEYS.theme, 'dark');
-    document.documentElement.dataset.theme = saved === 'light' ? 'light' : 'dark';
-  }
+  document.getElementById('spoiler-toggle').addEventListener('click', () => {
+    state.spoilerMode = state.spoilerMode === true ? false : true;
+    saveSpoilerMode();
+    syncSpoilerControls();
+    renderTrophies();
+  });
 
-  function toggleTheme() {
-    const next = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
-    document.documentElement.dataset.theme = next;
-    saveJSON(STORAGE_KEYS.theme, next);
-  }
+  document.getElementById('missable-only').addEventListener('change', (ev) => {
+    state.showMissableOnly = ev.target.checked;
+    renderTrophies();
+  });
 
-  /* ---------- init ---------- */
+  // Revision 2 wiring: live search + difficulty sort.
+  document.getElementById('search-input').addEventListener('input', (ev) => {
+    state.query = ev.target.value.trim();
+    renderTrophies();
+  });
 
-  function wireStaticControls() {
-    $('#spoilerToggle').addEventListener('click', toggleSpoilers);
-    $('#themeToggle').addEventListener('click', toggleTheme);
+  document.getElementById('sort-select').addEventListener('change', (ev) => {
+    state.sort = ev.target.value;
+    renderTrophies();
+  });
 
-    $('#searchInput').addEventListener('input', (ev) => {
-      state.query = ev.target.value.trim();
-      render();
-    });
+  // "Reveal all" lets a finished-story user unmask every route in one click.
+  document.getElementById('reveal-all').addEventListener('click', () => {
+    state.spoilerMode = false;
+    saveSpoilerMode();
+    syncSpoilerControls();
+    renderTrophies();
+  });
 
-    $('#missableOnly').addEventListener('change', (ev) => {
-      state.missableOnly = ev.target.checked;
-      const chip = ev.target.closest('.chip');
-      if (chip) chip.classList.toggle('active', ev.target.checked);
-      render();
-    });
+  document.getElementById('reset-progress').addEventListener('click', () => {
+    state.progress = {};
+    saveProgress();
+    updateProgressBar();
+    renderTrophies();
+  });
+}
 
-    $('#sortSelect').addEventListener('change', (ev) => {
-      state.sort = ev.target.value;
-      render();
-    });
-
-    $('#resetProgress').addEventListener('click', () => {
-      state.tracked.clear();
-      saveProgress();
-      render();
-    });
-  }
-
-  async function init() {
-    applyTheme();
-    loadProgress();
-    state.spoilersOn = loadJSON(STORAGE_KEYS.spoilers, true);
-    wireStaticControls();
-
-    try {
-      await loadTrophies();
-    } catch (err) {
-      console.error(err);
-      $('#emptyState').hidden = false;
-      $('#emptyState').textContent = 'Could not load trophies.json — open this page via a web server (e.g. `python3 -m http.server`), not file://.';
-      return;
-    }
-
-    renderChips();
-    applySpoilerMode();
-  }
-
-  document.addEventListener('DOMContentLoaded', init);
-})();
+document.addEventListener('DOMContentLoaded', boot);
