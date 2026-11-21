@@ -1,7 +1,7 @@
 // Earned-state persistence: one localStorage key plus JSON export/import so
 // progress survives reloads and can move between browsers.
 
-const STORAGE_KEY = 'gta6-leonida-ledger-v2';
+const STORAGE_KEY = 'gta6-leonida-platinum-v1';
 
 export function readEarned() {
   try {
@@ -15,7 +15,7 @@ export function saveEarned(names) {
 }
 
 export function downloadEarned(names) {
-  const payload = JSON.stringify({ app: 'gta6-leonida-ledger', version: 2, earned: names }, null, 2);
+  const payload = JSON.stringify({ app: 'gta6-leonida-platinum', version: 1, earned: names }, null, 2);
   const blob = new Blob([payload], { type: 'application/json' });
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);

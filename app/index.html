@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark">
-<title>Leonida Ledger — GTA VI Trophy Guide &amp; Tracker</title>
+<title>GTA VI Trophy Guide — Leonida Platinum Tracker</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -12,8 +12,8 @@
   <div class="brand-block">
     <span class="sun-mark" aria-hidden="true"></span>
     <div class="brand-text">
-      <h1>LEONIDA <em>LEDGER</em></h1>
-      <p class="tagline">Unofficial GTA VI trophy guide &amp; tracker — all 55 PlayStation 5 trophies, every missable flagged</p>
+      <h1>LEONIDA <em>PLATINUM</em></h1>
+      <p class="tagline">Fan-made GTA VI trophy guide — 55 trophies, missables first, spoilers optional</p>
     </div>
   </div>
   <div class="meter-block" id="meterBlock">
@@ -34,10 +34,8 @@
         <option value="all">All kinds</option>
         <option value="story">Story</option>
         <option value="missable">Missable</option>
-        <option value="collectibles">Collectibles</option>
-        <option value="activities">Activities</option>
-        <option value="online">Online</option>
-        <option value="misc">Misc</option>
+        <option value="collectible">Collectibles</option>
+        <option value="skill">Skills &amp; misc</option>
       </select>
     </label>
     <label>Grade
@@ -47,6 +45,19 @@
         <option value="gold">Gold</option>
         <option value="silver">Silver</option>
         <option value="bronze">Bronze</option>
+      </select>
+    </label>
+    <label>Stage
+      <select id="stageFilter">
+        <option value="all">All stages</option>
+        <option value="1">1 · Prologue</option>
+        <option value="2">2 · Vice City</option>
+        <option value="3">3 · Backwoods</option>
+        <option value="4">4 · Downtown</option>
+        <option value="5">5 · Heist Arc</option>
+        <option value="6">6 · The Score</option>
+        <option value="7">7 · Heat Wave</option>
+        <option value="8">8 · Endgame</option>
       </select>
     </label>
     <label class="toggle"><input type="checkbox" id="hideEarned"> Hide earned</label>
@@ -60,27 +71,27 @@
   </div>
 </nav>
 
-<div id="spoilerBanner" class="spoiler-banner" hidden>Spoiler mode is ON — story trophy names and descriptions stay hidden until you mark them earned.</div>
+<div id="spoilerBanner" class="spoiler-banner" hidden>Spoiler mode is ON — story trophy names, descriptions and guides stay blurred until you mark them earned.</div>
 
 <main class="layout">
   <section class="check-col">
-    <h2 class="col-heading">Trophy checklist</h2>
+    <h2 class="col-heading">Checklist</h2>
     <ul id="trophyList" class="check-list"></ul>
   </section>
   <aside class="side-col">
-    <section class="panel" id="detailPanel">
-      <h2>Guide &amp; sources</h2>
-      <div id="guideDetail" class="guide-view"><p class="hint">Pick any trophy to read its guide with the sources cited.</p></div>
-    </section>
     <section class="panel" id="roadmapPanel">
-      <h2>Roadmap to the Platinum</h2>
+      <h2>8-Stage Roadmap</h2>
       <ol id="roadmapList" class="stages"></ol>
+    </section>
+    <section class="panel" id="detailPanel">
+      <h2>Guide</h2>
+      <div id="guideDetail" class="guide-view"><p class="hint">Select a trophy to read its walkthrough note and cited sources.</p></div>
     </section>
   </aside>
 </main>
 
 <footer>
-  <p>Fan-made and unofficial. Trophy names and descriptions are reproduced as published on PlayStation; every guide here is written in our own words with community sources cited. No Rockstar assets used.</p>
+  <p>Fan-made and unofficial. Trophy names and descriptions follow the published PlayStation list; every walkthrough note is written in our own words with two community sources cited per trophy. No Rockstar assets used.</p>
 </footer>
 
 <script type="module" src="app.js"></script>

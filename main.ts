@@ -1,7 +1,8 @@
-// Hand-in program for the make.fun entry gta6-trophy-guide-01 (Node 22, stdlib only).
-// Copies app/ and screenshots/ into $MAKEFUN_OUTPUT_DIR (default /output) and
-// writes dossier.json through buildDossier from the vendored kit library.
-// Any failure exits non-zero so a broken hand-in is never silent.
+// Hand-in program for the make.fun entry gta6-trophy-guide-01 (Node 22,
+// stdlib only). Copies app/ and screenshots/ into $MAKEFUN_OUTPUT_DIR
+// (default /output) and writes dossier.json through buildDossier from the
+// vendored kit library. Exits non-zero on any failure so a broken hand-in is
+// never silent.
 import { cpSync, existsSync, mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';

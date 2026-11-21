@@ -1,24 +1,24 @@
-/* Leonida Ledger — original "sunset strip" dark theme. No external assets. */
+/* Leonida Platinum — dark sunset theme. No external assets, fonts or URLs. */
 :root {
-  --base: #090a12;
-  --base2: #10121d;
-  --card: #151828;
-  --edge: #2a2e4d;
-  --ink: #eceef8;
-  --dim: #9aa1c4;
-  --flare: #ff5470;
-  --lagoon: #33dcc0;
-  --amber: #ffc957;
-  --chrome: #d2d8ea;
-  --copper: #d08a55;
-  --platgrad: linear-gradient(120deg, #c2f2ff, #f0dcff);
+  --base: #0b0a14;
+  --base2: #12101f;
+  --card: #171527;
+  --edge: #2d2a4a;
+  --ink: #edeffa;
+  --dim: #9ba2c6;
+  --flare: #ff5f6d;
+  --lagoon: #3ee0c3;
+  --amber: #ffcd5e;
+  --chrome: #d4daeb;
+  --copper: #cf8c57;
+  --platgrad: linear-gradient(120deg, #c6f4ff, #f2deff);
 }
 * { box-sizing: border-box; }
 body {
   margin: 0;
   font-family: "Trebuchet MS", "Segoe UI", Verdana, sans-serif;
   background:
-    radial-gradient(1000px 460px at 15% -6%, #2a1839 0%, var(--base) 58%),
+    radial-gradient(1000px 460px at 12% -8%, #2c1a3d 0%, var(--base) 58%),
     var(--base);
   color: var(--ink);
   min-height: 100vh;
@@ -28,7 +28,7 @@ body {
 .sun-mark {
   width: 42px; height: 42px; border-radius: 50%;
   background: radial-gradient(circle at 35% 30%, #ffd98a, var(--flare) 60%, #7c2a8f);
-  box-shadow: 0 0 26px rgba(255, 84, 112, .35);
+  box-shadow: 0 0 26px rgba(255, 95, 109, .35);
 }
 h1 { margin: 0; font-size: 26px; letter-spacing: 4px; }
 h1 em { color: var(--flare); font-style: normal; }
@@ -44,7 +44,7 @@ h1 em { color: var(--flare); font-style: normal; }
 .controls {
   display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;
   gap: 12px; padding: 10px 28px; border-bottom: 1px solid var(--edge);
-  background: rgba(16, 18, 29, .75);
+  background: rgba(18, 16, 31, .75);
 }
 .filter-strip, .action-strip { display: flex; align-items: center; gap: 13px; flex-wrap: wrap; }
 label { font-size: 13px; color: var(--dim); display: flex; align-items: center; gap: 6px; }
@@ -80,7 +80,7 @@ button:hover { filter: brightness(1.12); }
 .tag.silver { background: var(--chrome); color: #2a3142; }
 .tag.bronze { background: var(--copper); color: #2c1908; }
 .tag.family { background: #232650; color: #bcc4ff; }
-.tag.veiled { background: #271f31; color: #cbaeff; }
+.tag.stage { background: #1e2a3f; color: #9fc6ff; }
 .tag.alert { background: #4a2133; color: #ffd2dc; border: 1px solid var(--flare); }
 .row.veiled-row .row-name, .row.veiled-row .row-desc { filter: blur(6px); user-select: none; }
 

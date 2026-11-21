@@ -1,18 +1,18 @@
-// Checklist side: filtering, missables-first ordering and list drawing.
+// Checklist column: filters, missables-first ordering and list drawing.
 
-// Keep only trophies the current view wants.
+// Keep only the trophies the current view wants.
 export function applyFilters(trophies, view, earned) {
   return trophies.filter(t => {
     if (view.missOnly && !t.missable) return false;
-    if (view.kind === 'missable') { if (!t.missable) return false; }
-    else if (view.kind !== 'all' && t.kind !== view.kind) return false;
+    if (view.kind !== 'all' && t.type !== view.kind) return false;
     if (view.grade !== 'all' && t.grade !== view.grade) return false;
+    if (view.stage !== 'all' && String(t.stage) !== view.stage) return false;
     if (view.hideDone && earned.has(t.name)) return false;
     return true;
   });
 }
 
-// Unfinished missables rise to the top (their window can close); everything
+// Open missables rise to the top (their unlock window can close); everything
 // else keeps list order.
 export function orderTrophies(list, earned) {
   return [...list].sort((a, b) => {
@@ -60,7 +60,7 @@ export function drawList(root, shown, earned, view, onMark, onSelect) {
 
     const info = document.createElement('div');
     info.className = 'row-info';
-    const veiled = view.spoilers && t.kind === 'story' && !got;
+    const veiled = view.spoilers && t.type === 'story' && !got;
     if (veiled) {
       li.classList.add('veiled-row');
       info.append(box('row-name', '████ spoiler protected ████'),
@@ -71,8 +71,8 @@ export function drawList(root, shown, earned, view, onMark, onSelect) {
     const tags = document.createElement('div');
     tags.className = 'tags';
     tags.append(badge(t.grade, t.grade));
-    tags.append(badge('family', t.missable ? 'missable' : (t.kind ?? 'misc')));
-    if (t.hidden) tags.append(badge('veiled', 'hidden'));
+    tags.append(badge('family', t.type ?? 'skill'));
+    tags.append(badge('stage', 'stage ' + t.stage));
     if (t.missable) tags.append(badge('alert', '⚠ missable'));
     info.append(tags);
     body.append(info);

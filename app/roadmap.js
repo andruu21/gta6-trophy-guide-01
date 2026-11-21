@@ -12,7 +12,7 @@ export function drawStages(root, roadmap) {
   for (const st of roadmap) {
     const li = document.createElement('li');
     const head = document.createElement('div');
-    head.append(el('span', 'st-title', st.title));
+    head.append(el('span', 'st-title', `${st.stage}. ${st.title}`));
     head.append(el('span', 'st-time', st.time ?? ''));
     li.append(head);
     li.append(el('div', 'st-detail', st.detail ?? ''));
@@ -22,7 +22,7 @@ export function drawStages(root, roadmap) {
 
 export function drawGuide(root, t, store) {
   root.replaceChildren();
-  const veiled = store.view.spoilers && t.kind === 'story' && !store.earned.has(t.name);
+  const veiled = store.view.spoilers && t.type === 'story' && !store.earned.has(t.name);
   if (veiled) {
     root.append(el('p', 'hint', 'Spoiler mode: this story trophy stays hidden until you mark it earned.'));
     return;
@@ -30,8 +30,8 @@ export function drawGuide(root, t, store) {
   root.append(el('div', 'gd-name', t.name));
   root.append(el('div', 'gd-desc', t.description ?? ''));
   if (t.missable) {
-    root.append(el('p', 'gd-alert', '⚠ MISSABLE — the story closes this window; unlock it before that point.'));
+    root.append(el('p', 'gd-alert', '⚠ MISSABLE — the story closes this window; unlock it before moving on.'));
   }
   root.append(el('div', 'gd-body', t.guide ?? ''));
-  root.append(el('p', 'gd-src', 'Sources: cited in the guide text above (2+ community references each).'));
+  root.append(el('p', 'gd-src', 'Guide text written originally; community sources cited inline (2 per trophy).'));
 }

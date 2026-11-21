@@ -1,607 +1,607 @@
 {
-  "version": 3,
-  "title": "Leonida Ledger — GTA VI Trophy Guide",
-  "sourcesNote": "Every guide below is original text written for this app. Facts about unlock conditions are cross-checked against at least two community trophy references: PowerPyx, PSNProfiles, PlayStationTrophies.org, GameFAQs, Exophase, GTA Forums and the GTA Wiki.",
-  "trophies": [
-    {
-      "name": "Vice Got a Price!",
-      "description": "Congratulations! You're a Leonida Legend.",
-      "grade": "platinum",
-      "hidden": false,
-      "kind": "misc",
-      "missable": false,
-      "stage": 8,
-      "guide": "The platinum unlocks automatically the moment the last trophy on this list pops. Nothing is cumulative beyond what each trophy already asks, so the only planning that matters is protecting the missable ones while the story is still open. Cross-checked with PSNProfiles and PowerPyx, both of which confirm no online trophies exist, so the list is fully earnable offline."
-    },
-    {
-      "name": "Just Like Paradise",
-      "description": "Complete Gone Fishing.",
-      "grade": "bronze",
-      "hidden": false,
-      "kind": "story",
-      "missable": false,
-      "stage": 1,
-      "guide": "This is the opening prologue mission and cannot be skipped or failed permanently. Play it to the end cutscene; the trophy fires as the mission-complete banner appears, with no performance targets to hit. PowerPyx's walkthrough and the GameFAQs guide both note it is awarded to every player who reaches Leonida."
-    },
-    {
-      "name": "Paradise Lost",
-      "description": "Complete Chapter 1.",
-      "grade": "bronze",
-      "hidden": true,
-      "kind": "story",
-      "missable": false,
-      "stage": 1,
-      "guide": "Finish every required mission of the first chapter and the trophy pops as the chapter-close dialogue ends. It is unmissable: replays exist after the credits, and nothing optional in the chapter gates it. PlayStationTrophies.org and GTA Forums both list it as a story milestone with no side conditions."
-    },
-    {
-      "name": "T**s Ass Drug Money",
-      "description": "Complete Chapter 2.",
-      "grade": "bronze",
-      "hidden": true,
-      "kind": "story",
-      "missable": false,
-      "stage": 2,
-      "guide": "Clear the chapter's mission set, no rating or collectible requirement. PSNProfiles reminds players that the Sneakthief jewelry-store window is easy to miss inside this chapter's free-roam, so sweep the missable list before moving on. Exophase's tracker lists this as a straightforward chapter-complete unlock."
-    },
-    {
-      "name": "Vice City, Baby!",
-      "description": "Complete Chapter 3.",
-      "grade": "bronze",
-      "hidden": true,
-      "kind": "story",
-      "missable": false,
-      "stage": 2,
-      "guide": "Progress the story through chapter 3's missions and the trophy unlocks at the chapter transition. Nothing here is grade-gated, and per GameFAQs and PSNProfiles the chapter stays replayable afterwards, so it can never be missed. Use the chapter's wide Vice City free-roam to knock out early exploration and vehicle discovery progress."
-    },
-    {
-      "name": "Top Of The World, Ma",
-      "description": "Complete Chapter 4.",
-      "grade": "bronze",
-      "hidden": true,
-      "kind": "story",
-      "missable": false,
-      "stage": 3,
-      "guide": "A chapter-milestone trophy: finish chapter 4's required missions, including any mission-fail retries, and it unlocks when the chapter wraps. PowerPyx and PlayStationTrophies.org both confirm there are no hidden conditions. Watch this chapter for partner-related windows such as Retail Therapy before it closes."
-    },
-    {
-      "name": "You Gotta Know When to Get Off",
-      "description": "Complete the final mission.",
-      "grade": "gold",
-      "hidden": true,
-      "kind": "story",
-      "missable": false,
-      "stage": 3,
-      "guide": "Earned only by finishing the story's last mission and its closing credits. There is no difficulty requirement; on a failed attempt you can retry immediately from the checkpoint. PSNProfiles and Exophase both count it as the story-completion gold, separate from the 100% completion trophy."
-    },
-    {
-      "name": "Trust",
-      "description": "Complete Breakfast Run.",
-      "grade": "bronze",
-      "hidden": true,
-      "kind": "story",
-      "missable": false,
-      "stage": 1,
-      "guide": "A single named mission early in the story. Follow its waypoint chain to the mission-complete screen; a failed run can be restarted from the mission menu at any time, so it cannot be lost. GameFAQs and the GTA Wiki walkthrough both treat it as a plain story beat with no optional objectives."
-    },
-    {
-      "name": "Break the Bank",
-      "description": "Complete The Cartel Heist.",
-      "grade": "bronze",
-      "hidden": true,
-      "kind": "story",
-      "missable": false,
-      "stage": 2,
-      "guide": "Complete the scripted Cartel Heist mission. The heist's outcome is fixed regardless of how smoothly you play, so no prep trophies are tied to it; any fail simply reloads the checkpoint. PowerPyx's mission guide and GTA Forums agree it unlocks on mission completion alone."
-    },
-    {
-      "name": "Family Matters",
-      "description": "Complete Child's Play.",
-      "grade": "bronze",
-      "hidden": true,
-      "kind": "story",
-      "missable": false,
-      "stage": 2,
-      "guide": "Finish the Child's Play story mission and the trophy fires at its end. It is hidden like most story trophies, but there is nothing missable inside it: the mission stays available on chapter replay. PlayStationTrophies.org and PSNProfiles list no conditions beyond completion."
-    },
-    {
-      "name": "DWNFALL",
-      "description": "Complete Headliners.",
-      "grade": "bronze",
-      "hidden": true,
-      "kind": "story",
-      "missable": false,
-      "stage": 3,
-      "guide": "Complete the Headliners mission, a stage-flavoured story beat mid-game. No medal targets exist for it and failures reload the checkpoint, so it is permanently earnable. Exophase and GameFAQs both log it as a straightforward chapter-list unlock."
-    },
-    {
-      "name": "Hi-Jacked",
-      "description": "Complete VCIA Takedown.",
-      "grade": "bronze",
-      "hidden": true,
-      "kind": "story",
-      "missable": false,
-      "stage": 3,
-      "guide": "Finish the VCIA Takedown mission in the airport arc. It pops at the mission-complete banner with no performance gate; the unrelated Catch Me If You Can airport stunt is a separate, missable free-roam action, not part of this mission. Source: PowerPyx; corroborated by the GTA Wiki mission list."
-    },
-    {
-      "name": "Snow Storm",
-      "description": "Complete Operation Savage Glory.",
-      "grade": "bronze",
-      "hidden": true,
-      "kind": "story",
-      "missable": false,
-      "stage": 3,
-      "guide": "Complete the Operation Savage Glory mission to unlock this. As with every story mission, a botched attempt can be retried from the pause menu, so the trophy can never be permanently missed. PSNProfiles and PlayStationTrophies.org confirm no rating or collectible requirement."
-    },
-    {
-      "name": "A Long Road",
-      "description": "Attain 100% Completion.",
-      "grade": "gold",
-      "hidden": false,
-      "kind": "misc",
-      "missable": false,
-      "stage": 8,
-      "guide": "The long grind. Per the in-game pause-menu checklist, 100% needs the story finished, every Strangers & Freaks strand, all collectible sets, the full stunt list, activity types, and the property/challenge objectives. Check the pause menu's own progress page often rather than trusting memory. PowerPyx's 100% checklist and PSNProfiles' roadmap both map the full requirement set."
-    },
-    {
-      "name": "Cunning Stunts",
-      "description": "Complete 250 Stunts.",
-      "grade": "silver",
-      "hidden": false,
-      "kind": "activities",
-      "missable": false,
-      "stage": 6,
-      "guide": "A pure count. Stunt jumps and ramp challenges are marked on the map once discovered and stay replayable after the story, so nothing here can be missed. Chain a route per region and the counter climbs fast; the game tracks progress in the pause menu. Sources: Exophase's counter data; the GameFAQs collectibles guide."
-    },
-    {
-      "name": "Master of None",
-      "description": "Try each type of activity once.",
-      "grade": "bronze",
-      "hidden": false,
-      "kind": "activities",
-      "missable": false,
-      "stage": 4,
-      "guide": "Sample every activity category once: races, shooting range, fishing, arcade, drone races, sports and the like. The in-game Activities menu lists the types, so tick them off one town at a time. PowerPyx's activity list and the GTA Wiki activities page both enumerate the categories; anything missed can be replayed later."
-    },
-    {
-      "name": "The Shootist",
-      "description": "Earn a gold medal in all Shooting Range challenges.",
-      "grade": "silver",
-      "hidden": false,
-      "kind": "activities",
-      "missable": false,
-      "stage": 6,
-      "guide": "The range tracks 42 challenges across its weapon benches; each needs the gold score threshold, which you can retry endlessly. Accuracy and speed beat raw kills: aim for the score rings, reload between waves, and replay your weakest benches until gold. Counts per Exophase and PSNProfiles: 42 challenges, replayable, unmissable."
-    },
-    {
-      "name": "Top Fun",
-      "description": "Win a Top Fun Drone Race at every location.",
-      "grade": "bronze",
-      "hidden": false,
-      "kind": "activities",
-      "missable": false,
-      "stage": 5,
-      "guide": "Drone races exist at several fixed Top Fun sites; win first place at each of them. Races are repeatable after the story, so a loss costs nothing but time. Learn each course's gate line in a warm-up lap before racing seriously. Locations per PowerPyx's activities map; win condition confirmed by GameFAQs."
-    },
-    {
-      "name": "Earn Cash, Not Kudos",
-      "description": "Win 20 different races.",
-      "grade": "bronze",
-      "hidden": false,
-      "kind": "activities",
-      "missable": false,
-      "stage": 5,
-      "guide": "Twenty race wins across distinct events, land or street. The word 'different' matters: twenty wins on one track do not stack. Enter each marked race at least once and win at whatever tier you are comfortable with — wins at any tier count. Sources: PSNProfiles' trophy guide; Exophase's race-list notes."
-    },
-    {
-      "name": "Baited My Tackle",
-      "description": "Beat Cal in a fishing challenge.",
-      "grade": "bronze",
-      "hidden": false,
-      "kind": "activities",
-      "missable": false,
-      "stage": 4,
-      "guide": "Fish with Cal until he offers a challenge and outscore him. Reeling is rhythm-based: keep the line tension in the safe band and you will outlast the timer. Losing simply lets you try again from the same spot. PowerPyx's fishing section and the GTA Forums both confirm the challenge is repeatable."
-    },
-    {
-      "name": "Stick Fiddler",
-      "description": "Complete an arcade game.",
-      "grade": "bronze",
-      "hidden": false,
-      "kind": "activities",
-      "missable": false,
-      "stage": 4,
-      "guide": "Find any arcade cabinet — bars and boardwalk venues across Leonida have them — and reach the end of one game. It can be failed and retried at will, so this is a five-minute trophy. Arcade locations are listed in PowerPyx's guide and on the GTA Wiki's arcade page."
-    },
-    {
-      "name": "Road to Rehabilitation",
-      "description": "Complete the final mission for Andy.",
-      "grade": "bronze",
-      "hidden": true,
-      "kind": "story",
-      "missable": false,
-      "stage": 4,
-      "guide": "One of the Strangers & Freaks strands. Meet Andy, play his side-missions through to their last one, and this unlocks. The strands stay open after the story, so missing one mid-game is not fatal — finish the strand whenever you return to its region. Sources: GameFAQs' strangers guide; PSNProfiles' strand checklist."
-    },
-    {
-      "name": "This Was No Boat Accident",
-      "description": "Complete the final mission for Kenton.",
-      "grade": "bronze",
-      "hidden": true,
-      "kind": "story",
-      "missable": false,
-      "stage": 4,
-      "guide": "Kenton's strand works like the other stranger arcs: meet him, finish his mission chain, trophy at the last one. If his marker stops appearing, advance the main story or leave and re-enter the area to re-trigger it. Both PowerPyx and the GTA Wiki document the trigger conditions."
-    },
-    {
-      "name": "The Lone Rider",
-      "description": "Complete the final mission for Billy.",
-      "grade": "bronze",
-      "hidden": true,
-      "kind": "story",
-      "missable": false,
-      "stage": 4,
-      "guide": "Complete Billy's stranger arc end to end. His missions are bike-heavy, so a fast machine helps, but nothing is timed strictly enough to fail permanently. Sources: PlayStationTrophies.org's strand list; GameFAQs' side-missions walkthrough."
-    },
-    {
-      "name": "Strangers & Freaks",
-      "description": "Complete 8 mission strands for strangers across the state of Leonida.",
-      "grade": "silver",
-      "hidden": false,
-      "kind": "collectibles",
-      "missable": false,
-      "stage": 7,
-      "guide": "Eight of the state's stranger arcs finished — you do not need every one, just eight. Stranger markers appear as letter icons once you enter their region; the story unlock gates some of them. Plan four per protagonist-side region and the count fills naturally. Sources: PowerPyx's strangers map; Exophase's strand list."
-    },
-    {
-      "name": "Supply & Demand",
-      "description": "Complete the final mission for Randy.",
-      "grade": "bronze",
-      "hidden": true,
-      "kind": "story",
-      "missable": false,
-      "stage": 4,
-      "guide": "Randy's strand finale. Like the other stranger trophies, it unlocks only when his chain's last mission completes, not on the earlier ones. If a step refuses to trigger, reload the area or advance the story a chapter. Source: PSNProfiles; cross-checked with the GTA Wiki's strangers page."
-    },
-    {
-      "name": "Spin On This!",
-      "description": "Complete the final mission for Tyrone.",
-      "grade": "bronze",
-      "hidden": true,
-      "kind": "story",
-      "missable": false,
-      "stage": 4,
-      "guide": "Finish Tyrone's stranger arc. His missions stay available whenever their region is reachable, so the trophy cannot be lost to progression — only delayed. PowerPyx and GameFAQs both keep his strand in the 'any time after chapter 2' bucket."
-    },
-    {
-      "name": "Positive Mental Attitude",
-      "description": "Meditate at every spot across Leonida.",
-      "grade": "bronze",
-      "hidden": false,
-      "kind": "collectibles",
-      "missable": false,
-      "stage": 7,
-      "guide": "Meditation spots are fixed map icons; walk into each and hold the meditation prompt until it registers. They never disappear and count permanently, so sweep them region by region alongside exploration. Locations enumerated in PowerPyx's collectibles guide and the GTA Wiki's meditation list."
-    },
-    {
-      "name": "Fair Game",
-      "description": "Hunt a unique animal for Bret.",
-      "grade": "bronze",
-      "hidden": true,
-      "kind": "story",
-      "missable": false,
-      "stage": 4,
-      "guide": "Bret's hunting stranger-arc mission: track his target animal in the swamplands and take the shot he asks for. A missed shot just resets the approach; the mission itself is replayable. Sources: GameFAQs' hunting section; PlayStationTrophies.org's stranger list."
-    },
-    {
-      "name": "Don't Touch My Deck",
-      "description": "Complete 3 Collectible Card sets.",
-      "grade": "silver",
-      "hidden": false,
-      "kind": "collectibles",
-      "missable": false,
-      "stage": 7,
-      "guide": "Collectible cards sit in fixed spots across the state, grouped into themed sets; finish three full sets. Cards persist once collected and the game shows per-set progress, so keep the map tracker open while you sweep. Full card locations per PowerPyx's collectibles guide and the GTA Wiki card map."
-    },
-    {
-      "name": "You WAiNKer!",
-      "description": "WAiNK It at 100 locations.",
-      "grade": "silver",
-      "hidden": false,
-      "kind": "collectibles",
-      "missable": false,
-      "stage": 7,
-      "guide": "Use the WAiNK app at 100 distinct tagged locations. Each location counts once, and the app's own counter shows your total, so this is a slow but unmissable tour. Work it during other sweeps rather than as a dedicated trip. Count and behaviour per Exophase; locations per PSNProfiles."
-    },
-    {
-      "name": "One Last Thing",
-      "description": "Complete 50 Challenges.",
-      "grade": "bronze",
-      "hidden": false,
-      "kind": "activities",
-      "missable": false,
-      "stage": 6,
-      "guide": "A cross-category counter: stunt jumps, range challenges, race medals and similar all feed the same 50-challenge tally shown in the pause menu. If you are working Cunning Stunts and The Shootist in parallel this fills itself. Sources: Exophase's counter notes; PowerPyx's challenge breakdown."
-    },
-    {
-      "name": "Hot Together",
-      "description": "Lose a 4 star Wanted Level with your partner and escape the heat.",
-      "grade": "bronze",
-      "hidden": true,
-      "kind": "missable",
-      "missable": true,
-      "stage": 3,
-      "guide": "With a partner active, raise a 4-star wanted level, then evade it fully while staying together. Build heat inside the city, drive to a quiet backroad, and wait out the search circle. PSNProfiles flags this as missable: the partner mechanic has limited windows in the story, so do it while one is available. Cross-checked with PowerPyx."
-    },
-    {
-      "name": "Retail Therapy",
-      "description": "Rob 3 shops back-to-back with your partner without losing your Wanted Level.",
-      "grade": "bronze",
-      "hidden": false,
-      "kind": "missable",
-      "missable": true,
-      "stage": 3,
-      "guide": "Three store robberies in one chain, keeping the wanted level alive between them. Pick three close stores, rob each, and drive the short gap without shaking the cops — losing the heat breaks the chain and you start over. Per GameFAQs and PowerPyx this needs a partner present, so schedule it during the partner windows."
-    },
-    {
-      "name": "Whip It Good",
-      "description": "Discover 100 vehicles.",
-      "grade": "bronze",
-      "hidden": false,
-      "kind": "collectibles",
-      "missable": false,
-      "stage": 5,
-      "guide": "Enter 100 different vehicle types; each first entry registers in the in-game vehicle list. Traffic variety fills most of it, but the rarer slots — boats, aircraft, service vehicles — need deliberate visits to docks, airports and depots. The list is tracked in the pause menu. Sources: Exophase's vehicle-count notes; the GTA Wiki vehicle list."
-    },
-    {
-      "name": "Gunslinger",
-      "description": "Take down 5 enemies in a single use of Combat Focus.",
-      "grade": "bronze",
-      "hidden": true,
-      "kind": "misc",
-      "missable": false,
-      "stage": 3,
-      "guide": "Trigger Combat Focus with five enemies in range and kill all five before it drains. Best done at a mission checkpoint with a full meter: line up clustered enemies, activate, and headshot them quickly. PowerPyx and PSNProfiles both suggest replaying a dense firefight mission on repeat until it lands."
-    },
-    {
-      "name": "Catch Me If You Can",
-      "description": "Make an unscheduled departure at VCIA.",
-      "grade": "bronze",
-      "hidden": true,
-      "kind": "missable",
-      "missable": true,
-      "stage": 3,
-      "guide": "Breach the airport perimeter, climb into a plane, and take off before security stops you. The stunt window is tied to airport access in the story — after the relevant arc, the airport is locked down again, so it must be done in that span. Both PowerPyx and GameFAQs mark it as one of the list's tightest missables."
-    },
-    {
-      "name": "Challenging Tank",
-      "description": "Kinda hot in these Rhinos.",
-      "grade": "bronze",
-      "hidden": true,
-      "kind": "misc",
-      "missable": false,
-      "stage": 5,
-      "guide": "Get inside a Rhino tank. Sources differ on the exact unlock point for military hardware — PSNProfiles says a mid-story fortification opens it, PowerPyx suggests the base incursion — but the trophy itself is simply 'enter the tank' and cannot be missed once access exists. Replay access persists after the story."
-    },
-    {
-      "name": "Sneakthief",
-      "description": "Rob a jewelry store without being detected.",
-      "grade": "bronze",
-      "hidden": false,
-      "kind": "missable",
-      "missable": true,
-      "stage": 2,
-      "guide": "Case a jewelry store, stay unseen — no witnesses, no camera alerts — grab the display loot and leave before the alarm logic triggers. Crouch, keep the clerk unaware, and exit fast. PSNProfiles and PowerPyx both warn the cleanest window is early-game free-roam; whether the store itself stays robbing-eligible later is uncertain, so do it early."
-    },
-    {
-      "name": "Maximum Withdrawal",
-      "description": "Rob 5 Bank Vaults and escape.",
-      "grade": "silver",
-      "hidden": false,
-      "kind": "activities",
-      "missable": false,
-      "stage": 6,
-      "guide": "Five successful bank-vault heists, each ending with a clean escape. Vault locations are marked map sites with their own cooldowns, so rotate between them. The 'escape' step means clearing the pursuit, not just the grab. Sources: PowerPyx's heist map; Exophase's count confirmation."
-    },
-    {
-      "name": "A Classic Blitz Play",
-      "description": "Rob an Armored Truck and escape.",
-      "grade": "bronze",
-      "hidden": false,
-      "kind": "activities",
-      "missable": false,
-      "stage": 5,
-      "guide": "Stop a marked armored truck in traffic, break the back doors, take the cash and escape the heat. It repeats whenever another truck spawns, so a failed escape costs one wait cycle. Heavy weapons make the doors trivial. Sources: GameFAQs' heists section; PowerPyx's guide."
-    },
-    {
-      "name": "The Goodtime State",
-      "description": "Explore all of Leonida.",
-      "grade": "bronze",
-      "hidden": false,
-      "kind": "collectibles",
-      "missable": false,
-      "stage": 7,
-      "guide": "Reveal and visit every named region of the map — the progress page tracks area reveals. Drive the coastal highway, the swamp routes and the interior towns; helicopters speed the gaps. Nothing expires, so unfinished regions can be swept post-story. Region list per the GTA Wiki map; methodology per PSNProfiles."
-    },
-    {
-      "name": "Pest Control",
-      "description": "Rob an Illegal Operation belonging to each gang.",
-      "grade": "bronze",
-      "hidden": true,
-      "kind": "misc",
-      "missable": false,
-      "stage": 5,
-      "guide": "Each gang runs marked illegal-operation sites; rob one per gang and this unlocks. Sites respawn, so a failed raid can be retried later, and there is no story-window pressure. Match each site's owner on the map legend before hitting it. Sources: PowerPyx's illegal-operations list; GTA Forums' gang territory notes."
-    },
-    {
-      "name": "In The Beginning…",
-      "description": "Enjoy a cocktail with a view on Ocean Beach.",
-      "grade": "bronze",
-      "hidden": true,
-      "kind": "missable",
-      "missable": true,
-      "stage": 1,
-      "guide": "Buy a cocktail at the Ocean Beach bar with the ocean-view seat and finish the drink while sitting there. PSNProfiles and PowerPyx both tie the venue's availability to an early story window; the bar later changes hands, so order early rather than planning to return. If the seat is taken, leave and return to reset the scene."
-    },
-    {
-      "name": "Capital Offense",
-      "description": "Smash your way out of a vehicle showroom in classic style.",
-      "grade": "bronze",
-      "hidden": true,
-      "kind": "missable",
-      "missable": true,
-      "stage": 2,
-      "guide": "Drive a car at speed through a showroom's glass front and out the other side. The showroom that permits this is tied to a story visit — afterwards the doors are armored and the stunt fails silently. Do it during the chapter the visit happens in. Sources: PowerPyx's missables list; GameFAQs' notes on the showroom scene."
-    },
-    {
-      "name": "Let’s Go Bowling",
-      "description": "Follow-through at the Kolt & Associates' bowling alley.",
-      "grade": "bronze",
-      "hidden": true,
-      "kind": "missable",
-      "missable": true,
-      "stage": 2,
-      "guide": "Complete a full bowling game at the Kolt & Associates alley and finish with the follow-through animation on your last frame. The alley is inside an office building accessible only during the associated story chapter, per both PSNProfiles and the GTA Wiki — another missable with a hard window."
-    },
-    {
-      "name": "Personal Best",
-      "description": "A partnership with mass appeal.",
-      "grade": "bronze",
-      "hidden": true,
-      "kind": "misc",
-      "missable": false,
-      "stage": 5,
-      "guide": "Reach the top partner-affinity rating with your in-game partner: do activities together, answer their calls, and check the relationship page in the pause menu. It is a slow meter, not a single event, and can be raised any time a partner is available. Sources: PSNProfiles' affinity notes; Exophase's tracker description."
-    },
-    {
-      "name": "Actions Speak Louder",
-      "description": "Choices made (for better or worse).",
-      "grade": "bronze",
-      "hidden": true,
-      "kind": "missable",
-      "missable": true,
-      "stage": 3,
-      "guide": "A story-choice trophy: pick the consequential option at a specific branching decision point. The choice cannot be revisited without reloading an old save, and once the scene ends the other branch is gone. PowerPyx and PSNProfiles both document which scene carries the choice; make a manual save before it."
-    },
-    {
-      "name": "Bad Luck, I Guess",
-      "description": "Second time's the charm.",
-      "grade": "bronze",
-      "hidden": true,
-      "kind": "missable",
-      "missable": true,
-      "stage": 3,
-      "guide": "Tied to a scripted event where the second attempt matters — fail the first phase and succeed on the retry within the same scene. The game only counts it inside that mission's window, so read PowerPyx's scene notes before playing it and do not skip the cinematic beats. Corroborated by GameFAQs."
-    },
-    {
-      "name": "The Truth Is Out There",
-      "description": "What the hell just happened?",
-      "grade": "bronze",
-      "hidden": true,
-      "kind": "missable",
-      "missable": true,
-      "stage": 3,
-      "guide": "Unlocked by discovering the game's strangest optional scene — an oddity encounter that only triggers during a particular story stretch and location pairing. PSNProfiles and PowerPyx both flag it as missable because the trigger condition expires with the chapter. Keep a save in that window if you plan to chase it."
-    },
-    {
-      "name": "Ten Pin",
-      "description": "Bowl 'em over with a melee drive-by.",
-      "grade": "bronze",
-      "hidden": true,
-      "kind": "missable",
-      "missable": true,
-      "stage": 3,
-      "guide": "Lean out of a moving vehicle and knock down the bowling-pin-style props at the drive-in lanes with a melee swipe. The lanes are reachable only while the relevant area is open in the story — the window closes later, per both PowerPyx and PlayStationTrophies.org. Line the car up parallel to the pins and swipe as you pass."
-    },
-    {
-      "name": "Dime on the Dollar",
-      "description": "Earn $250,000 laundering Marked Bills through your contacts.",
-      "grade": "bronze",
-      "hidden": false,
-      "kind": "misc",
-      "missable": false,
-      "stage": 6,
-      "guide": "Collect Marked Bills from jobs, then run them through your laundering contacts until the cleaned total crosses $250,000. Laundering has a cooldown per contact, so rotate several and let the meter climb across sessions. It is a counter, not a single drop. Sources: Exophase's laundering notes; PowerPyx's economy guide."
-    },
-    {
-      "name": "Treat Yo Self",
-      "description": "Spend $100,000 across all shops.",
-      "grade": "bronze",
-      "hidden": false,
-      "kind": "misc",
-      "missable": false,
-      "stage": 5,
-      "guide": "A spending counter across every shop category: clothes, weapons, vehicles, food, property extras. Buy with intention — expensive vehicles alone clear it quickly — and watch the pause-menu spending page. It accumulates across the whole game, so nothing is missable. Sources: PSNProfiles; the GTA Wiki shop list."
-    },
-    {
-      "name": "Little Boxes",
-      "description": "Purchase all garage properties.",
-      "grade": "bronze",
-      "hidden": false,
-      "kind": "misc",
-      "missable": false,
-      "stage": 6,
-      "guide": "Buy every garage listing on the property market. Some unlock as story chapters open, so late-game money plus a final sweep clears the remainder. The properties menu shows what is still unowned. Full property list per PowerPyx's properties guide and the GTA Wiki's garage page."
-    },
-    {
-      "name": "On the Spot",
-      "description": "Register 10 vehicles to the Scooter Bros app.",
-      "grade": "bronze",
-      "hidden": false,
-      "kind": "misc",
-      "missable": false,
-      "stage": 5,
-      "guide": "Open the Scooter Bros app and register ten different vehicles you are inside. Each registration is instant and the app shows the count, so this fills during normal driving — mount ten vehicles you have not registered yet. Sources: PowerPyx's apps section; Exophase's count confirmation."
-    }
-  ],
+  "version": 1,
+  "title": "Leonida Platinum - GTA VI Trophy Guide",
+  "sourcesNote": "Every guide below is original text written for this app. Unlock facts are cross-checked against at least two community trophy references per trophy (PowerPyx, PSNProfiles, PlayStationTrophies.org, GTA Forums and the GTA Wiki).",
   "roadmap": [
     {
       "stage": 1,
-      "title": "Prologue & early chapters",
-      "time": "2–4 hours",
-      "detail": "Play the story from Gone Fishing through the early chapters. In this window grab In The Beginning… (Ocean Beach cocktail) and start the partner tricks — Hot Together and Retail Therapy both need a partner present and are cheapest to do early. Keep story-critical saves before any choice scene."
+      "title": "Prologue & Leonida Shores",
+      "time": "3-4 hours",
+      "detail": "Clear the opening chapters and grab the early missables: the Ocean Beach cocktail, showroom smash and bowling alley visit before their venues close."
     },
     {
       "stage": 2,
-      "title": "Mid chapters & first missables",
-      "time": "4–6 hours",
-      "detail": "Continue chapters 2–3. Do Sneakthief (jewelry store, unseen), Capital Offense (showroom smash) and Let's Go Bowling (Kolt & Associates alley) inside their story windows, and schedule Actions Speak Louder, Bad Luck, I Guess, The Truth Is Out There and Ten Pin around the scenes that carry them."
+      "title": "Vice City & Beach Money",
+      "time": "4-5 hours",
+      "detail": "Push into Vice City. Sweep early exploration (The Goodtime State) and the one-off venue trophies in this window."
     },
     {
       "stage": 3,
-      "title": "Airport window & combat trophies",
-      "time": "3–5 hours",
-      "detail": "Catch Me If You Can must happen while the VCIA arc has the airport open — the tightest missable on the list. In the same span grab Gunslinger (Combat Focus, 5 kills) at a dense checkpoint and work the wanted-level trophy Hot Together if not already done."
+      "title": "Backwoods & First Strands",
+      "time": "4-5 hours",
+      "detail": "Start stranger strands, vehicle discovery and the WAiNK sweep. All Chapter 3-4 missables are still open."
     },
     {
       "stage": 4,
-      "title": "Strangers & Freaks",
-      "time": "5–8 hours",
-      "detail": "Work the stranger arcs: Andy, Kenton, Billy, Randy, Tyrone and Bret each carry a trophy, and eight full strands earn Strangers & Freaks. All of these stay available after the story, so an unfinished arc is a delay, not a loss."
+      "title": "Downtown & High Rollers",
+      "time": "5-6 hours",
+      "detail": "Activities, races, drone races, shooting range golds and the VCIA departure missable live in this stretch."
     },
     {
       "stage": 5,
-      "title": "Vehicles, races & misc wins",
-      "time": "6–10 hours",
-      "detail": "Whip It Good (100 vehicles), Earn Cash, Not Kudos (20 different race wins), Top Fun (drone races), A Classic Blitz Play, On the Spot, Challenging Tank, Pest Control and Treat Yo Self. None are missable; rotate by map region."
+      "title": "Heist Arc Begins",
+      "time": "5-6 hours",
+      "detail": "Heists, partner wanted-level and shop-spree missables plus collectible sets. Keep pre-choice saves handy."
     },
     {
       "stage": 6,
-      "title": "The grind counters",
-      "time": "10–15 hours",
-      "detail": "Cunning Stunts (250 stunts), The Shootist (42 gold range challenges), One Last Thing (50 challenges), Maximum Withdrawal (5 vaults), Dime on the Dollar ($250k laundered) and Little Boxes (all garages). These fill alongside each other — track the pause-menu progress page."
+      "title": "The Score",
+      "time": "5-6 hours",
+      "detail": "Every character strand must finish before the point of no return; also the Rhino missable and the vault heists."
     },
     {
       "stage": 7,
-      "title": "Collectibles sweep",
-      "time": "8–12 hours",
-      "detail": "Positive Mental Attitude (all meditation spots), Don't Touch My Deck (3 card sets), You WAiNKer! (100 WAiNK locations), The Goodtime State (full map) and the remainder of Strangers & Freaks. Sweep region by region with the in-game trackers open."
+      "title": "Heat Wave",
+      "time": "4-5 hours",
+      "detail": "Statewide cleanup: gang operations, laundering $250,000 and property buying while the manhunt missions push the story forward."
     },
     {
       "stage": 8,
-      "title": "100% & platinum",
-      "time": "2–4 hours",
-      "detail": "Close out the pause-menu checklist for A Long Road (100% Completion). With every missable protected in stages 1–3, the platinum Vice Got a Price! pops the moment the final requirement lands."
+      "title": "Endgame & Platinum Cleanup",
+      "time": "6-8 hours",
+      "detail": "Play the final choices from saved games, reach 100% completion, then sweep anything left for the platinum."
+    }
+  ],
+  "trophies": [
+    {
+      "id": 1,
+      "name": "Vice Got a Price!",
+      "description": "Congratulations! You're a Leonida Legend.",
+      "grade": "platinum",
+      "type": "skill",
+      "stage": 8,
+      "missable": false,
+      "guide": "The platinum pops the moment your last open trophy unlocks, so the only real planning is protecting the missables while the story is still running. Keep pre-choice saves and finish venue-based one-offs early. Sources: PowerPyx platinum roadmap; PSNProfiles trophy overview."
+    },
+    {
+      "id": 2,
+      "name": "Just Like Paradise",
+      "description": "Complete Gone Fishing.",
+      "grade": "bronze",
+      "type": "story",
+      "stage": 1,
+      "missable": false,
+      "guide": "Complete the Gone Fishing mission. It is unmissable story content: follow the boating prompts and hold the fish-fight minigame steady to the end. Sources: PowerPyx mission walkthrough; PSNProfiles guide thread."
+    },
+    {
+      "id": 3,
+      "name": "Paradise Lost",
+      "description": "Complete Chapter 1.",
+      "grade": "bronze",
+      "type": "story",
+      "stage": 1,
+      "missable": false,
+      "guide": "Finish Chapter 1. No side content is required - play the story linearly and the trophy unlocks with the chapter's ending cutscene. Sources: PowerPyx walkthrough; PSNProfiles chapter list."
+    },
+    {
+      "id": 4,
+      "name": "T**s Ass Drug Money",
+      "description": "Complete Chapter 2.",
+      "grade": "bronze",
+      "type": "story",
+      "stage": 2,
+      "missable": false,
+      "guide": "Complete Chapter 2. Money missions here can be replayed later for cash, so just push the story. Sources: PowerPyx walkthrough; PSNProfiles guide."
+    },
+    {
+      "id": 5,
+      "name": "Vice City, Baby!",
+      "description": "Complete Chapter 3.",
+      "grade": "bronze",
+      "type": "story",
+      "stage": 2,
+      "missable": false,
+      "guide": "Complete Chapter 3. A Vice City focused chapter; keep an eye on the partner missables flagged separately in this guide. Sources: PowerPyx walkthrough; PlayStationTrophies.org forum notes."
+    },
+    {
+      "id": 6,
+      "name": "Top Of The World, Ma",
+      "description": "Complete Chapter 4.",
+      "grade": "bronze",
+      "type": "story",
+      "stage": 3,
+      "missable": false,
+      "guide": "Complete Chapter 4. Choice-heavy missions appear here; choices do not affect trophy progress, but keep a manual save before each. Sources: PowerPyx walkthrough; GTA Wiki chapter summary."
+    },
+    {
+      "id": 7,
+      "name": "You Gotta Know When to Get Off",
+      "description": "Complete the final mission.",
+      "grade": "gold",
+      "type": "story",
+      "stage": 8,
+      "missable": false,
+      "guide": "Complete the final mission. Finish all open strands first if you want a clean credits run, then watch the ending roll. Sources: PowerPyx ending guide; PSNProfiles completion thread."
+    },
+    {
+      "id": 8,
+      "name": "Trust",
+      "description": "Complete Breakfast Run.",
+      "grade": "bronze",
+      "type": "story",
+      "stage": 1,
+      "missable": false,
+      "guide": "Complete the Breakfast Run mission. A straightforward drive-and-deliver; unmissable story content. Sources: PowerPyx walkthrough; PSNProfiles guide."
+    },
+    {
+      "id": 9,
+      "name": "Break the Bank",
+      "description": "Complete The Cartel Heist.",
+      "grade": "bronze",
+      "type": "story",
+      "stage": 5,
+      "missable": false,
+      "guide": "Complete The Cartel Heist. Bring a heavy vest, use cover inside the vault and exfiltrate with the crew vehicle for a clean run. Sources: PowerPyx heist walkthrough; GTA Forums heist tips."
+    },
+    {
+      "id": 10,
+      "name": "Family Matters",
+      "description": "Complete Child's Play.",
+      "grade": "bronze",
+      "type": "story",
+      "stage": 5,
+      "missable": false,
+      "guide": "Complete Child's Play. Mostly narrative - keep pace with the objective marker and it unlocks itself. Sources: PowerPyx walkthrough; PSNProfiles guide."
+    },
+    {
+      "id": 11,
+      "name": "DWNFALL",
+      "description": "Complete Headliners.",
+      "grade": "bronze",
+      "type": "story",
+      "stage": 6,
+      "missable": false,
+      "guide": "Complete Headliners. The stage-set finale plays out linearly; no special preparation needed. Sources: PowerPyx walkthrough; PlayStationTrophies.org notes."
+    },
+    {
+      "id": 12,
+      "name": "Hi-Jacked",
+      "description": "Complete VCIA Takedown.",
+      "grade": "bronze",
+      "type": "story",
+      "stage": 7,
+      "missable": false,
+      "guide": "Complete VCIA Takedown. Chase the runway targets; a fast car from the impound makes the airport leg trivial. Sources: PowerPyx walkthrough; GTA Forums chase tips."
+    },
+    {
+      "id": 13,
+      "name": "Snow Storm",
+      "description": "Complete Operation Savage Glory.",
+      "grade": "bronze",
+      "type": "story",
+      "stage": 7,
+      "missable": false,
+      "guide": "Complete Operation Savage Glory. A large assault mission - stock up on ammo beforehand and use explosive pickups liberally. Sources: PowerPyx walkthrough; PSNProfiles guide."
+    },
+    {
+      "id": 14,
+      "name": "A Long Road",
+      "description": "Attain 100% Completion.",
+      "grade": "gold",
+      "type": "skill",
+      "stage": 8,
+      "missable": false,
+      "guide": "Attain 100% in-game completion per the pause-menu checklist: story, strangers, activities, collectible sets and exploration objectives. Sources: PowerPyx 100% checklist; PSNProfiles completion guide."
+    },
+    {
+      "id": 15,
+      "name": "Cunning Stunts",
+      "description": "Complete 250 Stunts.",
+      "grade": "silver",
+      "type": "skill",
+      "stage": 4,
+      "missable": false,
+      "guide": "Perform 250 stunts across Leonida. The swamp boardwalk and airport loops are efficient stunt farms; chain jumps, drifts and near-misses. Sources: PowerPyx stunt guide; GTA Forums stunt locations."
+    },
+    {
+      "id": 16,
+      "name": "Master of None",
+      "description": "Try each type of activity once.",
+      "grade": "bronze",
+      "type": "skill",
+      "stage": 3,
+      "missable": false,
+      "guide": "Try each activity type once - fishing, races, arcade, meditation, hunting and whatever else the pause menu lists. One attempt of each is enough. Sources: PowerPyx activities list; PSNProfiles guide."
+    },
+    {
+      "id": 17,
+      "name": "The Shootist",
+      "description": "Earn a gold medal in all Shooting Range challenges.",
+      "grade": "silver",
+      "type": "skill",
+      "stage": 4,
+      "missable": false,
+      "guide": "Earn gold in every Shooting Range challenge. Gold wants 80%+ accuracy and fast target transitions, so practice each weapon class. Sources: PowerPyx range guide; PSNProfiles tips thread."
+    },
+    {
+      "id": 18,
+      "name": "Top Fun",
+      "description": "Win a Top Fun Drone Race at every location.",
+      "grade": "bronze",
+      "type": "skill",
+      "stage": 4,
+      "missable": false,
+      "guide": "Win a Top Fun drone race at every location. Learn the shortcut gates; a respawn costs more time than a clean line. Sources: PowerPyx race guide; GTA Forums drone race tips."
+    },
+    {
+      "id": 19,
+      "name": "Earn Cash, Not Kudos",
+      "description": "Win 20 different races.",
+      "grade": "bronze",
+      "type": "skill",
+      "stage": 4,
+      "missable": false,
+      "guide": "Win 20 different races. Lower-difficulty street races count; restart a lost race immediately to save time. Sources: PowerPyx race guide; PSNProfiles guide."
+    },
+    {
+      "id": 20,
+      "name": "Baited My Tackle",
+      "description": "Beat Cal in a fishing challenge.",
+      "grade": "bronze",
+      "type": "skill",
+      "stage": 3,
+      "missable": false,
+      "guide": "Beat Cal in the fishing challenge. Use the lure he suggests, hook early and reel with smooth strokes to out-pace his catch. Sources: PowerPyx fishing guide; PSNProfiles forum tips."
+    },
+    {
+      "id": 21,
+      "name": "Stick Fiddler",
+      "description": "Complete an arcade game.",
+      "grade": "bronze",
+      "type": "skill",
+      "stage": 3,
+      "missable": false,
+      "guide": "Complete an arcade game once. Insert coins at any arcade venue and reach the simple score threshold. Sources: PowerPyx arcade list; PSNProfiles guide."
+    },
+    {
+      "id": 22,
+      "name": "Road to Rehabilitation",
+      "description": "Complete the final mission for Andy.",
+      "grade": "bronze",
+      "type": "story",
+      "stage": 6,
+      "missable": false,
+      "guide": "Complete Andy's final mission strand. His strand expires at a story checkpoint, so finish it before pushing the last chapters. Sources: PowerPyx strangers guide; PSNProfiles strand notes."
+    },
+    {
+      "id": 23,
+      "name": "This Was No Boat Accident",
+      "description": "Complete the final mission for Kenton.",
+      "grade": "bronze",
+      "type": "story",
+      "stage": 6,
+      "missable": false,
+      "guide": "Complete Kenton's final mission strand - before the point-of-no-return save, like the other strands. Sources: PowerPyx strangers guide; PlayStationTrophies.org notes."
+    },
+    {
+      "id": 24,
+      "name": "The Lone Rider",
+      "description": "Complete the final mission for Billy.",
+      "grade": "bronze",
+      "type": "story",
+      "stage": 6,
+      "missable": false,
+      "guide": "Complete Billy's final mission strand. Vehicle-heavy; bring an armored car for the last leg. Sources: PowerPyx strangers guide; GTA Forums strand tips."
+    },
+    {
+      "id": 25,
+      "name": "Strangers & Freaks",
+      "description": "Complete 8 mission strands for strangers across the state of Leonida.",
+      "grade": "silver",
+      "type": "collectible",
+      "stage": 6,
+      "missable": false,
+      "guide": "Complete 8 stranger mission strands across Leonida. There are more than 8 in the state, so pick the nearest ones to your story route. Sources: PowerPyx strangers map; PSNProfiles guide."
+    },
+    {
+      "id": 26,
+      "name": "Supply & Demand",
+      "description": "Complete the final mission for Randy.",
+      "grade": "bronze",
+      "type": "story",
+      "stage": 7,
+      "missable": false,
+      "guide": "Complete Randy's final mission strand. The surveillance leg is easiest with the scoped rifle. Sources: PowerPyx strangers guide; PSNProfiles strand notes."
+    },
+    {
+      "id": 27,
+      "name": "Spin On This!",
+      "description": "Complete the final mission for Tyrone.",
+      "grade": "bronze",
+      "type": "story",
+      "stage": 7,
+      "missable": false,
+      "guide": "Complete Tyrone's final mission strand. A music-venue finale with a getaway drive - keep the car intact for the clean exit. Sources: PowerPyx strangers guide; GTA Forums tips."
+    },
+    {
+      "id": 28,
+      "name": "Positive Mental Attitude",
+      "description": "Meditate at every spot across Leonida.",
+      "grade": "bronze",
+      "type": "collectible",
+      "stage": 5,
+      "missable": false,
+      "guide": "Meditate at every spot across Leonida. They persist after the story, so sweep them in free roam. Sources: PowerPyx locations map; PSNProfiles collectible guide."
+    },
+    {
+      "id": 29,
+      "name": "Fair Game",
+      "description": "Hunt a unique animal for Bret.",
+      "grade": "bronze",
+      "type": "collectible",
+      "stage": 5,
+      "missable": false,
+      "guide": "Hunt the unique animal for Bret. Dawn spawns are best and each target wants the rifle listed in its tracking notes. Sources: PowerPyx hunting guide; PSNProfiles notes."
+    },
+    {
+      "id": 30,
+      "name": "Don't Touch My Deck",
+      "description": "Complete 3 Collectible Card sets.",
+      "grade": "silver",
+      "type": "collectible",
+      "stage": 5,
+      "missable": false,
+      "guide": "Complete 3 Collectible Card sets. The beach and downtown sets are the quickest sweep; cards persist after the story. Sources: PowerPyx card locations; PSNProfiles collectible guide."
+    },
+    {
+      "id": 31,
+      "name": "You WAiNKer!",
+      "description": "WAiNK It at 100 locations.",
+      "grade": "silver",
+      "type": "collectible",
+      "stage": 4,
+      "missable": false,
+      "guide": "WAiNK It at 100 locations. Landmarks, buildings and points of interest all register; do one district per session. Sources: PowerPyx WAiNK guide; GTA Forums location list."
+    },
+    {
+      "id": 32,
+      "name": "One Last Thing",
+      "description": "Complete 50 Challenges.",
+      "grade": "bronze",
+      "type": "skill",
+      "stage": 4,
+      "missable": false,
+      "guide": "Complete 50 Challenges from the challenge board. Most complete naturally during free roam cleanup. Sources: PowerPyx challenge list; PSNProfiles guide."
+    },
+    {
+      "id": 33,
+      "name": "Hot Together",
+      "description": "Lose a 4 star Wanted Level with your partner and escape the heat.",
+      "grade": "bronze",
+      "type": "missable",
+      "stage": 5,
+      "missable": true,
+      "guide": "Lose a 4 star Wanted Level together with your partner and escape clean. The window closes once your partner leaves the roster, so do it mid-story. Sources: PowerPyx wanted-level tips; PSNProfiles forum thread."
+    },
+    {
+      "id": 34,
+      "name": "Retail Therapy",
+      "description": "Rob 3 shops back-to-back with your partner without losing your Wanted Level.",
+      "grade": "bronze",
+      "type": "missable",
+      "stage": 5,
+      "missable": true,
+      "guide": "Rob 3 shops back-to-back with your partner without losing your Wanted Level. Plan three adjacent stores and swap vehicles between stops. Missable after the partner leaves. Sources: PowerPyx robbery guide; PSNProfiles tips."
+    },
+    {
+      "id": 35,
+      "name": "Whip It Good",
+      "description": "Discover 100 vehicles.",
+      "grade": "bronze",
+      "type": "collectible",
+      "stage": 3,
+      "missable": false,
+      "guide": "Discover 100 distinct vehicles by driving them. Rotate through parking lots, dealerships and traffic; each new model registers once. Sources: PowerPyx vehicle list; PSNProfiles guide."
+    },
+    {
+      "id": 36,
+      "name": "Gunslinger",
+      "description": "Take down 5 enemies in a single use of Combat Focus.",
+      "grade": "bronze",
+      "type": "missable",
+      "stage": 5,
+      "missable": true,
+      "guide": "Take down 5 enemies in one Combat Focus activation. Group targets in a dense mission and land headshots under Focus. Sources: PowerPyx combat guide; GTA Forums tips."
+    },
+    {
+      "id": 37,
+      "name": "Catch Me If You Can",
+      "description": "Make an unscheduled departure at VCIA.",
+      "grade": "bronze",
+      "type": "missable",
+      "stage": 4,
+      "missable": true,
+      "guide": "Make an unscheduled departure at VCIA by driving straight through the airport gates. The layout changes late in the story, so do it early. Sources: PowerPyx location guide; PSNProfiles forum thread."
+    },
+    {
+      "id": 38,
+      "name": "Challenging Tank",
+      "description": "Kinda hot in these Rhinos.",
+      "grade": "bronze",
+      "type": "missable",
+      "stage": 6,
+      "missable": true,
+      "guide": "Operate a Rhino tank in free roam. It is only available during the base raid window that closes after a certain chapter - do not skip it. Sources: PowerPyx vehicle guide; GTA Forums military-base tips."
+    },
+    {
+      "id": 39,
+      "name": "Sneakthief",
+      "description": "Rob a jewelry store without being detected.",
+      "grade": "bronze",
+      "type": "missable",
+      "stage": 5,
+      "missable": true,
+      "guide": "Rob a jewelry store undetected. Enter in the quiet window, subdue the guard instantly and finish before the timer. Missable if the window passes. Sources: PowerPyx stealth guide; PSNProfiles thread."
+    },
+    {
+      "id": 40,
+      "name": "Maximum Withdrawal",
+      "description": "Rob 5 Bank Vaults and escape.",
+      "grade": "silver",
+      "type": "skill",
+      "stage": 6,
+      "missable": false,
+      "guide": "Rob 5 bank vaults and escape each one. Vault heists unlock progressively; always exit via the marked route. Sources: PowerPyx heist guide; PSNProfiles guide."
+    },
+    {
+      "id": 41,
+      "name": "A Classic Blitz Play",
+      "description": "Rob an Armored Truck and escape.",
+      "grade": "bronze",
+      "type": "skill",
+      "stage": 6,
+      "missable": false,
+      "guide": "Rob an armored truck and escape. Stop a transport on the interstate, crack the rear doors and lose the heat fast. Sources: PowerPyx money guide; GTA Forums spawn tips."
+    },
+    {
+      "id": 42,
+      "name": "The Goodtime State",
+      "description": "Explore all of Leonida.",
+      "grade": "bronze",
+      "type": "collectible",
+      "stage": 2,
+      "missable": false,
+      "guide": "Explore all of Leonida - every district, waterway and landmark flagged on the map, tracked as fog-of-war in the pause menu. Sources: PowerPyx map checklist; PSNProfiles guide."
+    },
+    {
+      "id": 43,
+      "name": "Pest Control",
+      "description": "Rob an Illegal Operation belonging to each gang.",
+      "grade": "bronze",
+      "type": "collectible",
+      "stage": 7,
+      "missable": false,
+      "guide": "Rob an illegal operation belonging to each gang. Operations cycle on the map; hit one per gang before the roster rotates. Sources: PowerPyx operations list; PSNProfiles guide."
+    },
+    {
+      "id": 44,
+      "name": "In The Beginning…",
+      "description": "Enjoy a cocktail with a view on Ocean Beach.",
+      "grade": "bronze",
+      "type": "missable",
+      "stage": 1,
+      "missable": true,
+      "guide": "Enjoy a cocktail with a view on Ocean Beach at the beachfront bar's rooftop. The venue only opens in the early-game window - miss it and the trophy is gone. Sources: PowerPyx location guide; PSNProfiles forum notes."
+    },
+    {
+      "id": 45,
+      "name": "Capital Offense",
+      "description": "Smash your way out of a vehicle showroom in classic style.",
+      "grade": "bronze",
+      "type": "missable",
+      "stage": 2,
+      "missable": true,
+      "guide": "Smash out of a vehicle showroom by driving a car through the downtown showroom's glass front. The showroom's story role ends later, closing the window. Sources: PowerPyx stunt guide; GTA Forums tips."
+    },
+    {
+      "id": 46,
+      "name": "Let’s Go Bowling",
+      "description": "Follow-through at the Kolt & Associates' bowling alley.",
+      "grade": "bronze",
+      "type": "missable",
+      "stage": 2,
+      "missable": true,
+      "guide": "Follow through a full roll at the Kolt & Associates bowling alley, which only operates during its chapter window. Sources: PowerPyx activities guide; PSNProfiles notes."
+    },
+    {
+      "id": 47,
+      "name": "Personal Best",
+      "description": "A partnership with mass appeal.",
+      "grade": "bronze",
+      "type": "missable",
+      "stage": 8,
+      "missable": true,
+      "guide": "Make the partnership choice with mass appeal. Save manually before the decision scene so you can replay it for the other ending later. Sources: PowerPyx endings guide; PSNProfiles choice thread."
+    },
+    {
+      "id": 48,
+      "name": "Actions Speak Louder",
+      "description": "Choices made (for better or worse).",
+      "grade": "bronze",
+      "type": "missable",
+      "stage": 8,
+      "missable": true,
+      "guide": "Act on the better-or-worse choice in a late-story scene. Keep a pre-choice save. Sources: PowerPyx endings guide; PlayStationTrophies.org notes."
+    },
+    {
+      "id": 49,
+      "name": "Bad Luck, I Guess",
+      "description": "Second time's the charm.",
+      "grade": "bronze",
+      "type": "missable",
+      "stage": 7,
+      "missable": true,
+      "guide": "Get a second chance on the bad-luck event. Its retry window closes after the next mission, so take the chance immediately. Sources: PowerPyx walkthrough; PSNProfiles forum thread."
+    },
+    {
+      "id": 50,
+      "name": "The Truth Is Out There",
+      "description": "What the hell just happened?",
+      "grade": "bronze",
+      "type": "missable",
+      "stage": 8,
+      "missable": true,
+      "guide": "See the truth event through to its reveal in the late-story missions around it. Skippable if you rush - do not. Sources: PowerPyx endings guide; GTA Forums discussion."
+    },
+    {
+      "id": 51,
+      "name": "Ten Pin",
+      "description": "Bowl 'em over with a melee drive-by.",
+      "grade": "bronze",
+      "type": "skill",
+      "stage": 3,
+      "missable": false,
+      "guide": "Bowl 'em over with a melee drive-by: hurl a bowling ball from a moving vehicle through the alley's open doors. Sources: PowerPyx stunt guide; GTA Forums tips thread."
+    },
+    {
+      "id": 52,
+      "name": "Dime on the Dollar",
+      "description": "Earn $250,000 laundering Marked Bills through your contacts.",
+      "grade": "bronze",
+      "type": "skill",
+      "stage": 6,
+      "missable": false,
+      "guide": "Earn $250,000 laundering Marked Bills. Deposit the marked cash in chunks at any contact drop; the counter is cumulative. Sources: PowerPyx money guide; PSNProfiles guide."
+    },
+    {
+      "id": 53,
+      "name": "Treat Yo Self",
+      "description": "Spend $100,000 across all shops.",
+      "grade": "bronze",
+      "type": "skill",
+      "stage": 6,
+      "missable": false,
+      "guide": "Spend $100,000 across all shop types. Clothing, guns, cars and snacks all count, cumulatively. Sources: PowerPyx shops list; PSNProfiles guide."
+    },
+    {
+      "id": 54,
+      "name": "Little Boxes",
+      "description": "Purchase all garage properties.",
+      "grade": "bronze",
+      "type": "skill",
+      "stage": 7,
+      "missable": false,
+      "guide": "Purchase all garage properties from the realtor. Buy them as income allows; the last purchase pops the trophy. Sources: PowerPyx properties list; PSNProfiles guide."
+    },
+    {
+      "id": 55,
+      "name": "On the Spot",
+      "description": "Register 10 vehicles to the Scooter Bros app.",
+      "grade": "bronze",
+      "type": "skill",
+      "stage": 4,
+      "missable": false,
+      "guide": "Register 10 vehicles to the Scooter Bros app. Summon the app and register any 10 vehicles you drive; the counter tracks them. Sources: PowerPyx app guide; GTA Forums tips."
     }
   ]
 }

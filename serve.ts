@@ -1,7 +1,6 @@
 // A tiny static server for app/ (Node 22, stdlib only): `node serve.ts` serves
-// app/ on http://localhost:8080 (`--port <n>` for another port). Sends the MIME
-// types a browser needs, refuses any path outside app/, and nothing more — a
-// development convenience, not a server for the open internet.
+// app/ on http://localhost:8080, `--port <n>` picks another port. Dev
+// convenience only — not hardened for the open internet.
 import { createReadStream, statSync } from 'node:fs';
 import { createServer } from 'node:http';
 import { extname, join, normalize, resolve, sep } from 'node:path';

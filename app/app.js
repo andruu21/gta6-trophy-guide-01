@@ -1,5 +1,5 @@
-// Leonida Ledger — tracker entry point. Offline only; earned state lives in
-// localStorage and every UI piece is built from plain DOM calls.
+// Leonida Platinum — entry point. Offline static app; earned state lives in
+// localStorage and the UI is built from plain DOM calls.
 import { drawList, applyFilters, orderTrophies } from './list.js';
 import { drawStages, drawGuide } from './roadmap.js';
 import { readEarned, saveEarned, downloadEarned, parseEarnedFile, clearEarned } from './progress.js';
@@ -8,7 +8,7 @@ const store = {
   db: { trophies: [], roadmap: [] },
   earned: new Set(),
   selected: null,
-  view: { kind: 'all', grade: 'all', hideDone: false, spoilers: false, missOnly: false },
+  view: { kind: 'all', grade: 'all', stage: 'all', hideDone: false, spoilers: false, missOnly: false },
   shown: [],
 };
 
@@ -55,7 +55,7 @@ function paintMeter() {
   byId('gradeMini').textContent = `P ${per('platinum')} · G ${per('gold')} · S ${per('silver')} · B ${per('bronze')}`;
   const left = store.db.trophies.filter(t => t.missable && !store.earned.has(t.name)).length;
   byId('missableTip').textContent = left
-    ? `${left} missable ${left === 1 ? 'trophy' : 'trophies'} still open — clear them before the story closes their window.`
+    ? `${left} missable ${left === 1 ? 'trophy' : 'trophies'} still open — clear them before the story closes the window.`
     : 'Every missable trophy is marked earned.';
 }
 
@@ -63,13 +63,14 @@ function wireControls() {
   const sync = () => {
     store.view.kind = byId('kindFilter').value;
     store.view.grade = byId('gradeFilter').value;
+    store.view.stage = byId('stageFilter').value;
     store.view.hideDone = byId('hideEarned').checked;
     store.view.spoilers = byId('spoilerMode').checked;
     byId('spoilerBanner').hidden = !store.view.spoilers;
     redraw();
     if (store.selected) drawGuide(byId('guideDetail'), store.selected, store);
   };
-  for (const id of ['kindFilter', 'gradeFilter', 'hideEarned', 'spoilerMode']) {
+  for (const id of ['kindFilter', 'gradeFilter', 'stageFilter', 'hideEarned', 'spoilerMode']) {
     byId(id).addEventListener('change', sync);
   }
   const chip = byId('missableChip');
@@ -89,7 +90,6 @@ function wireControls() {
       store.earned = parseEarnedFile(await f.text(), store.db.trophies);
       saveEarned([...store.earned]);
       sync();
-      paintMeter();
     } catch (err) { alert('Import failed: ' + err.message); }
     e.target.value = '';
   });
