@@ -1,98 +1,104 @@
-// Leonida Ledger — GTA VI trophy tracker. Fully offline; state lives in localStorage.
-import { renderList, computeVisible, sortVisible } from './list.js';
-import { renderRoadmap, renderGuide } from './roadmap.js';
-import { loadEarned, persistEarned, exportEarned, importEarned, wipeEarned } from './progress.js';
+// Leonida Ledger — tracker entry point. Offline only; earned state lives in
+// localStorage and every UI piece is built from plain DOM calls.
+import { drawList, applyFilters, orderTrophies } from './list.js';
+import { drawStages, drawGuide } from './roadmap.js';
+import { readEarned, saveEarned, downloadEarned, parseEarnedFile, clearEarned } from './progress.js';
 
-const S = {
-  data: { trophies: [], roadmap: [] },
+const store = {
+  db: { trophies: [], roadmap: [] },
   earned: new Set(),
-  picked: null,
+  selected: null,
   view: { kind: 'all', grade: 'all', hideDone: false, spoilers: false, missOnly: false },
-  visible: [],
+  shown: [],
 };
 
-const $ = id => document.getElementById(id);
+const byId = id => document.getElementById(id);
 
-async function start() {
-  const data = await (await fetch('data/trophies.json')).json();
-  S.data = data;
-  S.earned = loadEarned();
-  renderRoadmap($('roadmapList'), data.roadmap ?? []);
-  bindControls();
-  refresh();
-  if (S.visible.length) pick(S.visible[0]);
+async function boot() {
+  const res = await fetch('data/trophies.json');
+  store.db = await res.json();
+  store.earned = readEarned();
+  drawStages(byId('roadmapList'), store.db.roadmap ?? []);
+  wireControls();
+  redraw();
+  if (store.shown.length) select(store.shown[0]);
 }
 
-function refresh() {
-  S.visible = sortVisible(computeVisible(S.data.trophies, S.view, S.earned), S.earned);
-  renderList($('trophyList'), S.visible, S.earned, S.view, toggle, pick);
-  paintProgress();
+function redraw() {
+  store.shown = orderTrophies(applyFilters(store.db.trophies, store.view, store.earned), store.earned);
+  drawList(byId('trophyList'), store.shown, store.earned, store.view, markEarned, select);
+  paintMeter();
 }
 
-function toggle(name, on) {
-  if (on) S.earned.add(name); else S.earned.delete(name);
-  persistEarned([...S.earned]);
-  refresh();
-  if (S.picked) renderGuide($('guideDetail'), S.picked, S);
+function markEarned(name, on) {
+  if (on) store.earned.add(name); else store.earned.delete(name);
+  saveEarned([...store.earned]);
+  redraw();
+  if (store.selected) drawGuide(byId('guideDetail'), store.selected, store);
 }
 
-function pick(t) {
-  S.picked = t;
-  renderGuide($('guideDetail'), t, S);
-  document.querySelectorAll('.trophy.open').forEach(el => el.classList.remove('open'));
-  const li = document.querySelector(`.trophy[data-name="${CSS.escape(t.name)}"]`);
-  if (li) li.classList.add('open');
+function select(t) {
+  store.selected = t;
+  drawGuide(byId('guideDetail'), t, store);
+  document.querySelectorAll('.row.picked').forEach(el => el.classList.remove('picked'));
+  const li = document.querySelector(`.row[data-trophy="${CSS.escape(t.name)}"]`);
+  if (li) li.classList.add('picked');
 }
 
-function paintProgress() {
-  const total = S.data.trophies.length || 55;
-  const n = S.earned.size;
-  $('earnedCount').textContent = `${n} / ${total} earned`;
-  $('platinumPct').textContent = `${Math.round((n / total) * 100)}% platinum`;
-  $('barFill').style.width = `${(n / total) * 100}%`;
-  const per = g => S.data.trophies.filter(t => t.grade === g && S.earned.has(t.name)).length;
-  $('gradeMini').textContent = `P ${per('platinum')} · G ${per('gold')} · S ${per('silver')} · B ${per('bronze')}`;
-  const left = S.data.trophies.filter(t => t.missable && !S.earned.has(t.name)).length;
-  $('missableTip').textContent = left
-    ? `${left} missable ${left === 1 ? 'trophy' : 'trophies'} still unmarked — clear them before the story closes their window.`
-    : 'All missable trophies are marked.';
+function paintMeter() {
+  const total = store.db.trophies.length || 55;
+  const n = store.earned.size;
+  byId('earnedCount').textContent = `${n} / ${total} earned`;
+  byId('platinumPct').textContent = `${Math.round((n / total) * 100)}% to platinum`;
+  byId('meterFill').style.width = `${(n / total) * 100}%`;
+  const per = g => store.db.trophies.filter(t => t.grade === g && store.earned.has(t.name)).length;
+  byId('gradeMini').textContent = `P ${per('platinum')} · G ${per('gold')} · S ${per('silver')} · B ${per('bronze')}`;
+  const left = store.db.trophies.filter(t => t.missable && !store.earned.has(t.name)).length;
+  byId('missableTip').textContent = left
+    ? `${left} missable ${left === 1 ? 'trophy' : 'trophies'} still open — clear them before the story closes their window.`
+    : 'Every missable trophy is marked earned.';
 }
 
-function bindControls() {
-  const rerun = () => {
-    S.view.kind = $('kindFilter').value;
-    S.view.grade = $('gradeFilter').value;
-    S.view.hideDone = $('hideEarned').checked;
-    S.view.spoilers = $('spoilerMode').checked;
-    $('spoilerBanner').hidden = !S.view.spoilers;
-    refresh();
-    if (S.picked) renderGuide($('guideDetail'), S.picked, S);
+function wireControls() {
+  const sync = () => {
+    store.view.kind = byId('kindFilter').value;
+    store.view.grade = byId('gradeFilter').value;
+    store.view.hideDone = byId('hideEarned').checked;
+    store.view.spoilers = byId('spoilerMode').checked;
+    byId('spoilerBanner').hidden = !store.view.spoilers;
+    redraw();
+    if (store.selected) drawGuide(byId('guideDetail'), store.selected, store);
   };
-  for (const id of ['kindFilter', 'gradeFilter']) $(id).addEventListener('change', rerun);
-  for (const id of ['hideEarned', 'spoilerMode']) $(id).addEventListener('change', rerun);
-  const chip = $('missableChip');
-  const flip = () => { S.view.missOnly = !S.view.missOnly; chip.classList.toggle('active', S.view.missOnly); rerun(); };
+  for (const id of ['kindFilter', 'gradeFilter', 'hideEarned', 'spoilerMode']) {
+    byId(id).addEventListener('change', sync);
+  }
+  const chip = byId('missableChip');
+  const flip = () => {
+    store.view.missOnly = !store.view.missOnly;
+    chip.classList.toggle('on', store.view.missOnly);
+    sync();
+  };
   chip.addEventListener('click', flip);
   chip.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') flip(); });
 
-  $('exportBtn').addEventListener('click', () => exportEarned([...S.earned]));
-  $('importInput').addEventListener('change', async e => {
+  byId('exportBtn').addEventListener('click', () => downloadEarned([...store.earned]));
+  byId('importInput').addEventListener('change', async e => {
     const f = e.target.files[0];
     if (!f) return;
     try {
-      S.earned = importEarned(await f.text(), S.data.trophies);
-      persistEarned([...S.earned]);
-      rerun();
-      paintProgress();
+      store.earned = parseEarnedFile(await f.text(), store.db.trophies);
+      saveEarned([...store.earned]);
+      sync();
+      paintMeter();
     } catch (err) { alert('Import failed: ' + err.message); }
     e.target.value = '';
   });
-  $('resetBtn').addEventListener('click', () => {
+  byId('resetBtn').addEventListener('click', () => {
     if (!confirm('Clear all earned marks?')) return;
-    wipeEarned();
-    S.earned = new Set();
-    rerun();
+    clearEarned();
+    store.earned = new Set();
+    sync();
   });
 }
 
-start();
+boot();

@@ -1,20 +1,22 @@
-// Earned-state persistence: localStorage (single JSON list under one key) plus
-// JSON file export/import so progress can move between browsers or machines.
-const KEY = 'gta6-leonida-ledger-v1';
+// Earned-state persistence: one localStorage key plus JSON export/import so
+// progress survives reloads and can move between browsers.
 
-export function loadEarned() {
+const STORAGE_KEY = 'gta6-leonida-ledger-v2';
+
+export function readEarned() {
   try {
-    const arr = JSON.parse(localStorage.getItem(KEY) ?? '[]');
-    return new Set(Array.isArray(arr) ? arr.filter(x => typeof x === 'string') : []);
+    const parsed = JSON.parse(localStorage.getItem(STORAGE_KEY) ?? '[]');
+    return new Set(Array.isArray(parsed) ? parsed.filter(x => typeof x === 'string') : []);
   } catch { return new Set(); }
 }
 
-export function persistEarned(names) {
-  try { localStorage.setItem(KEY, JSON.stringify(names)); } catch { /* storage blocked */ }
+export function saveEarned(names) {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(names)); } catch { /* storage unavailable */ }
 }
 
-export function exportEarned(names) {
-  const blob = new Blob([JSON.stringify({ app: 'gta6-leonida-ledger', version: 1, earned: names }, null, 2)], { type: 'application/json' });
+export function downloadEarned(names) {
+  const payload = JSON.stringify({ app: 'gta6-leonida-ledger', version: 2, earned: names }, null, 2);
+  const blob = new Blob([payload], { type: 'application/json' });
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
   a.download = 'gta6-trophy-progress.json';
@@ -22,7 +24,7 @@ export function exportEarned(names) {
   URL.revokeObjectURL(a.href);
 }
 
-export function importEarned(text, trophies) {
+export function parseEarnedFile(text, trophies) {
   const parsed = JSON.parse(text);
   const arr = Array.isArray(parsed) ? parsed : parsed.earned;
   if (!Array.isArray(arr)) throw new Error('no earned array in file');
@@ -30,6 +32,6 @@ export function importEarned(text, trophies) {
   return new Set(arr.filter(x => typeof x === 'string' && known.has(x)));
 }
 
-export function wipeEarned() {
-  try { localStorage.removeItem(KEY); } catch { /* ignore */ }
+export function clearEarned() {
+  try { localStorage.removeItem(STORAGE_KEY); } catch { /* nothing to clear */ }
 }

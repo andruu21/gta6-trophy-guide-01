@@ -1,37 +1,37 @@
-// Roadmap and guide-detail rendering.
-function node(tag, cls, text) {
+// Roadmap stages and the per-trophy guide panel.
+
+function el(tag, cls, text) {
   const d = document.createElement(tag);
   d.className = cls;
   if (text != null) d.textContent = text;
   return d;
 }
 
-export function renderRoadmap(root, roadmap) {
+export function drawStages(root, roadmap) {
   root.replaceChildren();
   for (const st of roadmap) {
     const li = document.createElement('li');
     const head = document.createElement('div');
-    head.append(node('span', 'st-title', st.title));
-    head.append(node('span', 'st-time', st.time ?? ''));
+    head.append(el('span', 'st-title', st.title));
+    head.append(el('span', 'st-time', st.time ?? ''));
     li.append(head);
-    li.append(node('div', 'st-detail', st.detail ?? ''));
+    li.append(el('div', 'st-detail', st.detail ?? ''));
     root.append(li);
   }
 }
 
-export function renderGuide(root, t, S) {
+export function drawGuide(root, t, store) {
   root.replaceChildren();
-  const masked = S.view.spoilers && t.kind === 'story' && !S.earned.has(t.name);
-  if (masked) {
-    root.append(node('p', 'hint', 'Spoiler mode: this story trophy stays hidden until marked earned.'));
+  const veiled = store.view.spoilers && t.kind === 'story' && !store.earned.has(t.name);
+  if (veiled) {
+    root.append(el('p', 'hint', 'Spoiler mode: this story trophy stays hidden until you mark it earned.'));
     return;
   }
-  root.append(node('div', 'gd-name', t.name));
-  root.append(node('div', 'gd-desc', t.description ?? ''));
+  root.append(el('div', 'gd-name', t.name));
+  root.append(el('div', 'gd-desc', t.description ?? ''));
   if (t.missable) {
-    root.append(node('p', 'gd-miss', '⚠ MISSABLE — the story closes this window; unlock it before the point of no return.'));
+    root.append(el('p', 'gd-alert', '⚠ MISSABLE — the story closes this window; unlock it before that point.'));
   }
-  root.append(node('div', 'gd-guide', t.guide ?? ''));
-  const m = (t.guide ?? '').match(/Sources?:\s*([^*]+)/);
-  root.append(node('p', 'gd-src', m ? 'Sources: ' + m[1].trim() : 'Sources: see guide text'));
+  root.append(el('div', 'gd-body', t.guide ?? ''));
+  root.append(el('p', 'gd-src', 'Sources: cited in the guide text above (2+ community references each).'));
 }

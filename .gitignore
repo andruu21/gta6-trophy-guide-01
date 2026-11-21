@@ -1,0 +1,7 @@
+# Tooling and local environment only — the entry itself is app/ + screenshots/.
+.venv/
+node_modules/
+.makefun/
+tools-verify/
+*.log
+.DS_Store

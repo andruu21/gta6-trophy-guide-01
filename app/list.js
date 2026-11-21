@@ -1,5 +1,7 @@
-// Filtering + list rendering for the trophy checklist.
-export function computeVisible(trophies, view, earned) {
+// Checklist side: filtering, missables-first ordering and list drawing.
+
+// Keep only trophies the current view wants.
+export function applyFilters(trophies, view, earned) {
   return trophies.filter(t => {
     if (view.missOnly && !t.missable) return false;
     if (view.kind === 'missable') { if (!t.missable) return false; }
@@ -10,70 +12,72 @@ export function computeVisible(trophies, view, earned) {
   });
 }
 
-// Order: unfinished missables first (they expire), then the rest by id.
-export function sortVisible(list, earned) {
+// Unfinished missables rise to the top (their window can close); everything
+// else keeps list order.
+export function orderTrophies(list, earned) {
   return [...list].sort((a, b) => {
-    const am = a.missable && !earned.has(a.name) ? 0 : 1;
-    const bm = b.missable && !earned.has(b.name) ? 0 : 1;
-    return am - bm || a.id - b.id;
+    const av = a.missable && !earned.has(a.name) ? 0 : 1;
+    const bv = b.missable && !earned.has(b.name) ? 0 : 1;
+    return av - bv;
   });
 }
 
-function tag(cls, text) {
+function badge(cls, text) {
   const s = document.createElement('span');
-  s.className = 'badge ' + cls;
+  s.className = 'tag ' + cls;
   s.textContent = text;
   return s;
 }
 
-function cell(cls, text) {
+function box(cls, text) {
   const d = document.createElement('div');
   d.className = cls;
   if (text != null) d.textContent = text;
   return d;
 }
 
-export function renderList(root, visible, earned, view, onToggle, onPick) {
+export function drawList(root, shown, earned, view, onMark, onSelect) {
   root.replaceChildren();
-  for (const t of visible) {
+  for (const t of shown) {
     const li = document.createElement('li');
-    li.className = 'trophy';
-    li.dataset.name = t.name;
-    const done = earned.has(t.name);
-    if (done) li.classList.add('earned');
-    if (t.missable) li.classList.add('missable-flag');
+    li.className = 'row';
+    li.dataset.trophy = t.name;
+    const got = earned.has(t.name);
+    if (got) li.classList.add('got');
+    if (t.missable) li.classList.add('perishable');
 
-    const row = document.createElement('div');
-    row.className = 'tr-main';
-    const box = document.createElement('input');
-    box.type = 'checkbox';
-    box.className = 'tr-check';
-    box.checked = done;
-    box.setAttribute('aria-label', 'Mark ' + t.name + ' earned');
-    box.addEventListener('click', e => e.stopPropagation());
-    box.addEventListener('change', () => onToggle(t.name, box.checked));
-    row.append(box);
+    const body = document.createElement('div');
+    body.className = 'row-body';
+
+    const tick = document.createElement('input');
+    tick.type = 'checkbox';
+    tick.className = 'row-check';
+    tick.checked = got;
+    tick.setAttribute('aria-label', 'Mark ' + t.name + ' earned');
+    tick.addEventListener('click', e => e.stopPropagation());
+    tick.addEventListener('change', () => onMark(t.name, tick.checked));
+    body.append(tick);
 
     const info = document.createElement('div');
-    info.className = 'tr-info';
-    const masked = view.spoilers && t.kind === 'story' && !done;
-    if (masked) {
-      li.classList.add('spoiler-hidden');
-      info.append(cell('tr-name', '████ spoiler protected ████'),
-                  cell('tr-desc', 'Mark this story trophy earned to reveal it.'));
+    info.className = 'row-info';
+    const veiled = view.spoilers && t.kind === 'story' && !got;
+    if (veiled) {
+      li.classList.add('veiled-row');
+      info.append(box('row-name', '████ spoiler protected ████'),
+                  box('row-desc', 'Mark this story trophy earned to reveal it.'));
     } else {
-      info.append(cell('tr-name', t.name), cell('tr-desc', t.description ?? ''));
+      info.append(box('row-name', t.name), box('row-desc', t.description ?? ''));
     }
-    const badges = document.createElement('div');
-    badges.className = 'badges';
-    badges.append(tag(t.grade, t.grade));
-    badges.append(tag('kind', t.missable ? 'missable' : (t.kind ?? 'misc')));
-    if (t.hidden) badges.append(tag('hidden-b', 'hidden'));
-    if (t.missable) badges.append(tag('warn', '⚠ missable'));
-    info.append(badges);
-    row.append(info);
-    li.append(row);
-    li.addEventListener('click', () => onPick(t));
+    const tags = document.createElement('div');
+    tags.className = 'tags';
+    tags.append(badge(t.grade, t.grade));
+    tags.append(badge('family', t.missable ? 'missable' : (t.kind ?? 'misc')));
+    if (t.hidden) tags.append(badge('veiled', 'hidden'));
+    if (t.missable) tags.append(badge('alert', '⚠ missable'));
+    info.append(tags);
+    body.append(info);
+    li.append(body);
+    li.addEventListener('click', () => onSelect(t));
     root.append(li);
   }
 }

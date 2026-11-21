@@ -3,31 +3,32 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
 <title>Leonida Ledger — GTA VI Trophy Guide &amp; Tracker</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header id="topbar">
-  <div class="brand">
-    <span class="logo-dot" aria-hidden="true"></span>
-    <div>
+<header class="masthead" id="siteHeader">
+  <div class="brand-block">
+    <span class="sun-mark" aria-hidden="true"></span>
+    <div class="brand-text">
       <h1>LEONIDA <em>LEDGER</em></h1>
-      <p class="tagline">Unofficial GTA VI trophy guide &amp; tracker — all 55 PlayStation 5 trophies, missables flagged</p>
+      <p class="tagline">Unofficial GTA VI trophy guide &amp; tracker — all 55 PlayStation 5 trophies, every missable flagged</p>
     </div>
   </div>
-  <div class="progress-wrap">
-    <div class="progress-row">
+  <div class="meter-block" id="meterBlock">
+    <div class="meter-row">
       <span id="earnedCount">0 / 55 earned</span>
-      <span id="platinumPct">0% platinum</span>
+      <span id="platinumPct">0% to platinum</span>
     </div>
-    <div class="bar"><div id="barFill"></div></div>
+    <div class="meter"><div id="meterFill"></div></div>
     <p id="gradeMini">P 0 · G 0 · S 0 · B 0</p>
     <p id="missableTip" class="missable-tip"></p>
   </div>
 </header>
 
-<nav class="toolbar" aria-label="Controls">
-  <div class="filters">
+<nav class="controls" aria-label="Tracker controls">
+  <div class="filter-strip">
     <label>Kind
       <select id="kindFilter">
         <option value="all">All kinds</option>
@@ -48,38 +49,38 @@
         <option value="bronze">Bronze</option>
       </select>
     </label>
-    <label class="check"><input type="checkbox" id="hideEarned"> Hide earned</label>
-    <label class="check"><input type="checkbox" id="spoilerMode"> Spoiler mode</label>
-    <span class="pill pill-warn" id="missableChip" role="button" tabindex="0">⚠ Missables only</span>
+    <label class="toggle"><input type="checkbox" id="hideEarned"> Hide earned</label>
+    <label class="toggle"><input type="checkbox" id="spoilerMode"> Spoiler mode</label>
+    <span class="chip chip-alert" id="missableChip" role="button" tabindex="0">⚠ Missables only</span>
   </div>
-  <div class="actions">
+  <div class="action-strip">
     <button id="exportBtn" type="button">Export progress</button>
-    <label class="import-btn">Import progress<input id="importInput" type="file" accept="application/json"></label>
+    <label class="import-tab">Import progress<input id="importInput" type="file" accept="application/json"></label>
     <button id="resetBtn" type="button" class="ghost">Reset</button>
   </div>
 </nav>
 
-<div id="spoilerBanner" class="spoiler-banner" hidden>Spoiler mode is ON — story trophy names &amp; descriptions stay hidden until you tick them earned.</div>
+<div id="spoilerBanner" class="spoiler-banner" hidden>Spoiler mode is ON — story trophy names and descriptions stay hidden until you mark them earned.</div>
 
 <main class="layout">
-  <section class="trophy-col">
-    <h2 class="col-title">Trophy checklist</h2>
-    <ul id="trophyList" class="trophy-list"></ul>
+  <section class="check-col">
+    <h2 class="col-heading">Trophy checklist</h2>
+    <ul id="trophyList" class="check-list"></ul>
   </section>
   <aside class="side-col">
     <section class="panel" id="detailPanel">
       <h2>Guide &amp; sources</h2>
-      <div id="guideDetail" class="guide-detail"><p class="hint">Pick any trophy to read its guide with the sources cited.</p></div>
+      <div id="guideDetail" class="guide-view"><p class="hint">Pick any trophy to read its guide with the sources cited.</p></div>
     </section>
     <section class="panel" id="roadmapPanel">
       <h2>Roadmap to the Platinum</h2>
-      <ol id="roadmapList" class="roadmap"></ol>
+      <ol id="roadmapList" class="stages"></ol>
     </section>
   </aside>
 </main>
 
 <footer>
-  <p>Fan-made and unofficial. Trophy names &amp; descriptions reproduced as published on PlayStation; every guide here is written in our own words with community sources cited. No Rockstar assets used.</p>
+  <p>Fan-made and unofficial. Trophy names and descriptions are reproduced as published on PlayStation; every guide here is written in our own words with community sources cited. No Rockstar assets used.</p>
 </footer>
 
 <script type="module" src="app.js"></script>

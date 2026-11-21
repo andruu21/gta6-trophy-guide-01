@@ -9,7 +9,8 @@ Auto VI, built for the make.fun competition `gta6-trophy-guide-01`. Everything
 runs from static files with zero network requests and no Rockstar assets.
 Trophy names and descriptions are reproduced exactly as published; all guides,
 the roadmap and every missable note are written in our own words, each citing
-at least two community sources.
+at least two community sources (PSNProfiles, PowerPyx, PlayStationTrophies.org,
+GameFAQs, Exophase, GTA Forums, GTA Wiki).
 
 What it does:
 
@@ -17,8 +18,7 @@ What it does:
   ticking items tracks progress in localStorage, with export/import to a JSON
   file and a reset option.
 - Each trophy carries a compact original guide whose key claims cite at least
-  two community sources (PSNProfiles, PowerPyx, PlayStationTrophies.org,
-  GameFAQs, Exophase, GTA Forums, GTA Wiki), shown when a trophy is opened.
+  two community sources, shown when a trophy is opened.
 - Filters for kind (story, missable, collectibles, activities, misc), grade and
   hide-earned, plus a one-click "missables only" chip.
 - Spoiler mode blurs story-trophy names and descriptions until they are marked
@@ -26,7 +26,7 @@ What it does:
 - An 8-stage roadmap to the platinum with per-stage time estimates, rendered in
   the sidebar and stored in the data file.
 - Missable trophies carry a persistent warning badge and a callout in the guide
-  panel.
+  panel, and unfinished missables sort to the top of the checklist.
 
 ## Run
 
